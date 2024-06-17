@@ -50,4 +50,6 @@
 - レシピの自動保存：gem 'mechanize'を使用
 - 保存したレシピの検索：rails-autocomplete(JQuery)を使用
 - メニュー表の画像化：html2canvas.js等を使用
-  
+
+### 画面遷移図
+Figma：https://www.figma.com/design/XGrjkiWR0n4Dlsu304WmFb/Menu-Maker?node-id=0-1&t=qKKVIaxosiTwWNMq-1

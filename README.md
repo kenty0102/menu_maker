@@ -55,4 +55,4 @@
 Figma：https://www.figma.com/design/XGrjkiWR0n4Dlsu304WmFb/Menu-Maker?node-id=0-1&t=qKKVIaxosiTwWNMq-1
 
 ### ER図
-[![Image from Gyazo](https://i.gyazo.com/eea6ada33b1f5f7e243151b76330b5c7.png)](https://gyazo.com/eea6ada33b1f5f7e243151b76330b5c7)
+[![Image from Gyazo](https://i.gyazo.com/8ddbef8f947c49d04a5efaac48d85cde.png)](https://gyazo.com/8ddbef8f947c49d04a5efaac48d85cde)

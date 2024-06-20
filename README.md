@@ -53,3 +53,6 @@
 
 ### 画面遷移図
 Figma：https://www.figma.com/design/XGrjkiWR0n4Dlsu304WmFb/Menu-Maker?node-id=0-1&t=qKKVIaxosiTwWNMq-1
+
+### ER図
+[![Image from Gyazo](https://i.gyazo.com/05c8d12a334749cbbc4f1d93f03ac1d9.png)](https://gyazo.com/05c8d12a334749cbbc4f1d93f03ac1d9)

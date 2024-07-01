@@ -24,8 +24,8 @@ module MenuMaker
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
     config.generators do |g|
-      g.assets false
-      g.helper     false
+      g.skip_routes true
+      g.helper false
       g.test_framework :rspec,
         fixtures: false, # テストDBにレコードを作るfixtureの作成をスキップ(FactoryBotを使用するため)
         view_specs: false, # ビューファイル用のスペックを作成しない

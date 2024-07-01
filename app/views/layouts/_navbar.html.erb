@@ -1,0 +1,22 @@
+<nav class="navbar bg-dark border-bottom border-bottom-dark" data-bs-theme="dark">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top p-3">
+    <div class="container-fluid">
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav w-100 nav-justified h3">
+          <%= link_to "#", class: "nav-link #{active_if("#")}" do %>
+            レシピ検索
+          <% end %>
+          <%= link_to "#", class: "nav-link #{active_if("#")}" do %>
+            レシピ保存
+          <% end %>
+          <%= link_to "#", class: "nav-link #{active_if("#")}" do %>
+            レシピ一覧
+          <% end %>
+          <%= link_to "#", class: "nav-link #{active_if("#")}" do %>
+            メニュー作成
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </nav>
+</nav>

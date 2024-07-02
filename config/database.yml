@@ -60,6 +60,7 @@ test:
   <<: *default
   database: menu_maker_test
   host: db
+  port: 5432
   username: postgres
   password: password
 

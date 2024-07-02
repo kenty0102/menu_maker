@@ -1,0 +1,27 @@
+ja:
+  helpers:
+    submit:
+      create: 登録
+      submit: 保存
+      update: 更新
+    label:
+      name: ユーザー名
+      email: メールアドレス
+      password: パスワード
+      password_confirmation: パスワード（確認用）
+  users:
+    new:
+      title: 新規登録
+      to_top_page: トップページへ
+  header:
+    my_page: マイページ
+    logout: ログアウト
+  navbar:
+    recipe_search: レシピ検索
+    recipe_saving: レシピ保存
+    recipe_list: レシピ一覧
+    menu_create: メニュー作成
+  footer:
+    inquiry: お問い合わせ
+    terms_of_use: 利用規約
+    privacy_policy: プライバシーポリシー

@@ -48,3 +48,24 @@ header {
 footer {
   background-color: #F6B352;
 }
+
+.custom-card-width {
+  max-width: 70%; /* 必要に応じて調整 */
+  margin: auto; /* カードを中央揃えにする */
+  background-color: #FFD982;
+}
+
+.btn-primary {
+  background-color: #61C359; /* ボタンの色　*/
+  border: none; /* ボーダーを消す　*/
+  letter-spacing: 25px; /* 文字の間隔　*/
+  font-size: 25px; /* 文字サイズ　*/
+  text-indent: 25px;
+}
+.btn-primary:hover {
+  background-color: #50a149 ; /* ホバー時の色 */
+}
+
+.form-label {
+  font-size: 20px;
+}

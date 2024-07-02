@@ -13,6 +13,12 @@
  *= require_tree .
  *= require_self
  */
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+NO:wght@100..400&display=swap');
+
 body {
-  background-color: #FEEABC; /* 任意の背景色を指定 */
+  background-color: #FEEABC; /* アプリケーションの背景色 */
+}
+
+h1.top-page-title {
+  font-family: "Playwrite NO", cursive;
 }

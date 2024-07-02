@@ -1,0 +1,30 @@
+<header>
+  <nav class="container-fluid">
+    <div class="row align-items-center">
+      <!-- 左側の空のカラム -->
+      <div class="col"></div>
+
+      <!-- 中央揃えのためのカラム -->
+      <div class="col text-center">
+        <%= link_to root_path, class: "icon-link" do %>
+          <%= image_tag "menu_maker_logo.png", alt: "トップページ", class: "logo" %>
+        <% end %>
+      </div>
+
+      <!-- 右側のリンク -->
+      <div class="col d-flex justify-content-end align-items-center">
+        <span class="d-inline-block me-5">
+          <%= link_to "#", class: "custom-link" do %>
+            マイページ
+          <% end %>
+        </span>
+        <span class="d-inline-block me-4">
+          <%= link_to "#", class: "custom-link" do %>
+            ログアウト
+          <% end %>
+        </span>
+      </div>
+    </div>
+  </nav>
+  <%= render partial: "shared/navbar" %>
+</header>

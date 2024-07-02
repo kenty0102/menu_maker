@@ -22,3 +22,25 @@ body {
 h1.top-page-title {
   font-family: "Playwrite NO", cursive;
 }
+
+header {
+  background-color: #F6B352;
+}
+.logo {
+  max-height: 100px; /* ロゴの高さを調整 */
+  max-width: 100%;  /* 画像がコンテナを超えないように */
+}
+.custom-link {
+  color: #4C4C4C;
+  text-decoration: none; /* アンダーラインを消す場合 */
+  font-size: 25px;
+}
+.custom-link:hover {
+  color: #61C359; /* ホバー時に色を変える場合 */
+}
+
+.navbar-nav {
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+}

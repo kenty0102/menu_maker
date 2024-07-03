@@ -9,10 +9,6 @@ ja:
       email: メールアドレス
       password: パスワード
       password_confirmation: パスワード（確認用）
-  users:
-    new:
-      title: 新規登録
-      to_top_page: トップページへ
   header:
     my_page: マイページ
     logout: ログアウト
@@ -25,3 +21,13 @@ ja:
     inquiry: お問い合わせ
     terms_of_use: 利用規約
     privacy_policy: プライバシーポリシー
+  users:
+    new:
+      title: 新規登録
+      to_top_page: トップページへ
+    create:
+      success: ユーザー登録が完了しました
+      failure: ユーザー登録に失敗しました
+  before_login_top:
+    login: ログイン
+    new_registration: 新規登録

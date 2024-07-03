@@ -5,10 +5,8 @@ ja:
       submit: 保存
       update: 更新
     label:
-      name: ユーザー名
       email: メールアドレス
       password: パスワード
-      password_confirmation: パスワード（確認用）
   header:
     my_page: マイページ
     logout: ログアウト
@@ -31,3 +29,10 @@ ja:
   before_login_top:
     login: ログイン
     new_registration: 新規登録
+  user_sessions:
+    new:
+      to_top_page: トップページへ
+      title: ログイン
+      login: ログイン
+      password_forget: パスワードをお忘れの方はこちら
+      to_register_page: 新規登録はこちら

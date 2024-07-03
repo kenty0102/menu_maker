@@ -36,3 +36,6 @@ ja:
       login: ログイン
       password_forget: パスワードをお忘れの方はこちら
       to_register_page: 新規登録はこちら
+    create:
+      success: ログインしました
+      failure: ログインに失敗しました

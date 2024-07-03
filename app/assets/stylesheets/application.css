@@ -69,3 +69,14 @@ footer {
 .form-label {
   font-size: 20px;
 }
+
+.btn-secondary {
+  background-color: #F78700; /* ボタンの色　*/
+  border: none; /* ボーダーを消す　*/
+  letter-spacing: 25px; /* 文字の間隔　*/
+  font-size: 25px; /* 文字サイズ　*/
+  text-indent: 25px;
+}
+.btn-secondary:hover {
+  background-color: #d07301 ; /* ホバー時の色 */
+}

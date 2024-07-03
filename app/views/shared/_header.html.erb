@@ -17,7 +17,7 @@
           <%= link_to t('header.my_page'), "#", class: "custom-link" %>
         </span>
         <span class="d-inline-block me-4">
-          <%= link_to t('header.logout'), "#", class: "custom-link" %>
+        <%= link_to t('header.logout'), logout_path, class: "custom-link", data: { turbo_method: :delete } %>
         </span>
       </div>
     </div>

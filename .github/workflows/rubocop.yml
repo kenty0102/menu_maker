@@ -1,0 +1,35 @@
+name: Rubocop Tests
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  rubocop:
+    name: Run Rubocop
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 3.3.2
+
+      - name: Install dependencies
+        run: |
+          gem install bundler --no-document
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3
+
+      - name: Run Rubocop
+        run: |
+          bundle exec rubocop
+
+      - name: Show test results
+        run: |
+          echo "Rubocop tests completed successfully"
+          

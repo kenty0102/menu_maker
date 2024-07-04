@@ -1,7 +1,9 @@
+require 'faker'
+
 FactoryBot.define do
   factory :user do
-    name { "Test User" }
-    email { "rspec@example.com" }
+    name { Faker::Name.name }
+    email { Faker::Internet.unique.email }
     password { "password" }
     password_confirmation { "password" }
   end

@@ -1,0 +1,35 @@
+name: RSpec Tests
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  rspec:
+    name: Run RSpec
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 3.3.2
+
+      - name: Install dependencies
+        run: |
+          gem install bundler --no-document
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3
+
+      - name: Run RSpec
+        run: |
+          bundle exec rspec spec/models spec/system
+
+      - name: Show test results
+        run: |
+          echo "RSpec tests completed successfully"
+          

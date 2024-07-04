@@ -1,5 +1,8 @@
 FactoryBot.define do
   factory :user do
-    # Factory attributes here
+    name { "Test User" }
+    email { "rspec@example.com" }
+    password { "password" }
+    password_confirmation { "password" }
   end
 end

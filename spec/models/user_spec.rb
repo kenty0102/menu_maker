@@ -12,9 +12,10 @@ RSpec.describe User, type: :model do
 
     context "when 不正な情報が入力された場合" do
       it "メールアドレスが一意でなければ無効である" do
-        create(:user)
-        user.email = "rspec@example.com"
-        expect(user).not_to be_valid
+        user1 = create(:user)
+        user2 = build(:user)
+        user2.email = user1.email
+        expect(user2).not_to be_valid
       end
 
       it "パスワードが4文字未満の場合は無効である" do

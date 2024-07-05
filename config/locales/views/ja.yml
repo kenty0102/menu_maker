@@ -41,3 +41,8 @@ ja:
       failure: ログインに失敗しました
     destroy:
       success: ログアウトしました
+  password_resets:
+    new:
+      to_top_page: トップページへ
+      title: パスワード再設定申請
+      reset_password: 申請する

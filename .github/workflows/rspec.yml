@@ -42,7 +42,7 @@ jobs:
 
       - name: Run RSpec
         run: |
-          bundle exec rspec spec/models spec/system
+          bundle exec rspec spec
 
       - name: Show test results
         run: |

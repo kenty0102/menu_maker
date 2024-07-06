@@ -42,7 +42,16 @@ ja:
     destroy:
       success: ログアウトしました
   password_resets:
+    defaults:
+      password_reset: パスワードの再設定
     new:
       to_top_page: トップページへ
       title: パスワード再設定申請
       reset_password: 申請する
+    edit:
+      title: パスワード再設定
+    create: 
+      success: パスワード再設定メールを送信しました
+    update:
+      success: パスワードを変更しました
+      failure: パスワードの変更に失敗しました

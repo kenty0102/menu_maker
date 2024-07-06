@@ -1,2 +1,30 @@
-<h1>PasswordResets#edit</h1>
-<p>Find me in app/views/password_resets/edit.html.erb</p>
+<% content_for(:title, t('.title')) %>
+<div class="container">
+  <h1 class="text-center mt-5"><%= t('.title') %></h1>
+  <div class="card mt-5 custom-card-width mx-auto">
+    <div class="container py-2 my-5">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+        <%= form_with model: @user, url: password_reset_path(@token), method: :patch do |f| %>
+          <div class="mb-3">
+            <%= f.label :email, class: "form-label" %><br>
+            <%= @user.email %>
+          </div>
+          <div class="mb-3">
+            <%= f.label :password, class: "form-label" %>
+            <%= f.password_field :password, class: "form-control" %>
+          </div>
+          <div class="mb-5">
+            <%= f.label :password_confirmation, class: "form-label" %>
+            <%= f.password_field :password_confirmation, class: "form-control" %>
+          </div>
+          <div class="d-grid gap-2 col-6 mx-auto">
+            <%= f.submit class: "btn btn-primary" %>
+            </div>
+        <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

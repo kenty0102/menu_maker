@@ -1,0 +1,4 @@
+default_url_options:
+  protocol: 'https'
+  host: 'menu-maker.fly.dev'
+  

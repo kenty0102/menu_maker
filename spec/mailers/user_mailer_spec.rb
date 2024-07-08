@@ -1,23 +1,33 @@
-require "rails_helper"
+require 'rails_helper'
 
 RSpec.describe UserMailer, type: :mailer do
-  describe "reset_password_email" do
-    let(:mail) { described_class.reset_password_email }
+  describe 'パスワードリセットメール' do
+    let(:user) { create :user }
+    let(:mail) { described_class.reset_password_email(user) }
 
-    it "renders the headers" do
-      expect(mail.subject).to eq('Subject')
+    before { user.generate_reset_password_token! }
+
+    # メールが正しく送信されるかの確認
+    it 'メールが送信されること' do
+      expect { mail.deliver_now }.to change { ActionMailer::Base.deliveries.size }.by(1)
     end
 
-    it "renders the receiver email" do
-      expect(mail.to).to eq(['to@example.org'])
+    # ヘッダーのチェック
+    it '件名が正しいこと' do
+      expect(mail.subject).to eq('パスワードの再設定')
     end
 
-    it "renders the sender email" do
+    it '宛先が正しいこと' do
+      expect(mail.to).to eq([user.email])
+    end
+
+    it '送信元が正しいこと' do
       expect(mail.from).to eq(['from@example.com'])
     end
 
-    it "renders the body" do
-      expect(mail.body.encoded).to match("Hi")
+    # 本文のチェック
+    it 'メール本文にパスワードリセットのURLが含まれていること' do
+      expect(mail.body.encoded.split("\r\n").map { |i| Base64.decode64(i) }.join).to match(edit_password_reset_url(user.reset_password_token))
     end
   end
 end

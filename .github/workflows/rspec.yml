@@ -12,7 +12,7 @@ jobs:
 
     services:
       db:
-        image: postgres
+        image: postgres:latest  # 最新バージョンのPostgreSQLイメージを使用
         env:
           POSTGRES_DB: menu_maker_test
           POSTGRES_USER: postgres
@@ -23,27 +23,30 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.3.2
+          ruby-version: 3.3.2  # 使用するRubyのバージョンを指定
+          bundler-cache: true  # バンドラのキャッシュを有効にして、依存関係のインストールを高速化
 
       - name: Install dependencies
         run: |
-          gem install bundler --no-document
-          bundle config path vendor/bundle
+          bundle config set --local without 'development'
           bundle install --jobs 4 --retry 3
 
       - name: Setup database
+        env:
+          RAILS_ENV: test
         run: |
-          bundle exec rails db:create db:schema:load RAILS_ENV=test
+          bundle exec rails db:create db:schema:load
 
       - name: Run RSpec
         run: |
-          bundle exec rspec spec
+          bundle exec rspec
 
       - name: Show test results
+        if: success() || failure()  # テスト結果を表示するステップを成功/失敗にかかわらず実行
         run: |
           echo "RSpec tests completed successfully"

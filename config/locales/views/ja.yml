@@ -55,3 +55,14 @@ ja:
     update:
       success: パスワードを変更しました
       failure: パスワードの変更に失敗しました
+  profiles:
+    show:
+      to_top_page: トップページへ
+      title: マイページ
+      edit: 編集
+      password_change: パスワード変更
+    edit_username:
+      to_top_page: トップページへ
+      title: ユーザー名編集
+      update: 変更する
+

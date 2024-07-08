@@ -14,7 +14,7 @@
       <!-- 右側のリンク -->
       <div class="col d-flex justify-content-end align-items-center">
         <span class="d-inline-block me-5">
-          <%= link_to t('header.my_page'), "#", class: "custom-link" %>
+          <%= link_to t('header.my_page'), profile_path, class: "custom-link" %>
         </span>
         <span class="d-inline-block me-4">
         <%= link_to t('header.logout'), logout_path, class: "custom-link", data: { turbo_method: :delete } %>

@@ -8,7 +8,7 @@
         <%= form_with model: @user, url: password_reset_path(@token), method: :patch do |f| %>
           <div class="mb-3">
             <%= f.label :email, class: "form-label" %><br>
-            <%= @user.email %>
+            <%= f.email_field :email, class: 'form-control', value: @user.email, readonly: true %>
           </div>
           <div class="mb-3">
             <%= f.label :password, class: "form-label" %>

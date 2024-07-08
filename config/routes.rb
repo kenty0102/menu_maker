@@ -3,6 +3,16 @@ Rails.application.routes.draw do
   
   root 'static_pages#top'
   resources :users, only: %i[new create]
+  resource :profile, only: %i[show edit update] do
+    collection do
+      get 'edit_username'
+      patch 'update_username'
+      get 'edit_email'
+      patch 'update_email'
+      get 'edit_password'
+      patch 'update_password'
+    end
+  end
   get 'login', to: 'user_sessions#new'
   post 'login', to: 'user_sessions#create'
   delete 'logout', to: 'user_sessions#destroy'

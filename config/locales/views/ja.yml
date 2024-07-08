@@ -68,3 +68,7 @@ ja:
     update_username:
       success: ユーザー名を変更しました
       failure: ユーザー名の変更に失敗しました
+    edit_email:
+      to_top_page: トップページへ
+      title: メールアドレス編集
+      update: 変更する

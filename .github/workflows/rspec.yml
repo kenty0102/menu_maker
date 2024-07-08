@@ -39,6 +39,7 @@ jobs:
       - name: Setup database
         env:
           RAILS_ENV: test
+          DB_HOST: localhost
         run: |
           bundle exec rails db:create db:schema:load
 

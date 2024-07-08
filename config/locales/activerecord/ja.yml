@@ -10,3 +10,5 @@ ja:
         password_confirmation: パスワード（確認用）
         current_name: 現在のユーザー名
         new_name: 新しいユーザー名
+        current_email: 現在のメールアドレス
+        new_email: 新しいメールアドレス

@@ -8,3 +8,5 @@ ja:
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード（確認用）
+        current_name: 現在のユーザー名
+        new_name: 新しいユーザー名

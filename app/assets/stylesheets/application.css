@@ -33,7 +33,7 @@ header {
 .custom-link {
   color: #4C4C4C !important;
   text-decoration: none; /* アンダーラインを消す場合 */
-  font-size: 25px;
+  font-size: 20px;
 }
 .custom-link:hover {
   color: #61C359 !important; /* ホバー時に色を変える場合 */
@@ -58,9 +58,9 @@ footer {
 .btn-primary {
   background-color: #61C359; /* ボタンの色　*/
   border: none; /* ボーダーを消す　*/
-  letter-spacing: 25px; /* 文字の間隔　*/
+  letter-spacing: 10px; /* 文字の間隔　*/
   font-size: 25px; /* 文字サイズ　*/
-  text-indent: 25px;
+  text-indent: 10px;
 }
 .btn-primary:hover {
   background-color: #50a149 ; /* ホバー時の色 */
@@ -73,9 +73,9 @@ footer {
 .btn-secondary {
   background-color: #F78700; /* ボタンの色　*/
   border: none; /* ボーダーを消す　*/
-  letter-spacing: 25px; /* 文字の間隔　*/
+  letter-spacing: 10px; /* 文字の間隔　*/
   font-size: 25px; /* 文字サイズ　*/
-  text-indent: 25px;
+  text-indent: 10px;
 }
 .btn-secondary:hover {
   background-color: #d07301 ; /* ホバー時の色 */

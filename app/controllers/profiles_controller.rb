@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
   before_action :require_login
-  before_action :set_user, only: %i[show edit_username update_username]
+  before_action :set_user, only: %i[show edit_username update_username edit_email]
 
   def show; end
 
@@ -14,6 +14,8 @@ class ProfilesController < ApplicationController
       render :edit_username, status: :unprocessable_entity
     end
   end
+
+  def edit_email; end
 
   private
 

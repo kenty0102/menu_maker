@@ -6,18 +6,18 @@
     </span>
   </div>
   <h1 class="text-center mt-3"><%= t('.title') %></h1>
-  <%= form_with(model: @user, url: profile_path, local: true) do |f| %>
+  <%= form_with(model: @user, url: update_username_profile_path, local: true) do |f| %>
   <div class="card mt-5 custom-card-width mx-auto">
     <div class="container py-2 my-5">
       <div class="row justify-content-center">
         <div class="col-md-8">
           <div class="mb-3">
             <%= f.label :current_name, class: 'form-label' %>
-            <%= f.text_field :current_name, class: 'form-control', value: @user.name, readonly: true %>
+            <%= f.text_field :name, class: 'form-control', value: User.find(current_user.id).name, readonly: true %>
           </div>
           <div class="mb-3">
             <%= f.label :new_name, class: "form-label" %>
-            <%= f.text_field :new_name, class: "form-control" %>
+            <%= f.text_field :name, class: "form-control", value: nil, required: true %>
           </div>
         </div>
       </div>

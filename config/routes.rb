@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   
   root 'static_pages#top'
   resources :users, only: %i[new create]
-  resource :profile, only: %i[show edit update] do
+  resource :profile, only: %i[show] do
     collection do
       get 'edit_username'
       patch 'update_username'

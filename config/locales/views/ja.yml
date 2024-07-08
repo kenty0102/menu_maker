@@ -65,4 +65,6 @@ ja:
       to_top_page: トップページへ
       title: ユーザー名編集
       update: 変更する
-
+    update_username:
+      success: ユーザー名を変更しました
+      failure: ユーザー名の変更に失敗しました

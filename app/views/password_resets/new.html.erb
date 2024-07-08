@@ -13,7 +13,7 @@
           <%= form_with url: password_resets_path, local: true, method: :post do |f| %>
             <div class="mb-5">
               <%= f.label :email, class: "form-label" %>
-              <%= f.email_field :email, class: "form-control" %>
+              <%= f.email_field :email, class: "form-control", required: true %>
             </div>
             <div class="d-grid gap-2 col-6 mx-auto">
               <%= f.submit t('.reset_password'), class: "btn btn-primary" %>

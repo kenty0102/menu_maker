@@ -41,9 +41,9 @@ ja:
       failure: ログインに失敗しました
     destroy:
       success: ログアウトしました
-  password_resets:
-    defaults:
+  user_mailer:
       password_reset: パスワードの再設定
+  password_resets:
     new:
       to_top_page: トップページへ
       title: パスワード再設定申請

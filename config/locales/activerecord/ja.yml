@@ -12,3 +12,6 @@ ja:
         new_name: 新しいユーザー名
         current_email: 現在のメールアドレス
         new_email: 新しいメールアドレス
+        current_password: 現在のパスワード
+        new_password: 新しいパスワード
+        new_password_confirmation: 新しいパスワード（確認用）

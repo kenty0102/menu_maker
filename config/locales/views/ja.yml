@@ -79,3 +79,6 @@ ja:
       to_top_page: トップページへ
       title: パスワード変更
       update: 変更する
+    update_password:
+      success: パスワードを変更しました
+      failure: パスワードの変更に失敗しました

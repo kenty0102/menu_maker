@@ -12,24 +12,28 @@ jobs:
 
     services:
       postgres:
-        image: postgres:latest  # 最新バージョンのPostgreSQLイメージを使用
+        image: postgres:latest
         env:
           POSTGRES_DB: menu_maker_test
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: password
         ports:
           - 5432:5432
-        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Check out repository code
+        uses: actions/checkout@v4
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.3.2  # 使用するRubyのバージョンを指定
-          bundler-cache: true  # バンドラのキャッシュを有効にして、依存関係のインストールを高速化
+          ruby-version: 3.3.2
+          bundler-cache: true
 
       - name: Install dependencies
         run: |
@@ -39,7 +43,7 @@ jobs:
       - name: Setup database
         env:
           RAILS_ENV: test
-          DB_HOST: localhost
+          DB_HOST: postgres  # サービスコンテナのホスト名を指定
         run: |
           bundle exec rails db:create db:schema:load
 
@@ -48,6 +52,6 @@ jobs:
           bundle exec rspec
 
       - name: Show test results
-        if: success() || failure()  # テスト結果を表示するステップを成功/失敗にかかわらず実行
+        if: always()  # 成功または失敗にかかわらず、常に実行されるように変更
         run: |
-          echo "RSpec tests completed successfully"
+          echo "RSpec tests completed"

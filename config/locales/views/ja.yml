@@ -72,3 +72,6 @@ ja:
       to_top_page: トップページへ
       title: メールアドレス編集
       update: 変更する
+    update_email:
+    success: メールアドレスを変更しました
+    failure: メールアドレスの変更に失敗しました

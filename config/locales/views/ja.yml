@@ -73,5 +73,9 @@ ja:
       title: メールアドレス編集
       update: 変更する
     update_email:
-    success: メールアドレスを変更しました
-    failure: メールアドレスの変更に失敗しました
+      success: メールアドレスを変更しました
+      failure: メールアドレスの変更に失敗しました
+    edit_password:
+      to_top_page: トップページへ
+      title: パスワード変更
+      update: 変更する

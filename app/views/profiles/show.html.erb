@@ -29,7 +29,7 @@
                 <%= f.email_field :email, class: 'form-control', value: @user.email, readonly: true %>
               </div>
               <div class="d-grid gap-2 col-3 mx-auto">
-                <%= link_to t('.edit'), edit_email_profile_path, class: 'btn btn-primary', style: "letter-spacing: 5px; font-size: inherit; text-indent: initial;" %>
+                <%= link_to t('.edit'), edit_email_profile_path, id: 'edit_email_link', class: 'btn btn-primary', style: "letter-spacing: 5px; font-size: inherit; text-indent: initial;" %>
               </div>
             </div>
           </div>

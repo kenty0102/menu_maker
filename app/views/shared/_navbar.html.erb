@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav w-100 nav-justified">
-        <%= link_to t('navbar.recipe_search'), "#", class: "nav-link #{active_if("#")}" %>
+        <%= link_to t('navbar.recipe_search'), search_recipes_path, class: "nav-link #{active_if("#")}" %>
         <%= link_to t('navbar.recipe_saving'), "#", class: "nav-link #{active_if("#")}" %>
         <%= link_to t('navbar.recipe_list'), "#", class: "nav-link #{active_if("#")}" %>
         <%= link_to t('navbar.menu_create'), "#", class: "nav-link #{active_if("#")}" %>

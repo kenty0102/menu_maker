@@ -31,12 +31,12 @@ header {
   max-width: 100%;  /* 画像がコンテナを超えないように */
 }
 .custom-link {
-  color: #4C4C4C !important;
+  color: #4C4C4C;
   text-decoration: none; /* アンダーラインを消す場合 */
   font-size: 20px;
 }
 .custom-link:hover {
-  color: #61C359 !important; /* ホバー時に色を変える場合 */
+  color: #61C359; /* ホバー時に色を変える場合 */
 }
 
 .navbar-nav {
@@ -78,5 +78,16 @@ footer {
   text-indent: 10px;
 }
 .btn-secondary:hover {
+  background-color: #d07301 ; /* ホバー時の色 */
+}
+
+.btn-cookpad {
+  background-color: #F78700; /* ボタンの色　*/
+  border: none; /* ボーダーを消す　*/
+  letter-spacing: 10px; /* 文字の間隔　*/
+  font-size: 30px; /* 文字サイズ　*/
+  text-indent: 10px;
+}
+.btn-cookpad:hover {
   background-color: #d07301 ; /* ホバー時の色 */
 }

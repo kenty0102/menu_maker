@@ -78,4 +78,8 @@ Rails.application.configure do
   config.action_controller.raise_on_missing_callback_actions = true
 
   config.hosts << "menu-maker.fly.dev"
+
+  config.assets.compile = true
+  config.assets.debug = true
+  config.assets.digest = false
 end

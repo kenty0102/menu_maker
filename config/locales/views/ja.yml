@@ -82,3 +82,8 @@ ja:
     update_password:
       success: パスワードを変更しました
       failure: パスワードの変更に失敗しました
+  recipes:
+    search:
+      to_top_page: トップページへ
+      title: レシピ検索
+      cookpad: Cookpadから探す

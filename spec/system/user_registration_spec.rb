@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.describe "ユーザー登録機能", type: :system do
   it "ユーザー登録ページに正しいタイトルが表示されている" do
     visit new_user_path

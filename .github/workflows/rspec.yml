@@ -12,6 +12,7 @@ jobs:
 
     env:
       SELENIUM_DRIVER_URL: http://selenium:4444/wd/hub
+      DB_HOST: localhost  # GitHub Actions では localhost を使用
 
     services:
       postgres:
@@ -46,7 +47,8 @@ jobs:
       - name: Setup database
         env:
           RAILS_ENV: test
-          DB_HOST: db  # サービスコンテナのホスト名を指定
+          POSTGRES_HOST: localhost
+          POSTGRES_PORT: 5432
         run: |
           bundle exec rails db:create db:schema:load
 
@@ -55,6 +57,7 @@ jobs:
           bundle exec rspec
 
       - name: Show test results
-        if: always()  # 成功または失敗にかかわらず、常に実行されるように変更
+        if: always()
         run: |
           echo "RSpec tests completed"
+          

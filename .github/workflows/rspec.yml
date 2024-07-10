@@ -46,7 +46,7 @@ jobs:
       - name: Setup database
         env:
           RAILS_ENV: test
-          DB_HOST: postgres  # サービスコンテナのホスト名を指定
+          DB_HOST: db  # サービスコンテナのホスト名を指定
         run: |
           bundle exec rails db:create db:schema:load
 

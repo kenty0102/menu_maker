@@ -14,6 +14,15 @@ module SystemHelper
     fill_in 'password', with: 'password'
     click_button 'ログイン'
   end
+
+  def new_password_confirmation
+    fill_in 'user_current_password', with: 'password'
+    fill_in 'user_password', with: 'newpassword'
+    fill_in 'user_password_confirmation', with: 'newpassword'
+    click_button '変更する'
+    click_on 'ログアウト'
+    click_link 'ログイン'
+  end
 end
 
 RSpec.configure do |config|

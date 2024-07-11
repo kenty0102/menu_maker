@@ -21,6 +21,9 @@ require 'factory_bot'
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
+
+Capybara.server_port = ENV.fetch('CAPYBARA_SERVER_PORT', 3001)
+
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 # Checks for pending migrations and applies them before tests are run.

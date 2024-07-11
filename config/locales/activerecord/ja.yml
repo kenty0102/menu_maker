@@ -15,3 +15,5 @@ ja:
         current_password: 現在のパスワード
         new_password: 新しいパスワード
         new_password_confirmation: 新しいパスワード（確認用）
+      recipe:
+        source_url: URLを入力

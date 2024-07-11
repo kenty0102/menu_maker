@@ -18,6 +18,8 @@ Rails.application.routes.draw do
     collection do
       get 'search'  # レシピ検索ページに対応するルート
       get 'save_options'  # レシピ保存方法選択ページに対応するルート
+      get 'auto_save'  # レシピ自動保存ページに対応するルート
+      post 'fetch_recipe'  # レシピの自動取得アクション
     end
   end
   get 'login', to: 'user_sessions#new'  # ログインページに対応するルート

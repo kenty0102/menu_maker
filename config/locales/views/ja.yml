@@ -96,3 +96,8 @@ ja:
       save_manually: レシピを手動で保存
       save_own_recipe: 自作のレシピを保存する場合はこちら
       cannot_save_automatically: 自動保存ができない場合はこちら
+    auto_save:
+      to_top_page: トップページへ
+      title: レシピの自動保存
+      enter_the_url: レシピページのURLを入力してください
+      fetch_recipe: レシピを保存

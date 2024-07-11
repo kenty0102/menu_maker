@@ -4,4 +4,8 @@ class RecipesController < ApplicationController
   def search; end
 
   def save_options; end
+
+  def auto_save; end
+
+  def fetch_recipe; end
 end

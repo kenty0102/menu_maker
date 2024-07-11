@@ -5,23 +5,24 @@ Rails.application.routes.draw do
   resources :users, only: %i[new create]
   resource :profile, only: %i[show] do
     collection do
-      get 'edit_username'
+      get 'edit_username'  # ユーザー名編集ページに対応するルート
       patch 'update_username'
-      get 'edit_email'
+      get 'edit_email'  # メールアドレス編集ページに対応するルート
       patch 'update_email'
-      get 'edit_password'
+      get 'edit_password'  # パスワード変更ページに対応するルート
       patch 'update_password'
     end
   end
-  get 'login', to: 'user_sessions#new'
-  post 'login', to: 'user_sessions#create'
-  delete 'logout', to: 'user_sessions#destroy'
   resources :password_resets, only: %i[new create edit update]
   resources :recipes do
     collection do
       get 'search'  # レシピ検索ページに対応するルート
+      get 'save_options'  # レシピ保存方法選択ページに対応するルート
     end
   end
+  get 'login', to: 'user_sessions#new'  # ログインページに対応するルート
+  post 'login', to: 'user_sessions#create'
+  delete 'logout', to: 'user_sessions#destroy'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

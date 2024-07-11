@@ -1,7 +1,9 @@
 test:
   adapter: postgresql
   encoding: unicode
+  database: test
   username: postgres
-  password: password
+  password: postgres
   host: localhost
-  database: menu_maker_test
+  port: 5432
+  

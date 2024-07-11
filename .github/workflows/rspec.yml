@@ -27,11 +27,6 @@ jobs:
           --health-retries 5
 
     steps:
-      - name: Set up Selenium URL
-        env:
-          SELENIUM_DRIVER_URL: http://selenium:4444/wd/hub
-        run: echo "Selenium URL set to $SELENIUM_DRIVER_URL"
-        
       - name: Checkout code
         uses: actions/checkout@v4
 

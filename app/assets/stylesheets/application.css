@@ -91,3 +91,29 @@ footer {
 .btn-cookpad:hover {
   background-color: #d07301 ; /* ホバー時の色 */
 }
+
+.save_options_auto {
+  background-color: #F78700;
+  width: 20em;
+  height: 20em;
+}
+.save_options_auto:hover {
+  background-color: #d07301 ;
+}
+.save_options_manual {
+  background-color: #FFD200;
+  width: 20em;
+  height: 20em;
+}
+.save_options_manual:hover {
+  background-color: #e7bd03;
+}
+.save_options {
+  background-color: #F5F5F5;
+}
+.card:hover .save_options {
+  background-color: #d9d6d6;
+}
+.small-font li {
+  font-size: 0.9em;
+}

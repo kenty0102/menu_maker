@@ -1,0 +1,43 @@
+<% content_for(:title, t('.title')) %>
+<div class="container">
+  <div class="col d-flex justify-content-end align-items-center">
+    <span class="d-inline-block my-3">
+      <%= link_to t('.to_top_page'), root_path, class: "custom-link" %>
+    </span>
+  </div>
+  <h1 class="text-center my-5"><%= t('.title') %></h1>
+  <div class="container p-5">
+    <div class="row">
+      <div class="col-6 d-flex justify-content-center">
+        <%= link_to "#", class: "card text-center save_options_auto text-decoration-none" do %>
+          <div class="card-body">
+            <div class="row px-4">
+              <div class="col-12 py-4 mt-5 d-flex justify-content-center align-items-center rounded-3 save_options">
+                <h2 class="card-title"><%= t('.auto_save') %></h2>
+              </div>
+            </div>
+            <h5 class="card-text mt-4"><%= t('.save_via_url') %></h5>
+          </div>
+        <% end %>
+      </div>
+      <div class="col-6 d-flex justify-content-center align-items-center">
+        <%= link_to "#", class: "card text-center save_options_manual text-decoration-none" do %>
+          <div class="card-body">
+            <div class="row px-4">
+              <div class="col-12 py-4 mt-5 d-flex justify-content-center align-items-center rounded-3 save_options">
+                <h2 class="card-title"><%= t('.manual_save') %></h2>
+              </div>
+            </div>
+            <h5 class="card-text my-4"><%= t('.save_manually') %></h5>
+            <div class="col-12 text-start ">
+              <ul class="small-font">
+                <li><%= t('.save_own_recipe') %></li>
+                <li><%= t('.cannot_save_automatically') %></li>
+              </ul>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

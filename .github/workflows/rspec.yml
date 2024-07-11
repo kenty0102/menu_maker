@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      SELENIUM_DRIVER_URL: http://selenium:4444/wd/hub
+      SELENIUM_DRIVER_URL: http://localhost:4444/wd/hub
       DB_HOST: localhost  # GitHub Actions では localhost を使用
 
     services:
@@ -28,6 +28,16 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
+
+      selenium:
+        image: selenium/standalone-chrome:latest
+        ports:
+          - 4444:4444
+        options: >-
+          --health-cmd="curl -f http://localhost:4444/wd/hub/status || exit 1"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
 
     steps:
       - name: Check out repository code

@@ -101,3 +101,8 @@ ja:
       title: レシピの自動保存
       enter_the_url: レシピページのURLを入力してください
       fetch_recipe: レシピを保存
+    fetch_recipe:
+      success: レシピを保存しました
+      failure: レシピの保存に失敗しました
+      update_success: レシピを更新しました
+      failure_success: レシピの更新に失敗しました

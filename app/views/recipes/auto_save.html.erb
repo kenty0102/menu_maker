@@ -7,10 +7,10 @@
   </div>
   <h1 class="text-center my-5"><%= t('.title') %></h1>
   <div class="container py-5 px-5">
-    <%= form_with url: fetch_recipe_recipes_path, method: :post do |f| %>
+    <%= form_with model: @recipe, url: fetch_recipe_recipes_path do |f| %>
       <div class="mb-5">
         <%= f.label :source_url, class: "form-label mx-auto" %>
-        <%= f.text_field :source_url, class: "form-control mx-auto", placeholder: t('.enter_the_url') %>
+        <%= f.text_field :source_url, class: "form-control mx-auto", placeholder: t('.enter_the_url'), required: true %>
       </div>
       <div class="d-grid gap-2 col-4 mx-auto">
         <%= f.submit t('.fetch_recipe'), class: "btn btn-primary" %>

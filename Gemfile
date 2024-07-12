@@ -47,6 +47,9 @@ gem 'rails-i18n', '~> 7.0.0'
 gem 'sorcery', '~> 0.17.0'
 gem 'config'
 
+gem 'mechanize'
+gem 'rack-attack'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]

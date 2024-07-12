@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :recipes, dependent: :destroy
+
   authenticates_with_sorcery!
 
   attr_accessor :current_password

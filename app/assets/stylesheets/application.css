@@ -117,3 +117,27 @@ footer {
 .small-font li {
   font-size: 0.9em;
 }
+
+.custom-card-manual-save {
+  max-width: 90%; /* 必要に応じて調整 */
+  margin: auto; /* カードを中央揃えにする */
+  background-color: #FFD982;
+}
+
+.form-group {
+  margin-bottom: 20px; /* フォームとボタンの間に20pxの間隔を追加 */
+}
+.btn-manual_save {
+  background-color: #e2e1df; /* ボタンの色　*/
+  border: none; /* ボーダーを消す　*/
+  font-size: 15px; /* 文字サイズ　*/
+}
+.btn-manual_save:hover {
+  background-color: #c7c6c4;
+}
+
+.btn-danger {
+  background-color: #F68655;
+  width: 40px;
+  height: 40px;
+}

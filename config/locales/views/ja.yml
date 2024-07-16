@@ -106,3 +106,19 @@ ja:
       failure: レシピの保存に失敗しました
       update_success: レシピを更新しました
       failure_success: レシピの更新に失敗しました
+    new:
+      to_top_page: トップページへ
+      title: レシピの手動保存
+      ingredients: 材料
+      add_ingredient: 材料のフォームを追加
+      instructions: 作り方
+      add_instruction: 作り方のフォームを追加
+      save: レシピを保存
+  ingredient_fields:
+    ingredient_name: 材料名
+    quantity: 量
+    unit: 単位
+    remove: x
+  instruction_fields:
+    instruction_description: 作り方を入力
+    remove: x

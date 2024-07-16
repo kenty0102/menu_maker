@@ -3,6 +3,9 @@ class Recipe < ApplicationRecord
   has_many :ingredients, dependent: :destroy
   has_many :instructions, dependent: :destroy
 
+  accepts_nested_attributes_for :ingredients, reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :instructions, reject_if: :all_blank, allow_destroy: true
+
   validates :title, presence: true
   validates :image_url, presence: true, format: { with: URI::DEFAULT_PARSER.make_regexp }
   validates :source_url, presence: true, format: { with: URI::DEFAULT_PARSER.make_regexp }

@@ -17,3 +17,4 @@ ja:
         new_password_confirmation: 新しいパスワード（確認用）
       recipe:
         source_url: URLを入力
+        recipe_title: レシピ名

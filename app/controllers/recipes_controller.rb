@@ -90,6 +90,12 @@ class RecipesController < ApplicationController
     redirect_to root_path
   end
 
+  def new
+    @recipe = Recipe.new
+    @recipe.ingredients.build
+    @recipe.instructions.build
+  end
+
   private
 
   def fetch_recipe_params

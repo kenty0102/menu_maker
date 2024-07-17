@@ -1,10 +1,12 @@
+require 'faker'
+
 FactoryBot.define do
   factory :recipe do
-    user { nil }
-    title { "MyString" }
-    image_url { "MyString" }
-    source_url { "MyString" }
-    source_site_name { "MyString" }
-    scraped_at { "2024-07-12 10:15:55" }
+    association :user
+    title { Faker::Food.dish }
+    image { Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/files/sample.jpg'), 'image/jpg') }
+    source_url { Faker::Internet.url }
+    source_site_name { "Cookpad" }
+    scraped_at { Time.current }
   end
 end

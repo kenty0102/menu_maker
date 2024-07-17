@@ -1,7 +1,9 @@
+require 'faker'
+
 FactoryBot.define do
   factory :instruction do
-    recipe { nil }
+    association :recipe
     step_number { 1 }
-    description { "MyText" }
+    description { Faker::Food.description }
   end
 end

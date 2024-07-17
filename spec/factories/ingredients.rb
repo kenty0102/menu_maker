@@ -1,8 +1,10 @@
+require 'faker'
+
 FactoryBot.define do
   factory :ingredient do
-    recipe { nil }
-    name { "MyString" }
-    quantity { "MyString" }
-    unit { "MyString" }
+    association :recipe
+    name { Faker::Food.ingredient }
+    quantity { rand(1..10).to_s }
+    unit { "g" }
   end
 end

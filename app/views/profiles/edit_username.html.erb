@@ -7,6 +7,7 @@
   </div>
   <h1 class="text-center mt-3"><%= t('.title') %></h1>
   <%= form_with(model: @user, url: update_username_profile_path, local: true) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
   <div class="card mt-5 custom-card-width mx-auto">
     <div class="container py-2 my-5">
       <div class="row justify-content-center">
@@ -17,7 +18,7 @@
           </div>
           <div class="mb-3">
             <%= f.label :new_name, class: "form-label" %>
-            <%= f.text_field :name, class: "form-control", id: "new_name", value: nil %>
+            <%= f.text_field :name, class: "form-control", id: "new_name", value: nil, required: true %>
           </div>
         </div>
       </div>

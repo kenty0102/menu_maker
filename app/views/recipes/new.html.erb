@@ -7,10 +7,11 @@
   </div>
   <h1 class="text-center mt-3"><%= t('.title') %></h1>
   <%= form_with model: @recipe, local: true do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
   <div class="card mt-5 custom-card-manual-save mx-auto">
     <div class="row mt-5 d-flex justify-content-center">
       <div class="col-10 text-start">
-        <%= f.label :recipe_title, class: 'form-label', style: 'font-size: 30px;' %>
+        <%= f.label :title, class: 'form-label', style: 'font-size: 30px;' %>
         <%= f.text_field :title, class: 'form-label', style: 'width: 680px; height: 50px;' %>
       </div>
     </div>
@@ -18,7 +19,7 @@
       <div class="row">
         <div class="col-6 d-flex justify-content-center">
           <div id="ingredients-form" data-controller="dynamic-form" data-dynamic-form-target="nestedForms">
-            <h4><%= t('.ingredients') %></h4>
+            <%= f.label :ingredients, class: 'form-label' %>
             <%= f.fields_for :ingredients do |ingredient_fields| %>
               <%= render 'ingredient_fields', f: ingredient_fields %>
             <% end %>
@@ -27,13 +28,23 @@
         </div>
         <div class="col-6 d-flex justify-content-center">
           <div id="instructions-form" data-controller="dynamic-form" data-dynamic-form-target="nestedForms">
-            <h4><%= t('.instructions') %></h4>
+            <%= f.label :instructions, class: 'form-label'%>
             <%= f.fields_for :instructions  do |instruction_fields| %>
               <%= render 'instruction_fields', f: instruction_fields %>
             <% end %>
             <%= link_to t('.add_instruction'), '#', class: 'add-instruction btn btn-manual_save mt-5', data: { action: 'click->dynamic-form#addInstructionForm' } %>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="row mx-5">
+      <%= f.label :image, class: 'form-label' %>
+      <div class="col-6 d-flex justify-content-start align-items-center mb-5">
+        <%= f.file_field :image, class: 'form-control', style: 'width: 400px;' %>
+        <%= f.hidden_field :image_cache %>
+      </div>
+      <div class="col-4 d-flex justify-content-start align-items-center mb-5">
+        <%= image_tag @recipe.image.url, id: 'preview', size: '130x100' %>
       </div>
     </div>
   </div>

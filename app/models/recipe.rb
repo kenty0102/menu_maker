@@ -1,4 +1,6 @@
 class Recipe < ApplicationRecord
+  mount_uploader :image, ImageUploader
+
   belongs_to :user
   has_many :ingredients, dependent: :destroy
   has_many :instructions, dependent: :destroy
@@ -7,9 +9,7 @@ class Recipe < ApplicationRecord
   accepts_nested_attributes_for :instructions, reject_if: :all_blank, allow_destroy: true
 
   validates :title, presence: true
-  validates :image_url, presence: true, format: { with: URI::DEFAULT_PARSER.make_regexp }
-  validates :source_url, presence: true, format: { with: URI::DEFAULT_PARSER.make_regexp }
-  validates :source_site_name, presence: true
+  validates :source_url, format: { with: URI::DEFAULT_PARSER.make_regexp }, allow_nil: true
 
   def self.determine_source_site_name(url)
     require 'uri'

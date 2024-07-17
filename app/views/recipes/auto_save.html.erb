@@ -8,6 +8,7 @@
   <h1 class="text-center my-5"><%= t('.title') %></h1>
   <div class="container py-5 px-5">
     <%= form_with model: @recipe, url: fetch_recipe_recipes_path do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
       <div class="mb-5">
         <%= f.label :source_url, class: "form-label mx-auto" %>
         <%= f.text_field :source_url, class: "form-control mx-auto", placeholder: t('.enter_the_url'), required: true %>

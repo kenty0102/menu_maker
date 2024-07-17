@@ -21,14 +21,21 @@ export default class extends Controller {
     event.preventDefault();
     const newForm = document.querySelector('.ingredient-fields').cloneNode(true);
     const timestamp = new Date().getTime();
-    newForm.innerHTML = newForm.innerHTML.replace(/_attributes_\d+_/g, `_attributes_${timestamp}_`);
+    newForm.innerHTML = newForm.innerHTML.replace(/_attributes_\d+_/g, `_attributes_${timestamp}`);
+    newForm.querySelectorAll('input').forEach(input => input.value = ''); // 追加されたフォームの値をリセット
+
+    // 新しいフィールドの名前属性を更新
+    const fieldSets = this.nestedFormsTarget.querySelectorAll('.ingredient-fields');
+    const newIndex = fieldSets.length;
+    newForm.querySelectorAll('[name]').forEach((element) => {
+      element.name = element.name.replace(/\[\d+\]/, `[${newIndex}]`);
+    });
 
     // 新しいフォームに削除ボタンを追加する
     const removeButton = this.createRemoveButton('ingredient');
     const formRow = newForm.querySelector('.row');
     formRow.appendChild(removeButton);
-    
-    // Insert newForm before the add ingredient link
+
     const addIngredientLink = this.element.querySelector('.add-ingredient');
     this.nestedFormsTarget.insertBefore(newForm, addIngredientLink);
   }
@@ -37,17 +44,23 @@ export default class extends Controller {
     event.preventDefault();
     const newForm = document.querySelector('.instruction-fields').cloneNode(true);
     const timestamp = new Date().getTime();
-    newForm.innerHTML = newForm.innerHTML.replace(/_attributes_\d+_/g, `_attributes_${timestamp}_`);
+    newForm.innerHTML = newForm.innerHTML.replace(/_attributes_\d+_/g, `_attributes_${timestamp}`);
+    newForm.querySelectorAll('input, textarea').forEach(input => input.value = ''); // 追加されたフォームの値をリセット
+
+    // 新しいフィールドの名前属性を更新
+    const fieldSets = this.nestedFormsTarget.querySelectorAll('.instruction-fields');
+    const newIndex = fieldSets.length;
+    newForm.querySelectorAll('[name]').forEach((element) => {
+      element.name = element.name.replace(/\[\d+\]/, `[${newIndex}]`);
+    });
 
     // 新しいフォームに番号を付ける
     newForm.querySelector('input[name*="[step_number]"]').value = ++this.instructionCount;
 
-    // 新しいフォームに削除ボタンを追加する
     const removeButton = this.createRemoveButton('instruction');
     const formRow = newForm.querySelector('.row');
     formRow.appendChild(removeButton);
-    
-    // Insert newForm before the add instruction link
+
     const addInstructionLink = this.element.querySelector('.add-instruction');
     this.nestedFormsTarget.insertBefore(newForm, addInstructionLink);
   }

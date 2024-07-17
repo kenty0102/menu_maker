@@ -114,6 +114,9 @@ ja:
       instructions: 作り方
       add_instruction: 作り方のフォームを追加
       save: レシピを保存
+    create:
+      success: レシピを保存しました
+      failure: レシピの保存に失敗しました
   ingredient_fields:
     ingredient_name: 材料名
     quantity: 量

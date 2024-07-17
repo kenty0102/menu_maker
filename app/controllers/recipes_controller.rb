@@ -58,7 +58,7 @@ class RecipesController < ApplicationController
       if existing_recipe.save
         flash[:success] = t('.update_success')
       else
-        flash[:error] = t('.update_failure')
+        flash[:danger] = t('.update_failure')
       end
     else
       # レシピを作成
@@ -83,7 +83,7 @@ class RecipesController < ApplicationController
       if @recipe.save
         flash[:success] = t('.success')
       else
-        flash[:error] = t('.failure')
+        flash[:danger] = t('.failure')
       end
     end
 
@@ -96,9 +96,24 @@ class RecipesController < ApplicationController
     @recipe.instructions.build
   end
 
+  def create
+    @recipe = current_user.recipes.new(recipe_params)
+
+    if @recipe.save
+      redirect_to root_path, success: t('.success')
+    else
+      flash.now[:danger] = t('.failure')
+      render :new, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def fetch_recipe_params
     params.require(:recipe).permit(:source_url)
+  end
+
+  def recipe_params
+    params.require(:recipe).permit(:title, :image, :image_cache, ingredients_attributes: [:id, :name, :quantity, :unit, :_destroy], instructions_attributes: [:id, :step_number, :description, :_destroy])
   end
 end

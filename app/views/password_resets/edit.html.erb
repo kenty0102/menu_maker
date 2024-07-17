@@ -6,17 +6,18 @@
       <div class="row justify-content-center">
         <div class="col-md-8">
         <%= form_with model: @user, url: password_reset_path(@token), method: :patch do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
           <div class="mb-3">
             <%= f.label :email, class: "form-label" %><br>
             <%= f.email_field :email, class: 'form-control', value: @user.email, readonly: true %>
           </div>
           <div class="mb-3">
             <%= f.label :password, class: "form-label" %>
-            <%= f.password_field :password, class: "form-control" %>
+            <%= f.password_field :password, class: "form-control", required: true %>
           </div>
           <div class="mb-5">
             <%= f.label :password_confirmation, class: "form-label" %>
-            <%= f.password_field :password_confirmation, class: "form-control" %>
+            <%= f.password_field :password_confirmation, class: "form-control", required: true %>
           </div>
           <div class="d-grid gap-2 col-6 mx-auto">
             <%= f.submit class: "btn btn-primary" %>

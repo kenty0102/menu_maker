@@ -18,14 +18,14 @@ class RecipesController < ApplicationController
 
     # レシピの情報を取得
     title = page.search('.recipe-title').text.strip
-    image_url = page.at('#main-photo img')['src']
+    image = page.at('#main-photo img')['src']
     source_url = fetch_recipe_params[:source_url]
     source_site_name = Recipe.determine_source_site_name(source_url) # models/recipe.rbに定義したdetermine_source_site_nameメソッドでサイト名を取得
     scraped_at = Time.current
 
     if Recipe.exists?(source_url:) # 入力したURLがすでに存在する場合
       existing_recipe = current_user.recipes.find_by(source_url:)
-      existing_recipe.update(title:, image_url:, scraped_at:)
+      existing_recipe.update(title:, image:, scraped_at:)
 
       # 材料の情報を更新または作成
       page.search('.ingredient_row').each do |ingredient_row|
@@ -62,7 +62,7 @@ class RecipesController < ApplicationController
       end
     else
       # レシピを作成
-      @recipe = current_user.recipes.new(title:, image_url:, source_url:, source_site_name:, scraped_at:)
+      @recipe = current_user.recipes.new(title:, image:, source_url:, source_site_name:, scraped_at:)
 
       # 材料の情報を取得して@recipeに関連付け
       page.search('.ingredient_row').each do |ingredient_row| # '.ingredient_row'クラスを持つ要素を全て検索し、それぞれの要素について処理を行う

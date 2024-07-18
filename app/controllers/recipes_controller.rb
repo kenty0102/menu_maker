@@ -107,6 +107,10 @@ class RecipesController < ApplicationController
     end
   end
 
+  def index
+    @recipes = current_user.recipes.includes(:ingredients)
+  end
+
   private
 
   def fetch_recipe_params

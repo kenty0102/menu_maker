@@ -90,14 +90,14 @@ class RecipesController < ApplicationController
     redirect_to root_path
   end
 
+  def index
+    @recipes = current_user.recipes.includes(:ingredients)
+  end
+
   def new
     @recipe = Recipe.new
     @recipe.ingredients.build
     @recipe.instructions.build
-  end
-
-  def index
-    @recipes = current_user.recipes.includes(:ingredients)
   end
 
   def create

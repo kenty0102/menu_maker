@@ -63,7 +63,7 @@ footer {
   text-indent: 10px;
 }
 .btn-primary:hover {
-  background-color: #50a149 ; /* ホバー時の色 */
+  background-color: #50a149; /* ホバー時の色 */
 }
 
 .form-label {
@@ -140,4 +140,44 @@ footer {
   background-color: #F68655;
   width: 40px;
   height: 40px;
+}
+
+.recipe-preview {
+  background-color: #FFD982;
+}
+
+.btn-add-menu {
+  background-color: #F6B352;
+  color: #4C4C4C;
+  border: none;
+  letter-spacing: 5px; /* 文字の間隔　*/
+  font-size: 20px; /* 文字サイズ　*/
+  text-indent: 5px;
+}
+.btn-add-menu:hover {
+  background-color: #d99c47;
+}
+.btn-recipe-edit {
+  background-color: #61C359;
+  border: none;
+  color: #EFEFEF;
+  letter-spacing: 10px; /* 文字の間隔　*/
+  font-size: 20px; /* 文字サイズ　*/
+  text-indent: 10px;
+}
+.btn-recipe-edit:hover {
+  background-color: #50a149;
+  color: #dbd8d8;
+}
+.btn-recipe-delete {
+  background-color: #F68655;
+  border: none;
+  color: #EFEFEF;
+  letter-spacing: 10px; /* 文字の間隔　*/
+  font-size: 20px; /* 文字サイズ　*/
+  text-indent: 10px;
+}
+.btn-recipe-delete:hover {
+  background-color: #cf7047;
+  color: #dbd8d8;
 }

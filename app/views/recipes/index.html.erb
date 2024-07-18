@@ -1,0 +1,60 @@
+<% content_for(:title, t('.title')) %>
+<div class="container">
+  <div class="col d-flex justify-content-end align-items-center">
+    <span class="d-inline-block my-3">
+      <%= link_to t('.to_top_page'), root_path, class: "custom-link" %>
+    </span>
+  </div>
+  <h1 class="text-center mt-3"><%= t('.title') %></h1>
+  <% if @recipes.any? %>
+    <div class="container my-5">
+      <div class="recipe-list">
+        <% @recipes.each do |recipe| %>
+          <div class="recipe-preview my-3 px-3" id="recipe_<%= recipe.id %>">
+            <div class="row">
+              <div class="col-2 d-flex justify-content-center align-items-center">
+                <div class="recipe-image">
+                  <%= image_tag recipe.image.url, class: 'photo focus', alt: recipe.title, width: 150, height: 100 if recipe.image.present? %>
+                </div>
+              </div>
+              <div class="col-7 d-flex justify-content-start align-items-center">
+                <div class="recipe-text">
+                  <div class="recipe-header">
+                    <h3 class="recipe-title">
+                        <%= link_to recipe.title, "#" %>
+                    </h3>
+                  </div>
+                  <div class="ingredients">
+                    <% recipe.ingredients.each do |ingredient| %>
+                      <%= ingredient.name %>, 
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+              <div class="col-3 my-3">
+                <div class="row mb-3">
+                  <div class="col-12 d-flex justify-content-center align-items-center">
+                    <%= link_to t('.add_to_menu'), "#", class: "btn btn-add-menu btn-sm" %>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-6 d-flex justify-content-center align-items-center">
+                    <%= link_to t('.edit'), "#", class: "btn btn-recipe-edit btn-sm" %>
+                  </div>
+                  <div class="col-6 d-flex justify-content-start align-items-center">
+                    <%= link_to t('.delete'), "#", method: :delete, data: { confirm: t('.confirm_delete') }, class: "btn btn-recipe-delete btn-sm" %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% else %>
+    <div class="alert alert-info text-center">
+      <%= t('.no_recipes_saved') %>
+    </div>
+  <% end %>
+  </div>
+</div>

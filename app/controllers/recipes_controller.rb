@@ -96,6 +96,10 @@ class RecipesController < ApplicationController
     @recipe.instructions.build
   end
 
+  def index
+    @recipes = current_user.recipes.includes(:ingredients)
+  end
+
   def create
     @recipe = current_user.recipes.new(recipe_params)
 
@@ -105,10 +109,6 @@ class RecipesController < ApplicationController
       flash.now[:danger] = t('.failure')
       render :new, status: :unprocessable_entity
     end
-  end
-
-  def index
-    @recipes = current_user.recipes.includes(:ingredients)
   end
 
   private

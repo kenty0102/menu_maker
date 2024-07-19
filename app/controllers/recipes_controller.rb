@@ -71,7 +71,7 @@ class RecipesController < ApplicationController
     @recipe.ingredients.build
     @recipe.instructions.build
   end
-  
+
   def edit
     @recipe = current_user.recipes.find(params[:id])
   end

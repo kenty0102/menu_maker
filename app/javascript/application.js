@@ -2,3 +2,4 @@
 import "@hotwired/stimulus"
 import "@hotwired/turbo-rails"
 import "./controllers"
+import "./preview"

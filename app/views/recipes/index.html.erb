@@ -39,7 +39,7 @@
                 </div>
                 <div class="row">
                   <div class="col-6 d-flex justify-content-center align-items-center">
-                    <%= link_to t('.edit'), "#", class: "btn btn-recipe-edit btn-sm" %>
+                    <%= link_to t('.edit'), edit_recipe_path(recipe), class: "btn btn-recipe-edit btn-sm" %>
                   </div>
                   <div class="col-6 d-flex justify-content-start align-items-center">
                     <%= link_to t('.delete'), "#", method: :delete, data: { confirm: t('.confirm_delete') }, class: "btn btn-recipe-delete btn-sm" %>

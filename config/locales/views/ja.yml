@@ -109,9 +109,7 @@ ja:
     new:
       to_top_page: トップページへ
       title: レシピの手動保存
-      ingredients: 材料
       add_ingredient: 材料のフォームを追加
-      instructions: 作り方
       add_instruction: 作り方のフォームを追加
       save: レシピを保存
     create:
@@ -132,6 +130,12 @@ ja:
       add_to_menu: メニュー表へ追加
       edit: 編集
       delete: 削除
+    edit:
+      to_top_page: トップページへ
+      title: レシピ編集
+      save: レシピを保存
+      add_ingredient: 材料のフォームを追加
+      add_instruction: 作り方のフォームを追加
   ingredient_fields:
     ingredient_name: 材料名
     quantity: 量

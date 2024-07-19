@@ -181,3 +181,9 @@ footer {
   background-color: #cf7047;
   color: #dbd8d8;
 }
+
+.subtitle {
+  background-color: #F6B352;
+  text-align: center;
+  letter-spacing: 5px;
+}

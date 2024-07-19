@@ -1,0 +1,77 @@
+<% content_for(:title, t('.title')) %>
+<div class="container">
+  <div class="col d-flex justify-content-end align-items-center">
+    <span class="d-inline-block my-3">
+      <%= link_to t('.to_top_page'), root_path, class: "custom-link" %>
+    </span>
+  </div>
+  <h1 class="text-center mt-3"><%= t('.title') %></h1>
+  <div class="card mt-5 custom-card-manual-save mx-auto">
+    <div class="row my-5">
+      <div class="col-12 d-flex justify-content-center">
+        <h2><%= @recipe.title %></h2>
+      </div>
+    </div>
+    <div class="container px-5">
+      <div class="row">
+        <div class="col-6">
+          <div class="container px-3">
+            <%= image_tag @recipe.image.url, class: 'photo focus', alt: @recipe.title, width: 300, height: 200 if @recipe.image.present? %>
+            <div class="row my-5">
+              <div class="col-12">
+                <h3 class="subtitle me-4"><%= t('.ingredients') %></h3>
+                <div class="container pt-3 pe-5">
+                  <% @recipe.ingredients.each do |ingredient| %>
+                    <div class="row border-bottom border-dark">
+                      <div class="col-7 d-flex justify-content-start align-items-center">
+                        <%= ingredient.name %>
+                      </div>
+                      <div class="col-2 d-flex justify-content-end align-items-center">
+                        <%= ingredient.quantity %>
+                      </div>
+                      <div class="col-3 d-flex justify-content-start align-items-center">
+                        <%= ingredient.unit %><br>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="container px-3">
+            <div class="col-12">
+              <h3 class="subtitle me-4"><%= t('.instructions') %></h3>
+              <div class="container pt-3 pe-5">
+                <% @recipe.instructions.each do |instruction| %>
+                  <div class="row border-bottom border-dark mb-3">
+                    <div class="col-2 d-flex justify-content-center align-items-center">
+                      <%= instruction.step_number %>
+                    </div>
+                    <div class="col-10 d-flex justify-content-start align-items-center">
+                      <%= instruction.description %>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container px-5 my-4">
+    <div class="row">
+      <div class="col-4 d-flex justify-content-end align-items-center">
+        <%= link_to t('.add_to_menu'), "#", class: "btn btn-add-menu btn-sm" %>
+      </div>
+      <div class="col-4 d-flex justify-content-center align-items-center">
+        <%= link_to t('.edit'), "#", class: "btn btn-recipe-edit btn-sm" %>
+      </div>
+      <div class="col-4 d-flex justify-content-start align-items-center">
+        <%= link_to t('.delete'), "#", method: :delete, data: { confirm: t('.confirm_delete') }, class: "btn btn-recipe-delete btn-sm" %>
+      </div>
+    </div>
+  </div>
+</div>

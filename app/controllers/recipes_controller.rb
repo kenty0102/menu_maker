@@ -18,80 +18,52 @@ class RecipesController < ApplicationController
 
     # レシピの情報を取得
     title = page.search('.recipe-title').text.strip
-    image = page.at('#main-photo img')['src']
+    image_url = page.at('#main-photo img')['src']
     source_url = fetch_recipe_params[:source_url]
-    source_site_name = Recipe.determine_source_site_name(source_url) # models/recipe.rbに定義したdetermine_source_site_nameメソッドでサイト名を取得
+    source_site_name = Recipe.determine_source_site_name(source_url)
     scraped_at = Time.current
 
     if Recipe.exists?(source_url:) # 入力したURLがすでに存在する場合
       existing_recipe = current_user.recipes.find_by(source_url:)
-      existing_recipe.update(title:, image:, scraped_at:)
+      if existing_recipe.update(title:, scraped_at:)
+        update_ingredients_and_instructions(existing_recipe, page)
 
-      # 材料の情報を更新または作成
-      page.search('.ingredient_row').each do |ingredient_row|
-        name = ingredient_row.at('.ingredient_name .name').text
-        quantity_text = ingredient_row.at('.ingredient_quantity.amount').text.strip
-        quantity, unit = Recipe.parse_quantity_and_unit(quantity_text)
-
-        # 既存の材料を探す
-        existing_ingredient = existing_recipe.ingredients.find_by(name:) # 材料名が同じingredientsの情報を探す
-        if existing_ingredient
-          existing_ingredient.update(quantity:, unit:)
-        else
-          existing_recipe.ingredients.build(name:, quantity:, unit:)
+        # 画像のダウンロードとアップロード
+        if image_url.present?
+          existing_recipe.remote_image_url = image_url
+          existing_recipe.save
         end
-      end
 
-      # 手順の情報を更新または作成
-      page.search('.step').each_with_index do |step, index|
-        description = step.text.strip
-
-        # 既存の手順を探す
-        existing_instruction = existing_recipe.instructions.find_by(step_number: index + 1)
-        if existing_instruction
-          existing_instruction.update(description:)
-        else
-          existing_recipe.instructions.build(step_number: index + 1, description:)
-        end
-      end
-
-      if existing_recipe.save
-        flash[:success] = t('.update_success')
+        redirect_to recipes_path, success: t('.update_success')
       else
-        flash[:danger] = t('.update_failure')
+        flash.now[:danger] = t('.update_failure')
+        render :auto_save, status: :unprocessable_entity
       end
     else
       # レシピを作成
-      @recipe = current_user.recipes.new(title:, image:, source_url:, source_site_name:, scraped_at:)
+      @recipe = current_user.recipes.new(title:, source_url:, source_site_name:, scraped_at:)
+      set_ingredients_and_instructions(@recipe, page)
 
-      # 材料の情報を取得して@recipeに関連付け
-      page.search('.ingredient_row').each do |ingredient_row| # '.ingredient_row'クラスを持つ要素を全て検索し、それぞれの要素について処理を行う
-        name = ingredient_row.at('.ingredient_name .name').text
-        quantity_text = ingredient_row.at('.ingredient_quantity.amount').text.strip
-        quantity, unit = Recipe.parse_quantity_and_unit(quantity_text) # models/recipe.rbに定義したparse_quantity_and_unitメソッドで量と単位を取得
-
-        @recipe.ingredients.build(name:, quantity:, unit:)
-      end
-
-      # 手順の情報を取得して追加
-      page.search('.step').each_with_index do |step, index| # '.step'クラスを持つ要素をすべて検索し、それぞれの要素について処理を行う
-        description = step.text.strip
-        @recipe.instructions.build(step_number: index + 1, description:)
-      end
-
-      # 保存成功、失敗時のメッセージ表示
+      # 画像のダウンロードとアップロードは保存後に行う
       if @recipe.save
-        flash[:success] = t('.success')
+        if image_url.present?
+          @recipe.remote_image_url = image_url
+          @recipe.save
+        end
+        redirect_to recipes_path, success: t('.success')
       else
-        flash[:danger] = t('.failure')
+        flash.now[:danger] = t('.failure')
+        render :auto_save, status: :unprocessable_entity
       end
     end
-
-    redirect_to root_path
   end
 
   def index
     @recipes = current_user.recipes.includes(:ingredients)
+  end
+
+  def show
+    @recipe = Recipe.find(params[:id])
   end
 
   def new
@@ -102,7 +74,6 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = current_user.recipes.new(recipe_params)
-
     if @recipe.save
       redirect_to root_path, success: t('.success')
     else
@@ -117,7 +88,56 @@ class RecipesController < ApplicationController
     params.require(:recipe).permit(:source_url)
   end
 
+  def download_and_store_image(url, recipe)
+    uploader = ImageUploader.new(recipe, :image)
+    uploader.download!(url)
+    uploader.store!
+    uploader.url
+  end
+
   def recipe_params
     params.require(:recipe).permit(:title, :image, :image_cache, ingredients_attributes: [:id, :name, :quantity, :unit, :_destroy], instructions_attributes: [:id, :step_number, :description, :_destroy])
+  end
+
+  def update_ingredients_and_instructions(recipe, page)
+    page.search('.ingredient_row').each do |ingredient_row|
+      name = ingredient_row.at('.ingredient_name .name').text
+      quantity_text = ingredient_row.at('.ingredient_quantity.amount').text.strip
+      quantity, unit = Recipe.parse_quantity_and_unit(quantity_text)
+      updated_at = Time.current
+
+      existing_ingredient = recipe.ingredients.find_by(name:)
+      if existing_ingredient
+        existing_ingredient.update(quantity:, unit:, updated_at:)
+      else
+        recipe.ingredients.build(name:, quantity:, unit:, updated_at:)
+      end
+    end
+
+    page.search('.step_text').each_with_index do |step_text, index|
+      description = step_text.text.strip
+      updated_at = Time.current
+
+      existing_instruction = recipe.instructions.find_by(step_number: index + 1)
+      if existing_instruction
+        existing_instruction.update(description:, updated_at:)
+      else
+        recipe.instructions.build(step_number: index + 1, description:, updated_at:)
+      end
+    end
+  end
+
+  def set_ingredients_and_instructions(recipe, page)
+    page.search('.ingredient_row').each do |ingredient_row|
+      name = ingredient_row.at('.ingredient_name .name').text
+      quantity_text = ingredient_row.at('.ingredient_quantity.amount').text.strip
+      quantity, unit = Recipe.parse_quantity_and_unit(quantity_text)
+      recipe.ingredients.build(name:, quantity:, unit:)
+    end
+
+    page.search('.step_text').each_with_index do |step_text, index|
+      description = step_text.text.strip
+      recipe.instructions.build(step_number: index + 1, description:)
+    end
   end
 end

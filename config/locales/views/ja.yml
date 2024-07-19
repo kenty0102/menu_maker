@@ -124,6 +124,14 @@ ja:
       edit: 編集
       delete: 削除
       no_recipes_saved: 保存されているレシピはありません
+    show:
+      to_top_page: トップページへ
+      title: レシピ詳細
+      ingredients: 〜材料〜
+      instructions: 〜作り方〜
+      add_to_menu: メニュー表へ追加
+      edit: 編集
+      delete: 削除
   ingredient_fields:
     ingredient_name: 材料名
     quantity: 量

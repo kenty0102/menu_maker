@@ -72,6 +72,10 @@ class RecipesController < ApplicationController
     @recipe.instructions.build
   end
 
+  def edit
+    @recipe = current_user.recipes.find(params[:id])
+  end
+
   def create
     @recipe = current_user.recipes.new(recipe_params)
     if @recipe.save

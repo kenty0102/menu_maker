@@ -23,8 +23,8 @@ class RecipesController < ApplicationController
     source_site_name = Recipe.determine_source_site_name(source_url)
     scraped_at = Time.current
 
-    if Recipe.exists?(source_url: source_url) # 入力したURLがすでに存在する場合
-      existing_recipe = current_user.recipes.find_by(source_url: source_url)
+    if Recipe.exists?(source_url:) # 入力したURLがすでに存在する場合
+      existing_recipe = current_user.recipes.find_by(source_url:)
       if existing_recipe.update(title:, scraped_at:)
         update_ingredients_and_instructions(existing_recipe, page)
 
@@ -62,6 +62,10 @@ class RecipesController < ApplicationController
     @recipes = current_user.recipes.includes(:ingredients)
   end
 
+  def show
+    @recipe = Recipe.find(params[:id])
+  end
+
   def new
     @recipe = Recipe.new
     @recipe.ingredients.build
@@ -76,10 +80,6 @@ class RecipesController < ApplicationController
       flash.now[:danger] = t('.failure')
       render :new, status: :unprocessable_entity
     end
-  end
-
-  def show
-    @recipe = Recipe.find(params[:id])
   end
 
   private
@@ -106,7 +106,7 @@ class RecipesController < ApplicationController
       quantity, unit = Recipe.parse_quantity_and_unit(quantity_text)
       updated_at = Time.current
 
-      existing_ingredient = recipe.ingredients.find_by(name: name)
+      existing_ingredient = recipe.ingredients.find_by(name:)
       if existing_ingredient
         existing_ingredient.update(quantity:, unit:, updated_at:)
       else
@@ -120,7 +120,7 @@ class RecipesController < ApplicationController
 
       existing_instruction = recipe.instructions.find_by(step_number: index + 1)
       if existing_instruction
-        existing_instruction.update(description: description, updated_at:)
+        existing_instruction.update(description:, updated_at:)
       else
         recipe.instructions.build(step_number: index + 1, description:, updated_at:)
       end

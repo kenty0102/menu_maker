@@ -76,6 +76,16 @@ class RecipesController < ApplicationController
     @recipe = current_user.recipes.find(params[:id])
   end
 
+  def create
+    @recipe = current_user.recipes.new(recipe_params)
+    if @recipe.save
+      redirect_to root_path, success: t('.success')
+    else
+      flash.now[:danger] = t('.failure')
+      render :new, status: :unprocessable_entity
+    end
+  end
+
   def update
     @recipe = current_user.recipes.find(params[:id])
     updated_params = process_instructions(recipe_params)
@@ -84,16 +94,6 @@ class RecipesController < ApplicationController
     else
       flash.now[:danger] = t('.update_failure')
       render :edit, status: :unprocessable_entity
-    end
-  end
-
-  def create
-    @recipe = current_user.recipes.new(recipe_params)
-    if @recipe.save
-      redirect_to root_path, success: t('.success')
-    else
-      flash.now[:danger] = t('.failure')
-      render :new, status: :unprocessable_entity
     end
   end
 
@@ -117,7 +117,7 @@ class RecipesController < ApplicationController
   def process_instructions(params)
     if params[:instructions_attributes].present?
       current_step = 1
-      params[:instructions_attributes].each do |key, value|
+      params[:instructions_attributes].each_value do |value|
         if value[:_destroy] != '1'
           value[:step_number] = current_step
           current_step += 1

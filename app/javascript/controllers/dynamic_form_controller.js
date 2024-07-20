@@ -31,6 +31,9 @@ export default class extends Controller {
       element.name = element.name.replace(/\[\d+\]/, `[${newIndex}]`);
     });
 
+    // 新しいフォームにはチェックボックスとラベルを追加しない
+    newForm.querySelectorAll('input[type="checkbox"]').forEach(el => el.closest('.delete-checkbox').remove());
+
     // 新しいフォームに削除ボタンを追加する
     const removeButton = this.createRemoveButton('ingredient');
     const formRow = newForm.querySelector('.row');
@@ -53,6 +56,9 @@ export default class extends Controller {
     newForm.querySelectorAll('[name]').forEach((element) => {
       element.name = element.name.replace(/\[\d+\]/, `[${newIndex}]`);
     });
+
+    // 新しいフォームにはチェックボックスとラベルを追加しない
+    newForm.querySelectorAll('input[type="checkbox"]').forEach(el => el.closest('.delete-checkbox').remove());
 
     // 新しいフォームに番号を付ける
     newForm.querySelector('input[name*="[step_number]"]').value = ++this.instructionCount;
@@ -92,7 +98,7 @@ export default class extends Controller {
     const removeButton = document.createElement('a');
     removeButton.href = '#';
     removeButton.textContent = 'x';
-    removeButton.className = `remove-${type} btn btn-danger`;
+    removeButton.className = `remove-${type} btn btn-danger remove-button`;
     removeButton.setAttribute('data-action', 'click->dynamic-form#removeForm');
     return removeButton;
   }

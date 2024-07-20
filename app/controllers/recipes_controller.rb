@@ -86,6 +86,17 @@ class RecipesController < ApplicationController
     end
   end
 
+  def update
+    @recipe = current_user.recipes.find(params[:id])
+    updated_params = process_instructions(recipe_params)
+    if @recipe.update(updated_params)
+      redirect_to recipe_path(@recipe), success: t('.update_success')
+    else
+      flash.now[:danger] = t('.update_failure')
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def fetch_recipe_params
@@ -101,6 +112,19 @@ class RecipesController < ApplicationController
 
   def recipe_params
     params.require(:recipe).permit(:title, :image, :image_cache, ingredients_attributes: [:id, :name, :quantity, :unit, :_destroy], instructions_attributes: [:id, :step_number, :description, :_destroy])
+  end
+
+  def process_instructions(params)
+    if params[:instructions_attributes].present?
+      current_step = 1
+      params[:instructions_attributes].each_value do |value|
+        if value[:_destroy] != '1'
+          value[:step_number] = current_step
+          current_step += 1
+        end
+      end
+    end
+    params
   end
 
   def update_ingredients_and_instructions(recipe, page)

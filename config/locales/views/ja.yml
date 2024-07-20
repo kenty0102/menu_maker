@@ -122,6 +122,7 @@ ja:
       edit: 編集
       delete: 削除
       no_recipes_saved: 保存されているレシピはありません
+      confirm_delete: このレシピを削除しますか？
     show:
       to_top_page: トップページへ
       title: レシピ詳細
@@ -130,6 +131,7 @@ ja:
       add_to_menu: メニュー表へ追加
       edit: 編集
       delete: 削除
+      confirm_delete: このレシピを削除しますか？
     edit:
       to_top_page: トップページへ
       title: レシピ編集
@@ -139,6 +141,8 @@ ja:
     update:
       update_success: レシピを更新しました
       update_failure: レシピの更新に失敗しました
+    destroy:
+      success: レシピを削除しました
   ingredient_fields:
     ingredient_name: 材料名
     quantity: 量

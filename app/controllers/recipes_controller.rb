@@ -79,7 +79,7 @@ class RecipesController < ApplicationController
   def create
     @recipe = current_user.recipes.new(recipe_params)
     if @recipe.save
-      redirect_to root_path, success: t('.success')
+      redirect_to recipe_path(@recipe), success: t('.success')
     else
       flash.now[:danger] = t('.failure')
       render :new, status: :unprocessable_entity
@@ -95,6 +95,12 @@ class RecipesController < ApplicationController
       flash.now[:danger] = t('.update_failure')
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    recipe = current_user.recipes.find(params[:id])
+    recipe.destroy!
+    redirect_to recipes_path, success: t('.success')
   end
 
   private

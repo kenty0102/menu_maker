@@ -133,13 +133,17 @@ ja:
     edit:
       to_top_page: トップページへ
       title: レシピ編集
-      save: レシピを保存
+      save: レシピを更新
       add_ingredient: 材料のフォームを追加
       add_instruction: 作り方のフォームを追加
+    update:
+      update_success: レシピを更新しました
+      update_failure: レシピの更新に失敗しました
   ingredient_fields:
     ingredient_name: 材料名
     quantity: 量
     unit: 単位
+    _destroy: 削除
     remove: x
   instruction_fields:
     instruction_description: 作り方を入力

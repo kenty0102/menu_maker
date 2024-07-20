@@ -187,3 +187,19 @@ footer {
   text-align: center;
   letter-spacing: 5px;
 }
+
+.delete-checkbox input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+}
+
+.remove-button {
+  margin-left: 1em;
+}
+
+.step-number {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  margin-bottom: 4em;
+}

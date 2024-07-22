@@ -12,7 +12,7 @@
         <% @recipes.each do |recipe| %>
           <div class="recipe-preview my-3 px-3" id="recipe_<%= recipe.id %>">
             <div class="row">
-              <div class="col-2 d-flex justify-content-center align-items-center">
+              <div class="col-2 py-2 d-flex justify-content-center align-items-center">
                 <div class="recipe-image">
                   <%= image_tag recipe.image.url, class: 'photo focus', alt: recipe.title, width: 150, height: 100 if recipe.image.present? %>
                 </div>
@@ -21,7 +21,7 @@
                 <div class="recipe-text">
                   <div class="recipe-header">
                     <h3 class="recipe-title">
-                        <%= link_to recipe.title, recipe_path(recipe) %>
+                        <%= link_to recipe.title, recipe_path(recipe), class: 'no-underline' %>
                     </h3>
                   </div>
                   <div class="ingredients">
@@ -31,12 +31,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-3 my-3">
-                <div class="row mb-3">
-                  <div class="col-12 d-flex justify-content-center align-items-center">
-                    <%= link_to t('.add_to_menu'), "#", class: "btn btn-add-menu btn-sm" %>
-                  </div>
-                </div>
+              <div class="col-3 d-flex justify-content-center align-items-center">
                 <div class="row">
                   <div class="col-6 d-flex justify-content-center align-items-center">
                     <%= link_to t('.edit'), edit_recipe_path(recipe), class: "btn btn-recipe-edit btn-sm" %>

@@ -28,3 +28,5 @@ ja:
       instructions:
         step_number: 手順の番号
         description: 作り方
+      menu:
+        title: メニュータイトル：

@@ -152,3 +152,10 @@ ja:
   instruction_fields:
     instruction_description: 作り方を入力
     remove: x
+  menus:
+    new:
+      to_top_page: トップページへ
+      title: メニュー候補レシピ一覧
+      menu_title: メニュー表のタイトルを入力
+      recipe_select: レシピを選択してください
+      create: メニュー表を作成

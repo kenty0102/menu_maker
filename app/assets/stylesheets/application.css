@@ -30,6 +30,9 @@ header {
   max-height: 100px; /* ロゴの高さを調整 */
   max-width: 100%;  /* 画像がコンテナを超えないように */
 }
+.nav-link.active {
+  color: #fff; /* 例: アクティブなリンクの色を白にする */
+}
 .custom-link {
   color: #4C4C4C;
   text-decoration: none; /* アンダーラインを消す場合 */
@@ -202,4 +205,17 @@ footer {
   height: 40px;
   text-align: center;
   margin-bottom: 4em;
+}
+
+.add-menu-checkbox input[type="checkbox"] {
+  width: 25px;
+  height: 25px;
+}
+
+.no-underline {
+  text-decoration: none;
+  color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1)); /* 初期の色を設定 */
+}
+.no-underline:hover {
+  color: #61C359; /* ホバー時の色を設定（例として赤色） */
 }

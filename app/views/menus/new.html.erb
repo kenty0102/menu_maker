@@ -1,0 +1,43 @@
+<% content_for(:title, t('.title')) %>
+<div class="container">
+  <div class="col d-flex justify-content-end align-items-center">
+    <span class="d-inline-block my-3">
+      <%= link_to t('.to_top_page'), root_path, class: "custom-link" %>
+    </span>
+  </div>
+  <h1 class="text-center mt-3"><%= t('.title') %></h1>
+  <%= form_with(model: @menu, local: true) do |f| %>
+    <div class="row d-flex justify-content-center pt-5">
+      <div class="col-10 text-start">
+        <%= f.label :title, class: 'form-label', style: 'font-size: 30px;' %>
+        <%= f.text_field :title, class: 'form-label', placeholder: t('.menu_title'), style: 'width: 600px; height: 50px;' %>
+      </div>
+    </div>
+    <div class="container p-5">
+      <h4 class="pb-3"><%= t('.recipe_select') %></h4>
+      <div class="recipe-list mx-5">
+        <% @recipes.each do |recipe| %>
+          <div class="my-3 px-3 border-bottom border-dark" id="recipe_<%= recipe.id %>">
+            <div class="row">
+              <div class="col-1 d-flex justify-content-center align-items-center add-menu-checkbox">
+                <%= check_box_tag 'recipe_ids[]', recipe.id %>
+              </div>
+              <div class="col-11 d-flex justify-content-start align-items-center">
+                <div class="recipe-text">
+                  <div class="recipe-header">
+                    <h3 class="recipe-title">
+                      <%= link_to recipe.title, recipe_path(recipe), class: 'no-underline' %>
+                    </h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="d-grid gap-2 col-4 mx-auto my-5">
+      <%= f.submit t('.create'), class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

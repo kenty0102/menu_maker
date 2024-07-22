@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :recipes, dependent: :destroy
+  has_many :menus, dependent: :destroy
 
   authenticates_with_sorcery!
 

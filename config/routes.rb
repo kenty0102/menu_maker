@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       post 'fetch_recipe'  # レシピの自動取得アクション
     end
   end
+  resources :menus, only: %i[new create]
   get 'login', to: 'user_sessions#new'  # ログインページに対応するルート
   post 'login', to: 'user_sessions#create'
   delete 'logout', to: 'user_sessions#destroy'

@@ -2,10 +2,10 @@
   <div class="container-fluid">
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav w-100 nav-justified">
-        <%= link_to t('navbar.recipe_search'), search_recipes_path, class: "nav-link #{active_if('search_recipes_path')}" %>
-        <%= link_to t('navbar.recipe_saving'), save_options_recipes_path, class: "nav-link #{active_if('recipes/save_optionsds')}" %>
-        <%= link_to t('navbar.recipe_list'), recipes_path, class: "nav-link #{active_if('/recipes')}" %>
-        <%= link_to t('navbar.menu_create'), "#", class: "nav-link #{active_if("#")}" %>
+        <%= link_to t('navbar.recipe_search'), search_recipes_path, class: "nav-link #{active_if(search_recipes_path)}" %>
+        <%= link_to t('navbar.recipe_saving'), save_options_recipes_path, class: "nav-link #{active_if(save_options_recipes_path)}" %>
+        <%= link_to t('navbar.recipe_list'), recipes_path, class: "nav-link #{active_if(recipes_path)}" %>
+        <%= link_to t('navbar.menu_create'), new_menu_path, class: "nav-link #{active_if(new_menu_path)}" %>
       </div>
     </div>
   </div>

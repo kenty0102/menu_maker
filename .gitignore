@@ -48,4 +48,5 @@ config/settings/*.local.yml
 config/environments/*.local.yml
 
 /public/uploads/
+/public/preview.html
 /spec/fixtures/files/

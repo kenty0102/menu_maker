@@ -25,10 +25,10 @@ class MenusController < ApplicationController
 
   def create
     @menu = current_user.menus.new(menu_params)
-  
+
     if @menu.save
       params[:recipe_ids].each do |recipe_id|
-        MenuRecipe.create(menu_id: @menu.id, recipe_id: recipe_id)
+        MenuRecipe.create(menu_id: @menu.id, recipe_id:)
       end
 
       default_design_id = 1
@@ -46,7 +46,7 @@ class MenusController < ApplicationController
 
     if @menu.update(menu_params)
       # 新しいレシピのIDを取得
-      new_recipe_ids = params[:recipe_ids].reject(&:blank?).map(&:to_i)
+      new_recipe_ids = params[:recipe_ids].compact_blank.map(&:to_i)
 
       # 現在のレシピのIDを取得
       current_recipe_ids = @menu.recipes.pluck(:id)
@@ -57,7 +57,7 @@ class MenusController < ApplicationController
 
       # 新しいレシピを追加
       recipes_to_add.each do |recipe_id|
-        @menu.menu_recipes.create!(recipe_id: recipe_id)
+        @menu.menu_recipes.create!(recipe_id:)
       end
 
       # 古いレシピを削除

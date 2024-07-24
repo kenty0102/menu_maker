@@ -14,7 +14,8 @@ ja:
     recipe_search: レシピ検索
     recipe_saving: レシピ保存
     recipe_list: レシピ一覧
-    menu_create: メニュー作成
+    menu_create: メニュー表作成
+    menu_list: メニュー表一覧
   footer:
     inquiry: お問い合わせ
     terms_of_use: 利用規約
@@ -118,7 +119,6 @@ ja:
     index:
       to_top_page: トップページへ
       title: レシピ一覧
-      add_to_menu: メニュー表へ追加
       edit: 編集
       delete: 削除
       no_recipes_saved: 保存されているレシピはありません
@@ -128,7 +128,6 @@ ja:
       title: レシピ詳細
       ingredients: 〜材料〜
       instructions: 〜作り方〜
-      add_to_menu: メニュー表へ追加
       edit: 編集
       delete: 削除
       confirm_delete: このレシピを削除しますか？
@@ -159,3 +158,30 @@ ja:
       menu_title: メニュー表のタイトルを入力
       recipe_select: レシピを選択してください
       create: メニュー表を作成
+      no_recipes_saved: メニューに追加できるレシピがありません
+    create:
+      success: メニューを作成しました
+      failure: メニューの作成に失敗しました
+    show:
+      to_top_page: トップページへ
+      title: メニュー表確認画面
+      edit: メニュー表の編集
+      delete: メニュー表を削除
+      confirm_delete: このメニュー表を削除しますか？
+    index:
+      to_top_page: トップページへ
+      title: メニュー表一覧
+      edit: 編集
+      delete: 削除
+      confirm_delete: このメニュー表を削除しますか？
+    edit:
+      to_top_page: トップページへ
+      title: メニュー表編集
+      recipe_select: レシピを選択してください
+      update: メニュー表を更新
+      no_recipes_saved: メニュー表にレシピがありません
+    update:
+      success: メニュー表を更新しました
+      failure: メニュー表の更新に失敗しました
+    destroy:
+      success: メニュー表を削除しました

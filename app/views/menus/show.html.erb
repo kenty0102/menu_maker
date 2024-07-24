@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title><%= @menu.title %></title>
+  <style>
+    <% if @layout['font-face'] %>
+      @font-face {
+        font-family: <%= raw "'#{@layout['font-face']['font-family']}'" %>;
+        src: <%= raw @layout['font-face']['src'] %>;
+        font-weight: <%= @layout['font-face']['font-weight'] %>;
+        font-style: <%= @layout['font-face']['font-style'] %>;
+      }
+    <% end %>
+
+    <% @layout.each do |key, properties| %>
+      <% if key == 'body' %>
+        .menulist-container {
+          <% properties.each do |prop, value| %>
+            <%= prop.gsub('_', '-') %>: <%= raw(value.is_a?(Array) ? value.map { |v| "'#{v}'" }.join(', ') : value) %>;
+          <% end %>
+        }
+      <% elsif key != 'font-face' %>
+        .menulist-container .<%= key %> {
+          <% properties.each do |prop, value| %>
+            <%= prop.gsub('_', '-') %>: <%= raw(value.is_a?(Array) ? value.map { |v| "'#{v}'" }.join(', ') : value) %>;
+          <% end %>
+        }
+      <% end %>
+    <% end %>
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="col d-flex justify-content-end align-items-center">
+    <span class="d-inline-block my-3">
+      <%= link_to t('.to_top_page'), root_path, class: "custom-link" %>
+    </span>
+  </div>
+  <h1 class="text-center my-5"><%= t('.title') %></h1>
+  <div class="menulist-container">
+    <div class="menu-container">
+      <div class="menu-title"><span class="title-under"><%= @menu.title %></span></div>
+      <div class="menu-recipes">
+        <% @recipes.each do |recipe| %>
+          <div class="recipe-title">
+            <span class="under"><%= recipe.title %></span>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="illustrations-container">
+      <div class="illustration-curry"></div>
+      <div class="illustration-onigiri"></div>
+    </div>
+  </div>
+  <div class="container px-5 my-4">
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="col-8 d-flex justify-content-center align-items-center">
+        <%= link_to t('.edit'), edit_menu_path, class: "btn btn-recipe-edit btn-sm me-5" %>
+        <%= link_to t('.delete'), menu_path(@menu), data: { turbo_method: :delete, turbo_confirm: t('.confirm_delete') }, class: "btn btn-recipe-delete btn-sm ms-5" %>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

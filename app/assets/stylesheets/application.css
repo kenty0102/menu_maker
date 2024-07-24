@@ -219,3 +219,7 @@ footer {
 .no-underline:hover {
   color: #61C359; /* ホバー時の色を設定（例として赤色） */
 }
+
+.menu-preview {
+  background-color: #FFD982;
+}

@@ -21,7 +21,7 @@
             <div class="my-3 px-3 border-bottom border-dark" id="recipe_<%= recipe.id %>">
               <div class="row">
                 <div class="col-1 d-flex justify-content-center align-items-center add-menu-checkbox">
-                  <%= check_box_tag 'recipe_ids[]', recipe.id %>
+                  <%= check_box_tag 'recipe_ids[]', recipe.id, @selected_recipes.include?(recipe.id) %>
                 </div>
                 <div class="col-11 d-flex justify-content-start align-items-center">
                   <div class="recipe-text">
@@ -38,7 +38,7 @@
         </div>
       </div>
       <div class="d-grid gap-2 col-4 mx-auto my-5">
-        <%= f.submit t('.create'), class: "btn btn-primary" %>
+        <%= f.submit t('.update'), class: "btn btn-primary" %>
       </div>
     <% end %>
   <% else %>

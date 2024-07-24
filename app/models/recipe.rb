@@ -10,7 +10,7 @@ class Recipe < ApplicationRecord
   accepts_nested_attributes_for :ingredients, reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :instructions, reject_if: :all_blank, allow_destroy: true
 
-  validates :title, presence: true
+  validates :title, presence: true, uniqueness: true
   validates :source_url, format: { with: URI::DEFAULT_PARSER.make_regexp }, allow_nil: true
 
   def self.determine_source_site_name(url)

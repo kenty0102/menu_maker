@@ -3,81 +3,83 @@
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 #
 izakaya_layout = {
-  "fontFace": {
-    "fontFamily": "MyCustomFont",
-    "src": "url('/assets/Ounen-mouhitsu.otf') format('opentype')",
-    "fontWeight": "normal",
-    "fontStyle": "normal"
+  "font-face" => {
+    "font-family" => "MyCustomFont",
+    "src" => "url('/assets/Ounen-mouhitsu.otf') format('opentype')",
+    "font-weight" => "normal",
+    "font-style" => "normal"
   },
-  "body": {
-    "backgroundImage": "url('/assets/izakaya_image_background.png')",
-    "fontFamily": ["MyCustomFont", "凸版文久見出し明朝"],
-    "color": "#000000"
+  "body" => {
+    "background-image" => "url('/assets/izakaya_image_background.png')",
+    "font-family" => ["MyCustomFont", "凸版文久見出し明朝"],
+    "color" => "#000000"
   },
-  "menuContainer": {
-    "width": "100%",
-    "maxWidth": "800px",
-    "margin": "0 auto",
-    "padding": "50px 50px"
+  "menu-container" => {
+    "width" => "100%",
+    "max-width" => "800px",
+    "margin" => "0 auto",
+    "padding" => "50px 50px"
   },
-  "titleUnder": {
-    "backgroundImage": "url('/assets/izakaya_image_title.png')",
-    "backgroundRepeat": "no-repeat",
-    "backgroundPosition": "center",
-    "backgroundSize": "200% 180%",
-    "paddingBottom": "1.7em",
-    "title": "{menu_title}"  # プレースホルダー
+  "menu-title" => {
+    "text-align" => "center",
+    "font-size" => "100px",
+    "margin-bottom" => "50px"
   },
-  "menuTitle": {
-    "textAlign": "center",
-    "fontSize": "100px",
-    "marginBottom": "50px"
+  "title-under" => {
+    "background-image" => "url('/assets/izakaya_image_title.png')",
+    "background-repeat" => "no-repeat",
+    "background-position" => "center",
+    "background-size" => "200% 180%",
+    "padding-bottom" => "1.7em"
   },
-  "menuRecipes": {
-    "fontSize": "55px",
-    "padding": "30px 0"
+  "menu-recipes" => {
+    "font-size" => "55px",
+    "padding" => "30px 0"
   },
-  "recipeTitle": {
-    "marginTop": "50px",
-    "recipe_titles": ["{recipe_titles}"]  # プレースホルダー
+  "recipe-title" => {
+    "margin-top" => "50px"
   },
-  "under": {
-    "backgroundImage": "url('/assets/izakaya_image_underbar.png')",
-    "backgroundRepeat": "no-repeat",
-    "backgroundPosition": "center",
-    "backgroundSize": "300% 300%",
-    "paddingBottom": "0.7em"
+  "under" => {
+    "background-image" => "url('/assets/izakaya_image_underbar.png')",
+    "background-repeat" => "no-repeat",
+    "background-position" => "center",
+    "background-size" => "300% 300%",
+    "padding-bottom" => "0.7em"
   },
-  "illustrationsContainer": {
-    "display": "flex",
-    "justifyContent": "space-between",
-    "padding": "0 50px",
-    "marginBottom": "50px"
+  "illustrations-container" => {
+    "display" => "flex",
+    "justify-content" => "space-between",
+    "padding" => "0 50px",
+    "margin-bottom" => "50px"
   },
-  "illustrationCurry": {
-    "height": "200px",
-    "width": "400px",
-    "backgroundSize": "180% 250%",
-    "backgroundImage": "url('/assets/izakaya_image_curry.png')",
-    "backgroundRepeat": "no-repeat",
-    "backgroundPosition": "center",
-    "marginTop": "1em",
-    "transform": "rotate(5deg)"
+  "illustration-curry" => {
+    "height" => "200px",
+    "width" => "400px",
+    "background-size" => "180% 250%",
+    "background-image" => "url('/assets/izakaya_image_curry.png')",
+    "background-repeat" => "no-repeat",
+    "background-position" => "center",
+    "margin-top" => "1em",
+    "transform" => "rotate(5deg)"
   },
-  "illustrationOnigiri": {
-    "height": "200px",
-    "width": "400px",
-    "backgroundSize": "180% 250%",
-    "backgroundImage": "url('/assets/izakaya_image_onigiri.png')",
-    "backgroundRepeat": "no-repeat",
-    "backgroundPosition": "center",
-    "marginTop": "1em",
-    "transform": "rotate(-10deg)"
+  "illustration-onigiri" => {
+    "height" => "200px",
+    "width" => "400px",
+    "background-size" => "180% 250%",
+    "background-image" => "url('/assets/izakaya_image_onigiri.png')",
+    "background-repeat" => "no-repeat",
+    "background-position" => "center",
+    "margin-top" => "1em",
+    "transform" => "rotate(-10deg)"
   }
 }
 
-# デザインデータをデータベースに保存
-Design.create!(
-  name: '居酒屋風メニュー',
-  layout: izakaya_layout.to_json
-)
+design = Design.find_by(name: '居酒屋風メニュー')
+if design
+  design.update!(layout: izakaya_layout.to_json)
+else
+  Design.create!(
+    name: '居酒屋風メニュー',
+    layout: izakaya_layout.to_json
+  )
+end

@@ -29,10 +29,30 @@ class ProfilesController < ApplicationController
   def edit_password; end
 
   def update_password
-    if @user.valid_password?(password_params[:current_password]) &&
-       @user.update(password: password_params[:password], password_confirmation: password_params[:password_confirmation])
-      redirect_to profile_path, success: t('.success')
+    # すべてのフォームが空でないか確認
+    if password_params[:current_password].blank? || password_params[:password].blank? || password_params[:password_confirmation].blank?
+      # 空のフィールドがある場合のエラーメッセージを追加
+      @user.errors.add(:current_password, "を入力してください") if password_params[:current_password].blank?
+      @user.errors.add(:new_password, "を入力してください") if password_params[:password].blank?
+      @user.errors.add(:new_password_confirmation, "を入力してください") if password_params[:password_confirmation].blank?
+
+      flash.now[:danger] = t('.failure')
+      render :edit_password, status: :unprocessable_entity
+    elsif @user.valid_password?(password_params[:current_password])
+      # 新しいパスワードと確認用パスワードが一致するか確認
+      if password_params[:password] != password_params[:password_confirmation]
+        @user.errors.add(:new_password_confirmation, "と新しいパスワードの入力が一致しません")
+        flash.now[:danger] = t('.failure')
+        render :edit_password, status: :unprocessable_entity
+      elsif @user.update(password: password_params[:password], password_confirmation: password_params[:password_confirmation])
+        redirect_to profile_path, success: t('.success')
+      else
+        flash.now[:danger] = t('.failure')
+        render :edit_password, status: :unprocessable_entity
+      end
     else
+      # 現在のパスワードが無効な場合
+      @user.errors.add(:current_password, "は正しくありません")
       flash.now[:danger] = t('.failure')
       render :edit_password, status: :unprocessable_entity
     end

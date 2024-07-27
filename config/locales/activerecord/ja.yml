@@ -29,4 +29,15 @@ ja:
         step_number: 手順の番号
         description: 作り方
       menu:
-        title: メニュータイトル：
+        title: メニュータイトル
+    errors:
+      models:
+        user:
+          attributes:
+            current_password:
+              blank: "現在のパスワードを入力してください"
+              invalid: "現在のパスワードは正しくありません"
+        menu:
+          attributes:
+            base:
+              must_have_at_least_one_recipe: メニューには少なくとも1つのレシピを選択する必要があります

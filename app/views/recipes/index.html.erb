@@ -14,7 +14,11 @@
             <div class="row">
               <div class="col-2 py-2 d-flex justify-content-center align-items-center">
                 <div class="recipe-image">
-                  <%= image_tag recipe.image.url, class: 'photo focus', alt: recipe.title, width: 150, height: 100 if recipe.image.present? %>
+                <% if recipe.image.present? %>
+                <%= image_tag recipe.image.url, class: 'photo focus', alt: recipe.title, width: 150, height: 100 %>
+              <% else %>
+                <%= image_tag 'default_image.png', class: 'photo focus', alt: 'サンプル画像', width: 150, height: 100 %>
+              <% end %>
                 </div>
               </div>
               <div class="col-7 d-flex justify-content-start align-items-center">

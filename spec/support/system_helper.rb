@@ -23,6 +23,12 @@ module SystemHelper
     click_on 'ログアウト'
     click_link 'ログイン'
   end
+
+  def menu_update(first_recipe)
+    visit edit_menu_path(menu)
+    fill_in 'menu_title', with: 'Updated Menu'
+    find("input[type='checkbox'][value='#{first_recipe.id}']").uncheck
+  end
 end
 
 RSpec.configure do |config|

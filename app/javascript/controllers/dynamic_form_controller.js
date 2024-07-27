@@ -9,6 +9,15 @@ export default class extends Controller {
     // カウンターを初期フォームの数からスタートさせる
     this.instructionCount = this.initialFormCount;
 
+    // ページのモード（new または edit）を取得
+    const mode = this.element.dataset.mode;
+
+    if (mode === 'new') {
+      this.addRemoveButtonsToNewFormsForNew();
+    } else if (mode === 'edit') {
+      this.addRemoveButtonsToNewFormsForEdit();
+    }
+
     // 削除ボタンがクリックされたときのイベントリスナーを追加
     this.element.addEventListener('click', (event) => {
       if (event.target.classList.contains('remove-instruction') || event.target.classList.contains('remove-ingredient')) {
@@ -38,6 +47,9 @@ export default class extends Controller {
     const removeButton = this.createRemoveButton('ingredient');
     const formRow = newForm.querySelector('.row');
     formRow.appendChild(removeButton);
+
+     // 新しいフォームに `data-new-form="true"` を設定
+    newForm.setAttribute('data-new-form', 'true');
 
     const addIngredientLink = this.element.querySelector('.add-ingredient');
     this.nestedFormsTarget.insertBefore(newForm, addIngredientLink);
@@ -74,7 +86,7 @@ export default class extends Controller {
   removeForm(event) {
     event.preventDefault();
     const formContainer = event.target.closest('.instruction-fields, .ingredient-fields');
-    if (formContainer && formContainer.dataset.newForm !== 'true') {
+    if (formContainer) {
       formContainer.remove();
       this.recalculateStepNumbers();
     }
@@ -101,5 +113,31 @@ export default class extends Controller {
     removeButton.className = `remove-${type} btn btn-danger remove-button`;
     removeButton.setAttribute('data-action', 'click->dynamic-form#removeForm');
     return removeButton;
+  }
+
+  addRemoveButtonsToNewFormsForNew() {
+    const newForms = this.nestedFormsTarget.querySelectorAll('[data-new-form="true"]');
+    newForms.forEach((form, index) => {
+      if (index > 0) { // 最初のフォームには削除ボタンを追加しない
+        if (!form.querySelector('.remove-button')) {
+          const type = form.classList.contains('ingredient-fields') ? 'ingredient' : 'instruction';
+          const removeButton = this.createRemoveButton(type);
+          const formRow = form.querySelector('.row');
+          formRow.appendChild(removeButton);
+        }
+      }
+    });
+  }
+
+  addRemoveButtonsToNewFormsForEdit() {
+    const newForms = this.nestedFormsTarget.querySelectorAll('[data-new-form="true"]');
+    newForms.forEach((form) => {
+      if (!form.querySelector('.remove-button')) {
+        const type = form.classList.contains('ingredient-fields') ? 'ingredient' : 'instruction';
+        const removeButton = this.createRemoveButton(type);
+        const formRow = form.querySelector('.row');
+        formRow.appendChild(removeButton);
+      }
+    });
   }
 }

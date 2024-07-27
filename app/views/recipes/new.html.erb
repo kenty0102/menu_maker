@@ -6,7 +6,7 @@
     </span>
   </div>
   <h1 class="text-center mt-3"><%= t('.title') %></h1>
-  <%= form_with model: @recipe, local: true do |f| %>
+  <%= form_with model: @recipe do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
     <div class="card mt-5 custom-card-manual-save mx-auto">
       <div class="row mt-5 d-flex justify-content-center">
@@ -18,7 +18,7 @@
       <div class="container py-2 my-5">
         <div class="row">
           <div class="col-6 d-flex justify-content-center">
-            <div id="ingredients-form" data-controller="dynamic-form" data-dynamic-form-target="nestedForms">
+            <div id="ingredients-form" data-controller="dynamic-form" data-mode="new" data-dynamic-form-target="nestedForms">
               <%= f.label :ingredients, class: 'form-label' %>
               <%= f.fields_for :ingredients do |ingredient_fields| %>
                 <%= render 'ingredient_fields', f: ingredient_fields %>
@@ -27,7 +27,7 @@
             </div>
           </div>
           <div class="col-6 d-flex justify-content-center">
-            <div id="instructions-form" data-controller="dynamic-form" data-dynamic-form-target="nestedForms">
+            <div id="instructions-form" data-controller="dynamic-form" data-mode="new" data-dynamic-form-target="nestedForms">
               <%= f.label :instructions, class: 'form-label'%>
               <%= f.fields_for :instructions  do |instruction_fields| %>
                 <%= render 'instruction_fields', f: instruction_fields %>

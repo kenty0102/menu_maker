@@ -27,8 +27,8 @@ class MenusController < ApplicationController
     @menu = current_user.menus.new(menu_params)
 
     if @menu.save
-      params[:recipe_ids].each do |recipe_id|
-        MenuRecipe.create(menu_id: @menu.id, recipe_id:)
+      menu_params[:recipe_ids].uniq.each do |recipe_id|
+        MenuRecipe.find_or_create_by(menu_id: @menu.id, recipe_id:)
       end
 
       default_design_id = 1
@@ -36,6 +36,7 @@ class MenusController < ApplicationController
 
       redirect_to menu_path(@menu), success: t('.success')
     else
+      @recipes = current_user.recipes
       flash.now[:danger] = t('.failure')
       render :new, status: :unprocessable_entity
     end
@@ -44,9 +45,12 @@ class MenusController < ApplicationController
   def update
     @menu = current_user.menus.find(params[:id])
 
-    if @menu.update(menu_params)
+    # recipe_ids が nil の場合に空の配列として扱う
+    recipe_ids = menu_params[:recipe_ids] || []
+
+    if @menu.update(menu_params.merge(recipe_ids:))
       # 新しいレシピのIDを取得
-      new_recipe_ids = params[:recipe_ids].compact_blank.map(&:to_i)
+      new_recipe_ids = menu_params[:recipe_ids].compact_blank.map(&:to_i)
 
       # 現在のレシピのIDを取得
       current_recipe_ids = @menu.recipes.pluck(:id)
@@ -65,6 +69,8 @@ class MenusController < ApplicationController
 
       redirect_to menu_path(@menu), success: t('.success')
     else
+      @recipes = current_user.recipes
+      @selected_recipes = @menu.recipes.pluck(:id)
       flash.now[:danger] = t('.failure')
       render :edit, status: :unprocessable_entity
     end

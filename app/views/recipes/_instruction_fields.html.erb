@@ -1,10 +1,10 @@
-<div class="container instruction-fields mb-2">
+<div class="container instruction-fields mb-2" data-new-form="<%= f.object.new_record? ? 'true' : 'false' %>">
   <div class="row align-items-center">
     <div class="col-auto pe-0">
-      <%= f.text_field :step_number, class: 'step-number', value: f.object.step_number || 1, required: true %> 
+      <%= f.text_field :step_number, class: 'step-number', value: f.object.step_number || 1 %> 
     </div>
     <div class="col-auto px-0">
-      <%= f.text_area :description, placeholder: t('instruction_fields.instruction_description'), required: true, style: 'width: 280px; height: 100px;' %>
+      <%= f.text_area :description, placeholder: t('instruction_fields.instruction_description'), style: 'width: 280px; height: 100px;' %>
     </div>
     <% unless f.object.new_record? %>
       <div class="col-auto d-flex align-items-center delete-checkbox">

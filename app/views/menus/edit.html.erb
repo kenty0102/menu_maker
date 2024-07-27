@@ -7,7 +7,8 @@
   </div>
   <h1 class="text-center mt-3"><%= t('.title') %></h1>
   <% if @recipes.present? %>
-    <%= form_with(model: @menu, local: true) do |f| %>
+    <%= form_with model: @menu do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
       <div class="row d-flex justify-content-center pt-5">
         <div class="col-10 text-start">
           <%= f.label :title, class: 'form-label', style: 'font-size: 30px;' %>
@@ -21,7 +22,7 @@
             <div class="my-3 px-3 border-bottom border-dark" id="recipe_<%= recipe.id %>">
               <div class="row">
                 <div class="col-1 d-flex justify-content-center align-items-center add-menu-checkbox">
-                  <%= check_box_tag 'recipe_ids[]', recipe.id, @selected_recipes.include?(recipe.id) %>
+                  <%= check_box_tag 'menu[recipe_ids][]', recipe.id, @selected_recipes.include?(recipe.id) %>
                 </div>
                 <div class="col-11 d-flex justify-content-start align-items-center">
                   <div class="recipe-text">

@@ -81,6 +81,8 @@ class RecipesController < ApplicationController
     if @recipe.save
       redirect_to recipe_path(@recipe), success: t('.success')
     else
+      @recipe.ingredients.build if @recipe.ingredients.empty?
+      @recipe.instructions.build if @recipe.instructions.empty?
       flash.now[:danger] = t('.failure')
       render :new, status: :unprocessable_entity
     end

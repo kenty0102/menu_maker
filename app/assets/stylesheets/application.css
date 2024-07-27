@@ -223,3 +223,7 @@ footer {
 .menu-preview {
   background-color: #FFD982;
 }
+
+.field_with_errors {
+  display: contents;
+}

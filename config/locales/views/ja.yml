@@ -158,10 +158,10 @@ ja:
       menu_title: メニュー表のタイトルを入力
       recipe_select: レシピを選択してください
       create: メニュー表を作成
-      no_recipes_saved: メニューに追加できるレシピがありません
+      no_recipes_saved: メニュー表に追加できるレシピがありません
     create:
-      success: メニューを作成しました
-      failure: メニューの作成に失敗しました
+      success: メニュー表を作成しました
+      failure: メニュー表の作成に失敗しました
     show:
       to_top_page: トップページへ
       title: メニュー表確認画面
@@ -177,6 +177,7 @@ ja:
     edit:
       to_top_page: トップページへ
       title: メニュー表編集
+      menu_title: メニュー表のタイトルを入力
       recipe_select: レシピを選択してください
       update: メニュー表を更新
       no_recipes_saved: メニュー表にレシピがありません

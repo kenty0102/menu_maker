@@ -7,8 +7,8 @@ class Recipe < ApplicationRecord
   has_many :menu_recipes, dependent: :destroy
   has_many :menus, through: :menu_recipes
 
-  accepts_nested_attributes_for :ingredients, reject_if: :all_blank, allow_destroy: true
-  accepts_nested_attributes_for :instructions, reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :ingredients, allow_destroy: true
+  accepts_nested_attributes_for :instructions, allow_destroy: true
 
   validates :title, presence: true, uniqueness: true
   validates :source_url, format: { with: URI::DEFAULT_PARSER.make_regexp }, allow_nil: true

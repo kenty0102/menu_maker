@@ -1,13 +1,13 @@
-<div class="container ingredient-fields mb-2">
+<div class="container ingredient-fields mb-2" data-new-form="<%= f.object.new_record? ? 'true' : 'false' %>">
   <div class="row align-items-center">
     <div class="col-auto pe-0">
-      <%= f.text_field :name, placeholder: t('ingredient_fields.ingredient_name'), required: true, style: 'width: 200px; height: 40px;' %>
+      <%= f.text_field :name, placeholder: t('ingredient_fields.ingredient_name'), style: 'width: 200px; height: 40px;' %>
     </div>
     <div class="col-auto px-0">
       <%= f.text_field :quantity, placeholder: t('ingredient_fields.quantity'), style: 'width: 80px; height: 40px;' %>
     </div>
     <div class="col-auto px-0">
-      <%= f.text_field :unit, placeholder: t('ingredient_fields.unit'), required: true, style: 'width: 80px; height: 40px;' %>
+      <%= f.text_field :unit, placeholder: t('ingredient_fields.unit'), style: 'width: 80px; height: 40px;' %>
     </div>
     <% unless f.object.new_record? %>
       <div class="col-auto d-flex align-items-center delete-checkbox">

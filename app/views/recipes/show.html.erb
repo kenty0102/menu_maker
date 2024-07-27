@@ -16,7 +16,11 @@
       <div class="row">
         <div class="col-6">
           <div class="container px-3">
-            <%= image_tag @recipe.image.url, class: 'photo focus', alt: @recipe.title, width: 300, height: 200 if @recipe.image.present? %>
+          <% if @recipe.image.present? %>
+          <%= image_tag @recipe.image.url, class: 'photo focus', alt: @recipe.title, width: 300, height: 200 %>
+        <% else %>
+          <%= image_tag 'default_image.png', class: 'photo focus', alt: 'サンプル画像', width: 300, height: 200 %>
+        <% end %>
             <div class="row my-5">
               <div class="col-12">
                 <h3 class="subtitle me-4"><%= t('.ingredients') %></h3>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h4>お問い合わせありがとうございます</h4>
+    <p><%= @inquiry.name %> 様</p>
+    <p>以下の内容でお問い合わせを受け付けました。</p>
+    <ul>
+      <li><strong>お名前:</strong> <%= @inquiry.name %></li>
+      <li><strong>メールアドレス:</strong> <%= @inquiry.email %></li>
+      <li><strong>お問い合わせ内容:</strong> <%= @inquiry.message %></li>
+    </ul>
+    <p>確認の上、折り返しご連絡いたしますので、今しばらくお待ちください。</p>
+  </body>
+</html>

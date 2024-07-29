@@ -28,6 +28,9 @@ Rails.application.routes.draw do
   delete 'logout', to: 'user_sessions#destroy'
   get '/terms', to: 'high_voltage/pages#show', id: 'terms' # 利用規約ページに対応するルート
   get '/privacy', to: 'high_voltage/pages#show', id: 'privacy' # プライバシーポリシーページい対応するルート
+  resources :inquiries, only: [:new, :create] do
+    get 'complete', on: :collection
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

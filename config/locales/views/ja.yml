@@ -50,6 +50,7 @@ ja:
       title: パスワード再設定申請
       reset_password: 申請する
     edit:
+      to_top_page: トップページへ
       title: パスワード再設定
     create: 
       success: パスワード再設定メールを送信しました
@@ -193,3 +194,17 @@ ja:
     terms:
       to_top_page: トップページへ
       title: 利用規約
+  inquiry_mailer:
+    inquiry: 新しい問い合わせ（Menu Maker）
+    confirmation_email: お問い合わせ受付完了（Menu Maker）
+  inquiries:
+    new:
+      to_top_page: トップページへ
+      title: お問い合わせ
+      send_inquiry_confirm: この内容でメールを送信しますか？
+      send_inquiry: 送信する
+    create:
+      success: お問い合わせメールを送信しました
+    complete:
+      to_top_page: トップページへ
+      title: お問い合わせ完了

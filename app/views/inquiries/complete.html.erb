@@ -1,0 +1,22 @@
+<% content_for(:title, t('.title')) %>
+<div class="container">
+  <div class="col d-flex justify-content-end align-items-center">
+    <span class="d-inline-block my-3">
+      <%= link_to t('.to_top_page'), root_path, class: "custom-link" %>
+    </span>
+  </div>
+  <h1 class="text-center mt-3"><%= t('.title') %></h1>
+  <div class="card my-5 custom-card-width mx-auto">
+    <div class="container py-2 my-5">
+      <div class="row justify-content-center">
+        <div class="col-md-12">
+          <h3 class="text-center mb-4">お問い合わせありがとうございました。</h3>
+          <p class="text-center">ご入力いただいたメールアドレス宛に、ご確認メールをお送りしておりますのでご確認ください。</p>
+          <p class="text-center">お問い合わせいただいた内容につきましては、確認の上、ご連絡いたします。</p>
+          <p class="text-center">今後ともよろしくお願いいたします。</p>
+          <p class="text-center mt-5" style='color: red;'>※ ご確認メールが届かない場合は、フォームにご入力いただいたメールアドレスの誤り、もしくはシステム等の不具合が考えられます。その際にはお手数ですが、再度お問い合わください。<br>また、まれに迷惑メールフォルダへ入っている場合がございますので、併せてご確認ください。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

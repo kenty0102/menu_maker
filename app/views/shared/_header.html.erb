@@ -2,7 +2,17 @@
   <nav class="container-fluid">
     <div class="row align-items-center">
       <!-- 左側の空のカラム -->
-      <div class="col"></div>
+      <div class="col d-flex justify-content-center align-items-center">
+        <div class="row align-items-center">
+          <div class="col d-flex justify-content-start align-items-center">
+            <%= "いらっしゃいませ、" %>
+          </div>
+          <div class="w-100"></div>
+          <div class="col-8 d-flex justify-content-center align-items-center">
+          <%= link_to current_user.name, profile_path, class: "custom-link" %>&nbsp;様
+          </div>
+        </div>
+      </div>
 
       <!-- 中央揃えのためのカラム -->
       <div class="col text-center">

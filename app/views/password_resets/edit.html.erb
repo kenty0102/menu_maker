@@ -1,5 +1,10 @@
 <% content_for(:title, t('.title')) %>
 <div class="container">
+  <div class="col d-flex justify-content-end align-items-center">
+  <span class="d-inline-block my-3">
+    <%= link_to t('.to_top_page'), root_path, class: "custom-link" %>
+  </span>
+  </div>
   <h1 class="text-center mt-5"><%= t('.title') %></h1>
   <div class="card mt-5 custom-card-width mx-auto">
     <div class="container py-2 my-5">

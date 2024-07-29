@@ -186,3 +186,10 @@ ja:
       failure: メニュー表の更新に失敗しました
     destroy:
       success: メニュー表を削除しました
+  pages:
+    privacy:
+      to_top_page: トップページへ
+      title: プライバシーポリシー
+    terms:
+      to_top_page: トップページへ
+      title: 利用規約

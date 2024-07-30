@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Menus", type: :system do
+RSpec.describe "メニュー", type: :system do
   let(:user) { create(:user) }
   let(:design) { create(:design, name: '居酒屋風メニュー') }
   let(:recipe) { create(:recipe) }

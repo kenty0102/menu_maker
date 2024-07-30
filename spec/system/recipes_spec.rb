@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Recipes', type: :system do
+RSpec.describe 'レシピ', type: :system do
   let(:user) { create(:user) }
 
   before do

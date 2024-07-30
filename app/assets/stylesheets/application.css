@@ -218,7 +218,7 @@ footer {
   color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1)); /* 初期の色を設定 */
 }
 .no-underline:hover {
-  color: #61C359; /* ホバー時の色を設定（例として赤色） */
+  color: #61C359; /* ホバー時の色を設定 */
 }
 
 .menu-preview {
@@ -239,4 +239,24 @@ footer {
   margin-top: 1em;
   font-weight: 600;
   font-size: 1.3em;
+}
+
+/* パンくず全体のスタイル */
+.breadcrumbs {
+  font-size: 15px;
+  color: #000000; /* リンク以外の部分の色 */
+}
+/* パンくずリンクのスタイル */
+.breadcrumbs a {
+  color: #808080; /* 通常のリンク色 */
+  text-decoration: none;
+}
+/* パンくずリンクのホバースタイル */
+.breadcrumbs a:hover {
+  color: #61C359; /* ホバー時のリンク色 */
+  text-decoration: none;
+}
+/* パンくずの現在のページ部分のスタイル */
+.breadcrumbs .current {
+  color: #000000; /* 現在のページ部分の色 */
 }

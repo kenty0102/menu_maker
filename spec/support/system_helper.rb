@@ -29,6 +29,15 @@ module SystemHelper
     fill_in 'menu_title', with: 'Updated Menu'
     find("input[type='checkbox'][value='#{first_recipe.id}']").uncheck
   end
+
+  def send_inquiry(name, email, message)
+    fill_in 'inquiry_name', with: name
+    fill_in 'inquiry_email', with: email
+    fill_in 'inquiry_message', with: message
+    page.accept_alert('この内容でメールを送信しますか？') do
+      click_button '送信する'
+    end
+  end
 end
 
 RSpec.configure do |config|

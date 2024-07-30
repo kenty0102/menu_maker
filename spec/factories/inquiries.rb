@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :inquiry do
-    name { "MyString" }
-    email { "MyString" }
-    message { "MyText" }
+    name { Faker::Name.name }
+    email { Faker::Internet.email }
+    message { Faker::Lorem.paragraph }
   end
 end

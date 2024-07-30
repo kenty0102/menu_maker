@@ -44,4 +44,4 @@ ja:
         menu:
           attributes:
             base:
-              must_have_at_least_one_recipe: メニューには少なくとも1つのレシピを選択する必要があります
+              blank_recipe: "メニューには少なくとも1つのレシピを選択する必要があります"

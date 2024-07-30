@@ -11,6 +11,6 @@ class Menu < ApplicationRecord
   private
 
   def must_have_at_least_one_recipe
-    errors.add(:recipe_ids, "must be present") if recipe_ids.blank?
+    errors.add(:base, :blank_recipe) if recipe_ids.blank?
   end
 end

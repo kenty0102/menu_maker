@@ -6,14 +6,16 @@
       <%= breadcrumbs separator: " &rsaquo; " %>
     </div>
     <div class="col-6 d-flex justify-content-end align-items-center">
-      <%= link_to t('.to_top_page'), root_path, class: "custom-link" %>
+      <%= link_to t('.to_top_page'), root_path, class: "custom-link", data: { turbo: false } %>
     </div>
   </div>
-  <h1 class="text-center my-5"><%= t('.title') %></h1>
-  <div class="container col-lg-9 my-5 py-3 mx-auto text-start">
-    <div class="d-grid gap-2 mx-auto">
-      <%= link_to t('.cookpad'), "https://cookpad.com/", class: 'btn btn-cookpad mb-5', target: "_blank" %>
+  <h1 class="page-title text-center"><%= t('.title') %></h1>
+  <div class="page-container text-center px-3">
+    <div class="row">
+      <div class="col d-flex justify-content-center align-items-center">
+        <%= link_to t('.cookpad'), "https://cookpad.com/", class: 'btn btn-cookpad', target: "_blank" %>
+      </div>
     </div>
-    <p>※ 現在、レシピの自動保存は「Cookpad」のレシピURLのみに対応しています。</p>
+    <p class="pb-3">※ 現在、レシピの自動保存は「Cookpad」のレシピURLのみに対応しています。</p>
   </div>
 </div>

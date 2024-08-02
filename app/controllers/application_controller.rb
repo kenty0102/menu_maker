@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :require_login
+  skip_before_action :require_login, if: -> { request.path.start_with?('/pages/') }
   add_flash_types :success, :danger
 
   private

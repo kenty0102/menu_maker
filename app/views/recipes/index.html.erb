@@ -6,30 +6,30 @@
       <%= breadcrumbs separator: " &rsaquo; " %>
     </div>
     <div class="col-6 d-flex justify-content-end align-items-center">
-      <%= link_to t('.to_top_page'), root_path, class: "custom-link" %>
+      <%= link_to t('.to_top_page'), root_path, class: "custom-link", data: { turbo: false } %>
     </div>
   </div>
-  <h1 class="text-center mt-3"><%= t('.title') %></h1>
+  <h1 class="page-title text-center"><%= t('.title') %></h1>
   <% if @recipes.any? %>
-    <div class="container my-5">
+    <div class="container mb-5">
       <div class="recipe-list">
         <% @recipes.each do |recipe| %>
           <div class="recipe-preview my-3 px-3" id="recipe_<%= recipe.id %>">
             <div class="row">
-              <div class="col-2 py-2 d-flex justify-content-center align-items-center">
+              <div class="col-md-2 col-3 py-2 d-flex justify-content-center align-items-center">
                 <div class="recipe-image">
-                <% if recipe.image.present? %>
-                <%= image_tag recipe.image.url, class: 'photo focus', alt: recipe.title, width: 150, height: 100 %>
-              <% else %>
-                <%= image_tag 'default_image.png', class: 'photo focus', alt: 'サンプル画像', width: 150, height: 100 %>
-              <% end %>
+                  <% if recipe.image.present? %>
+                    <%= image_tag recipe.image.url, class: 'recipe-photo', alt: recipe.title %>
+                  <% else %>
+                    <%= image_tag 'default_image.png', class: 'recipe-photo', alt: 'サンプル画像' %>
+                  <% end %>
                 </div>
               </div>
-              <div class="col-7 d-flex justify-content-start align-items-center">
+              <div class="col-md-7 col-6 d-flex justify-content-start align-items-center">
                 <div class="recipe-text">
                   <div class="recipe-header">
                     <h3 class="recipe-title">
-                        <%= link_to recipe.title, recipe_path(recipe), class: 'no-underline' %>
+                        <%= link_to recipe.title, recipe_path(recipe), class: 'no-underline', data: { turbo: false } %>
                     </h3>
                   </div>
                   <div class="ingredients">
@@ -41,11 +41,11 @@
               </div>
               <div class="col-3 d-flex justify-content-center align-items-center">
                 <div class="row">
-                  <div class="col-6 d-flex justify-content-center align-items-center">
-                    <%= link_to t('.edit'), edit_recipe_path(recipe), class: "btn btn-recipe-edit btn-sm" %>
+                  <div class="col-lg-6 col-12 d-flex justify-content-center align-items-center my-1">
+                    <%= link_to t('.edit'), edit_recipe_path(recipe), class: "btn btn-recipe-edit btn-sm", data: { turbo: false } %>
                   </div>
-                  <div class="col-6 d-flex justify-content-start align-items-center">
-                  <%= link_to t('.delete'), recipe_path(recipe), data: { turbo_method: :delete, turbo_confirm: t('.confirm_delete') }, class: "btn btn-recipe-delete btn-sm" %>
+                  <div class="col-lg-6 col-12 d-flex justify-content-center align-items-center my-1">
+                    <%= button_to t('.delete'), recipe_path(recipe), method: :delete, data: { turbo: false }, form: {onSubmit: "return delete_confirm('このレシピを削除しますか？')" }, class: "btn btn-recipe-delete btn-sm" %>
                   </div>
                 </div>
               </div>

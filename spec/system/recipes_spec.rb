@@ -106,14 +106,14 @@ RSpec.describe 'レシピ', type: :system do
 
     it 'レシピが削除されたメッセージが表示される' do
       page.accept_alert('このレシピを削除しますか？') do
-        click_link '削除'
+        click_button '削除'
       end
       expect(page).to have_content 'レシピを削除しました'
     end
 
     it '削除されたレシピのタイトルが一覧に表示されない' do
       page.accept_alert('このレシピを削除しますか？') do
-        click_link '削除'
+        click_button '削除'
       end
       expect(page).not_to have_content 'Test Recipe'
     end

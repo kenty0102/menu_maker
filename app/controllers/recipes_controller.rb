@@ -74,7 +74,6 @@ class RecipesController < ApplicationController
 
   def edit
     @recipe = current_user.recipes.find(params[:id])
-    @referer = request.referer
   end
 
   def create

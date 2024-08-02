@@ -1,12 +1,15 @@
-<nav class="navbar navbar-expand-lg bg-dark border-bottom border-bottom-dark" data-bs-theme="dark">
+<nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
   <div class="container-fluid">
+    <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav w-100 nav-justified">
-        <%= link_to t('navbar.recipe_search'), search_recipes_path, class: "nav-link #{active_if(search_recipes_path)}" %>
-        <%= link_to t('navbar.recipe_saving'), save_options_recipes_path, class: "nav-link #{active_if(save_options_recipes_path)}" %>
-        <%= link_to t('navbar.recipe_list'), recipes_path, class: "nav-link #{active_if(recipes_path)}" %>
-        <%= link_to t('navbar.menu_create'), new_menu_path, class: "nav-link #{active_if(new_menu_path)}" %>
-        <%= link_to t('navbar.menu_list'), menus_path, class: "nav-link #{active_if(menus_path)}" %>
+        <%= link_to t('navbar.recipe_search'), search_recipes_path, class: "nav-link #{active_if(search_recipes_path)}", data: { turbo: false } %>
+        <%= link_to t('navbar.recipe_saving'), save_options_recipes_path, class: "nav-link #{active_if(save_options_recipes_path)}", data: { turbo: false } %>
+        <%= link_to t('navbar.recipe_list'), recipes_path, class: "nav-link #{active_if(recipes_path)}", data: { turbo: false } %>
+        <%= link_to t('navbar.menu_create'), new_menu_path, class: "nav-link #{active_if(new_menu_path)}", data: { turbo: false } %>
+        <%= link_to t('navbar.menu_list'), menus_path, class: "nav-link #{active_if(menus_path)}", data: { turbo: false } %>
       </div>
     </div>
   </div>

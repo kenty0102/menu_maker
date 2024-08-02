@@ -6,30 +6,32 @@
       <%= breadcrumbs separator: " &rsaquo; " %>
     </div>
     <div class="col-6 d-flex justify-content-end align-items-center">
-      <%= link_to t('.to_top_page'), root_path, class: "custom-link" %>
+      <%= link_to t('.to_top_page'), root_path, class: "custom-link", data: { turbo: false } %>
     </div>
   </div>
-  <h1 class="text-center mt-3"><%= t('.title') %></h1>
+  <h1 class="page-title text-center"><%= t('.title') %></h1>
   <%= form_with(model: @user, url: update_email_profile_path, local: true) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
-  <div class="card mt-5 custom-card-width mx-auto">
-    <div class="container py-2 my-5">
+  <div class="card custom-card-profile-width">
+    <div class="profile-container">
       <div class="row justify-content-center">
-        <div class="col-md-8">
-          <div class="mb-3">
-            <%= f.label :current_email, class: 'form-label' %>
+        <div class="col-9">
+          <div class="mb-4">
+            <%= f.label :current_email, class: 'profile-form-label' %>
             <%= f.text_field :email, class: 'form-control', value: User.find(current_user.id).email, readonly: true %>
           </div>
-          <div class="mb-3">
-            <%= f.label :new_email, class: "form-label" %>
+          <div>
+            <%= f.label :new_email, class: "profile-form-label" %>
             <%= f.text_field :email, class: "form-control", id: "new_email", value: nil %>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="d-grid gap-2 col-4 mx-auto my-5">
-    <%= f.submit t('.update'), class: "btn btn-primary" %>
+  <div class="row my-5">
+    <div class="col d-flex justify-content-center align-items-center">
+      <%= f.submit t('.update'), class: "btn btn-primary", data: { turbo: false } %>
+    </div>
   </div>
   <% end %>
 </div>

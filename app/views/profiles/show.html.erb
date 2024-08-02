@@ -6,34 +6,34 @@
       <%= breadcrumbs separator: " &rsaquo; " %>
     </div>
     <div class="col-6 d-flex justify-content-end align-items-center">
-      <%= link_to t('.to_top_page'), root_path, class: "custom-link" %>
+      <%= link_to t('.to_top_page'), root_path, class: "custom-link", data: { turbo: false } %>
     </div>
   </div>
-  <h1 class="text-center mt-3"><%= t('.title') %></h1>
-  <div class="card mt-5 custom-card-width mx-auto">
-    <div class="container py-2 mt-5">
+  <h1 class="page-title text-center mt-3"><%= t('.title') %></h1>
+  <div class="card custom-card-profile-width">
+    <div class="profile-container">
       <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-10">
         <%= form_with(model: @user, url: profile_path, local: true) do |f| %>
-          <div class="mb-3">
-            <%= f.label :name, class: 'form-label' %>
+          <div class="mb-4">
+            <%= f.label :name, class: 'profile-form-label' %>
             <div class="row">
-              <div class="col-9">
+              <div class="col-9 d-flex justify-content-end align-items-center">
                 <%= f.text_field :name, class: 'form-control', value: @user.name, readonly: true %>
               </div>
-              <div class="d-grid gap-2 col-3 mx-auto">
-                <%= link_to t('.edit'), edit_username_profile_path, id: 'edit_username_link', class: 'btn btn-primary text-center', style: "letter-spacing: 5px; font-size: inherit; text-indent: initial;" %>
+              <div class="col-3 d-flex justify-content-end align-items-center">
+                <%= link_to t('.edit'), edit_username_profile_path, id: 'edit_username_link', class: 'btn btn-primary-profile', data: { turbo: false } %>
               </div>
             </div>
           </div>
-          <div class="mb-5">
-            <%= f.label :email, class: 'form-label' %>
+          <div>
+            <%= f.label :email, class: 'profile-form-label' %>
             <div class="row">
-              <div class="col-9">
+              <div class="col-9 d-flex justify-content-end align-items-center">
                 <%= f.email_field :email, class: 'form-control', value: @user.email, readonly: true %>
               </div>
-              <div class="d-grid gap-2 col-3 mx-auto">
-                <%= link_to t('.edit'), edit_email_profile_path, id: 'edit_email_link', class: 'btn btn-primary', style: "letter-spacing: 5px; font-size: inherit; text-indent: initial;" %>
+              <div class="col-3 d-flex justify-content-end align-items-center">
+                <%= link_to t('.edit'), edit_email_profile_path, id: 'edit_email_link', class: 'btn btn-primary-profile', data: { turbo: false } %>
               </div>
             </div>
           </div>
@@ -42,10 +42,9 @@
       </div>
     </div>
   </div>
-  <div class="row mb-5">
-    <div class="col-7"></div>
-    <div class="col-5 text-start">
-      <%= link_to t('.password_change'), edit_password_profile_path, class: 'btn btn-primary mt-3', style: "letter-spacing: 5px; font-size: inherit; text-indent: initial;" %>
+  <div class="row pass-edit-link">
+    <div class="col-10 d-flex justify-content-end align-items-center">
+      <%= link_to t('.password_change'), edit_password_profile_path, class: 'btn btn-primary-profile', data: { turbo: false } %>
     </div>
   </div>
 </div>

@@ -123,7 +123,6 @@ ja:
       edit: 編集
       delete: 削除
       no_recipes_saved: 保存されているレシピはありません
-      confirm_delete: このレシピを削除しますか？
     show:
       to_top_page: トップページへ
       title: レシピ詳細
@@ -131,7 +130,6 @@ ja:
       instructions: 〜作り方〜
       edit: 編集
       delete: 削除
-      confirm_delete: このレシピを削除しますか？
     edit:
       to_top_page: トップページへ
       title: レシピ編集
@@ -168,13 +166,11 @@ ja:
       title: メニュー表確認画面
       edit: メニュー表の編集
       delete: メニュー表を削除
-      confirm_delete: このメニュー表を削除しますか？
     index:
       to_top_page: トップページへ
       title: メニュー表一覧
       edit: 編集
       delete: 削除
-      confirm_delete: このメニュー表を削除しますか？
     edit:
       to_top_page: トップページへ
       title: メニュー表編集

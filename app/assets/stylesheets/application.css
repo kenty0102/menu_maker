@@ -14,9 +14,16 @@
  *= require_self
  */
 @import url('https://fonts.googleapis.com/css2?family=Playwrite+NO:wght@100..400&display=swap');
+html {
+  min-height: 100%;
+  position: relative;
+}
 
 body {
   background-color: #FEEABC; /* アプリケーションの背景色 */
+  margin: 0;
+  padding: 0;
+  padding-bottom: 200px;
 }
 
 h1.top-page-title {
@@ -25,19 +32,20 @@ h1.top-page-title {
 
 header {
   background-color: #F6B352;
+  width: 100%;
 }
+
 .logo {
   max-height: 100px; /* ロゴの高さを調整 */
   max-width: 100%;  /* 画像がコンテナを超えないように */
 }
-.nav-link.active {
-  color: #fff; /* 例: アクティブなリンクの色を白にする */
-}
+
 .custom-link {
   color: #4C4C4C;
   text-decoration: none; /* アンダーラインを消す場合 */
   font-size: 20px;
 }
+
 .custom-link:hover {
   color: #61C359; /* ホバー時に色を変える場合 */
 }
@@ -48,14 +56,29 @@ header {
   font-size: 20px;
 }
 
-footer {
-  background-color: #F6B352;
+.nav-link.active {
+  color: #fff; /* 例: アクティブなリンクの色を白にする */
 }
 
+footer {
+  background-color: #F6B352;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 110px;
+}
+
+.page-title {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
 
 .custom-card-width {
   max-width: 70%; /* 必要に応じて調整 */
   margin: auto; /* カードを中央揃えにする */
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
   background-color: #FFD982;
 }
 
@@ -90,36 +113,43 @@ footer {
   border: none; /* ボーダーを消す　*/
   letter-spacing: 10px; /* 文字の間隔　*/
   font-size: 30px; /* 文字サイズ　*/
-  text-indent: 10px;
+  padding-left: 10rem;
+  padding-right: 10rem;
+  margin-bottom: 5rem;
 }
 .btn-cookpad:hover {
   background-color: #d07301 ; /* ホバー時の色 */
 }
 
-.save_options_auto {
+.save-options-auto {
   background-color: #F78700;
   width: 20em;
   height: 20em;
 }
-.save_options_auto:hover {
+.save-options-auto:hover {
   background-color: #d07301 ;
 }
-.save_options_manual {
+.save-options-manual {
   background-color: #FFD200;
   width: 20em;
   height: 20em;
 }
-.save_options_manual:hover {
+.save-options-manual:hover {
   background-color: #e7bd03;
 }
-.save_options {
+.save-options {
   background-color: #F5F5F5;
+  margin-top: 3rem;
 }
-.card:hover .save_options {
+.card:hover .save-options {
   background-color: #d9d6d6;
 }
 .small-font li {
   font-size: 0.9em;
+}
+.card-text {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .custom-card-manual-save {
@@ -140,27 +170,65 @@ footer {
   background-color: #c7c6c4;
 }
 
+.manual-save-form-label {
+  font-size: 30px;
+}
+.manual-save-form-control {
+  width: 680px;
+  height: 50px;
+}
+
+.recipes-row {
+  margin-left: 3rem;
+}
+
+.ingredient-name {
+  width: 200px;
+  height: 40px;
+}
+.ingredient-quantity {
+  width: 80px;
+  height: 40px;
+}
+.ingredient-unit {
+  width: 70px;
+  height: 40px;
+}
+.step-number {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  margin-bottom: 4em;
+}
+.description {
+  width: 280px;
+  height: 100px;
+}
+
 .btn-danger {
   background-color: #F68655;
   width: 40px;
   height: 40px;
 }
 
+.recipe-image-form {
+  margin-left: 3rem;
+  margin-right: 3rem;
+}
+
+.image-form {
+  width: 400px;
+}
+
 .recipe-preview {
   background-color: #FFD982;
 }
 
-.btn-add-menu {
-  background-color: #F6B352;
-  color: #4C4C4C;
-  border: none;
-  letter-spacing: 5px; /* 文字の間隔　*/
-  font-size: 20px; /* 文字サイズ　*/
-  text-indent: 5px;
+.recipe-photo {
+  width: 150px;
+  height: 100px;
 }
-.btn-add-menu:hover {
-  background-color: #d99c47;
-}
+
 .btn-recipe-edit {
   background-color: #61C359;
   border: none;
@@ -168,6 +236,7 @@ footer {
   letter-spacing: 10px; /* 文字の間隔　*/
   font-size: 20px; /* 文字サイズ　*/
   text-indent: 10px;
+ 
 }
 .btn-recipe-edit:hover {
   background-color: #50a149;
@@ -180,16 +249,38 @@ footer {
   letter-spacing: 10px; /* 文字の間隔　*/
   font-size: 20px; /* 文字サイズ　*/
   text-indent: 10px;
+ 
 }
 .btn-recipe-delete:hover {
   background-color: #cf7047;
   color: #dbd8d8;
 }
 
+.show-recipe-title {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.show-recipe-photo {
+  width: 300px;
+  height: 200px;
+}
+
+.show-ingredient-row {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
 .subtitle {
   background-color: #F6B352;
   text-align: center;
   letter-spacing: 5px;
+  margin-right: 1.5rem;
+}
+
+.show-recipe-container {
+  padding-right: 3rem;
+  padding-top: 1rem;
 }
 
 .delete-checkbox input[type="checkbox"] {
@@ -201,16 +292,33 @@ footer {
   margin-left: 1em;
 }
 
-.step-number {
-  width: 40px;
-  height: 40px;
-  text-align: center;
-  margin-bottom: 4em;
+.menu-form-label {
+  font-size: 30px;
+}
+.menu-form-control {
+  width: 600px;
+  height: 50px;
+  font-size: 25px;
+  margin-left: 1rem;
+}
+
+.recipe-select {
+  padding-bottom: 1rem;
+  padding-top: 3rem;
+}
+
+.recipe-list {
+  margin-left: 3rem;
+  margin-right: 3rem;
 }
 
 .add-menu-checkbox input[type="checkbox"] {
   width: 25px;
   height: 25px;
+}
+
+.menu-title {
+  margin-bottom: 0;
 }
 
 .no-underline {
@@ -225,6 +333,16 @@ footer {
   background-color: #FFD982;
 }
 
+.menu-list {
+  margin-left: 3rem;
+  margin-right: 3rem;
+}
+.menu-list-row {
+  padding-left: 3rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
 .field_with_errors {
   display: contents;
 }
@@ -232,13 +350,23 @@ footer {
 .custom-card-pages {
   max-width: 90%; /* 必要に応じて調整 */
   margin: auto; /* カードを中央揃えにする */
-  background-color: #fcf5e6;
+  padding: 3rem;
+  background-color: #fef5e1;
 }
 
 .subtitle-1 {
   margin-top: 1em;
   font-weight: 600;
-  font-size: 1.3em;
+  font-size: 1.3rem;
+}
+
+.inquiry-copmlete-container {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.inquiry-complete-message {
+  margin-bottom: 1.5rem;
 }
 
 /* パンくず全体のスタイル */
@@ -259,4 +387,551 @@ footer {
 /* パンくずの現在のページ部分のスタイル */
 .breadcrumbs .current {
   color: #000000; /* 現在のページ部分の色 */
+}
+
+.btn-primary-profile {
+  background-color: #61C359; /* ボタンの色　*/
+  color: #fff;
+  border: none; /* ボーダーを消す　*/
+  letter-spacing: 10px; /* 文字の間隔　*/
+  font-size: 20px; /* 文字サイズ　*/
+  text-indent: 10px;
+}
+.btn-primary-profile:hover {
+  background-color: #50a149; /* ホバー時の色 */
+}
+
+.profile-container {
+  padding-top: 1rem;
+  padding-bottom: 5rem;
+  margin-top: 3rem;
+}
+
+.custom-card-profile-width {
+  max-width: 70%; /* 必要に応じて調整 */
+  margin: auto; /* カードを中央揃えにする */
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  background-color: #FFD982;
+}
+
+.pass-edit-link {
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+}
+
+.profile-form-label {
+  font-size: 20px;
+  margin-bottom: 0.5rem;
+}
+
+.top-btn-primary {
+  color: #fff;
+  background-color: #61C359; /* ボタンの色　*/
+  border: none; /* ボーダーを消す　*/
+  letter-spacing: 10px; /* 文字の間隔　*/
+  font-size: 25px; /* 文字サイズ　*/
+  text-indent: 10px;
+  width: 20rem;
+}
+.top-btn-primary:hover {
+  background-color: #50a149; /* ホバー時の色 */
+}
+
+.top-btn-secondary {
+  color: #fff;
+  background-color: #F78700; /* ボタンの色　*/
+  border: none; /* ボーダーを消す　*/
+  letter-spacing: 10px; /* 文字の間隔　*/
+  font-size: 25px; /* 文字サイズ　*/
+  text-indent: 10px;
+  width: 20rem;
+}
+.top-btn-secondary:hover {
+  background-color: #d07301 ; /* ホバー時の色 */
+}
+
+.pass-forger-link {
+  margin-left: 38rem;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.register-link {
+  margin-left: 38rem;
+  margin-bottom: 2rem;
+}
+
+/* タブレット向けのスタイル */
+@media (min-width: 768px) and (max-width: 960px) {
+  body {
+    font-size: 20px; /* 基本のフォントサイズを10pxに */
+    padding-bottom: 160px;
+  }
+  footer {
+    height: 110px;
+  }
+
+  .custom-link {
+    font-size: 20px; /* custom-linkのフォントサイズを10pxに */
+    margin-right: 1rem;
+  }
+
+  .btn-cookpad {
+    letter-spacing: 7px;
+    font-size: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .manual-save-form-label {
+    font-size: 25px;
+    padding-left: 0.5rem;
+  }
+  .manual-save-form-control {
+    width: 350px;
+    height: 35px;
+    margin-left: 0.5rem;
+  }
+
+  .recipes-row {
+    margin-left: 1rem;
+  }
+
+  .ingredient-name {
+    width: 100px;
+    height: 30px;
+    font-size: 13px;
+  }
+  .ingredient-quantity {
+    width: 40px;
+    height: 30px;
+    font-size: 13px;
+  }
+  .ingredient-unit {
+    width: 40px;
+    height: 30px;
+    font-size: 13px;
+  }
+  .step-number {
+    width: 30px;
+    height: 30px;
+    font-size: 13px;
+    margin-bottom: 2.7rem;
+  }
+  .description {
+    width: 150px;
+    height: 65px;
+    font-size: 13px;
+  }
+  .btn-danger {
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    margin-left: 0.5rem;
+  }
+  .recipe-image-form {
+    margin-left: 1.7rem;
+    margin-right: 0;
+  }
+  .image-form {
+    width: 300px;
+    font-size: 12px;
+  }
+  .delete-checkbox {
+    font-size: 13px;
+  }
+  .delete-checkbox input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+  }
+
+  .recipe-photo {
+    width: 90px;
+    height: 60px;
+  }
+  .btn-recipe-edit {
+    letter-spacing: 10px; /* 文字の間隔　*/
+    font-size: 15px; /* 文字サイズ　*/
+    text-indent: 0.7rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    white-space: nowrap;
+  }
+  .btn-recipe-delete {
+    letter-spacing: 10px; /* 文字の間隔　*/
+    font-size: 15px; /* 文字サイズ　*/
+    text-indent: 0.7rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    white-space: nowrap;
+  }
+
+  .show-recipe-photo {
+    width: 200px;
+    height: 150px;
+  }
+  .subtitle {
+    font-size: 20px;
+    text-align: center;
+    letter-spacing: 5px;
+    margin-right: 0;
+  }
+  .show-recipe-container {
+    font-size: 15px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .btn-primary-profile {
+    letter-spacing: 2px; /* 文字の間隔　*/
+    font-size: 18px; /* 文字サイズ　*/
+    text-indent: 2px;
+    white-space: nowrap;
+  }
+
+  .pass-forger-link {
+    margin-left: 17rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .register-link {
+    margin-left: 17rem;
+  }
+}
+
+/* スマートフォンサイズ用のスタイル */
+@media (max-width: 576px) {
+  body {
+    font-size: 10px; /* 基本のフォントサイズを10pxに */
+    padding-bottom: 90px;
+  }
+  footer {
+    height: 80px;
+  }
+  
+  .custom-link {
+    font-size: 10px; /* custom-linkのフォントサイズを10pxに */
+  }
+  
+  .logo {
+    max-height: 50px; /* ロゴの高さを50pxに */
+    max-width: 50px;  /* ロゴの幅を50pxに */
+  }
+
+  /* 右側のリンクのcol-4の左右のパディングを0に */
+  .col-4 {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .nav-link {
+    font-size: 15px;
+  }
+
+  .top-page-title {
+    font-size: 30px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  .h3 {
+    font-size: 16px;
+  }
+
+  .h5 {
+    font-size: 13px;
+  }
+
+  .how-to-use {
+    font-size: 18px;
+  }
+
+  .lead {
+    font-size: 11px;
+  }
+
+  .breadcrumbs {
+    font-size: 10px;
+  }
+
+  .page-title {
+    font-size: 20px;
+    margin-bottom: 2rem;
+    margin-top: 2.5rem;
+  }
+
+  .btn-cookpad {
+    letter-spacing: 2px;
+    font-size: 15px;
+    padding-left: 3rem;
+    padding-right: 2.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .save-options-auto {
+    background-color: #F78700;
+    width: 30em;
+    height: 20em;
+  }
+  .save-options-auto:hover {
+    background-color: #d07301 ;
+  }
+  .save-options-manual {
+    background-color: #FFD200;
+    width: 30em;
+    height: 20em;
+  }
+  .save-options-manual:hover {
+    background-color: #e7bd03;
+  }
+  .save-options {
+    margin-top: 1rem;
+  }
+  .card-text {
+    font-size: 15px;
+    margin-bottom: 0.5rem;
+  }
+
+  .form-label {
+    font-size: 18px;
+  }
+  .form-control {
+    font-size: 10px;
+  }
+
+  .btn-primary {
+    font-size: 15px;
+    letter-spacing: 2px;
+    padding-left: 1rem;
+    padding-right: 1.5rem;
+    white-space: nowrap;
+  }
+
+  .manual-save-form-label {
+    font-size: 18px;
+    padding-left: 0.5rem;
+  }
+  .manual-save-form-control {
+    width: 180px;
+    height: 30px;
+    margin-left: 1.5rem;
+  }
+
+  .recipes-row {
+    margin-left: 1rem;
+  }
+
+  .ingredient-name {
+    width: 90px;
+    height: 30px;
+  }
+  .ingredient-quantity {
+    width: 35px;
+    height: 30px;
+  }
+  .ingredient-unit {
+    width: 35px;
+    height: 30px;
+  }
+  .step-number {
+    width: 25px;
+    height: 25px;
+    margin-bottom: 2.7rem;
+  }
+  .description {
+    width: 135px;
+    height: 65px;
+  }
+
+  .btn-danger {
+    width: 30px;
+    height: 30px;
+  }
+
+  .recipe-image-form {
+    margin-left: 1.7rem;
+    margin-right: 0;
+  }
+
+  .image-form {
+    width: 200px;
+  }
+
+  .recipe-photo {
+    width: 70px;
+    height: 50px;
+  }
+
+  .recipe-title {
+    font-size: 15px;
+  }
+
+  .btn-recipe-edit {
+    letter-spacing: 4px; /* 文字の間隔　*/
+    font-size: 10px; /* 文字サイズ　*/
+    text-indent: 4px;
+    white-space: nowrap;
+  }
+  .btn-recipe-delete {
+    letter-spacing: 4px; /* 文字の間隔　*/
+    font-size: 10px; /* 文字サイズ　*/
+    text-indent: 4px;
+    white-space: nowrap;
+  }
+
+  .show-recipe-title {
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .show-recipe-photo {
+    width: 170px;
+    height: 130px;
+  }
+
+  .show-ingredient-row {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .subtitle {
+    font-size: 15px;
+    text-align: center;
+    letter-spacing: 5px;
+    margin-right: 0;
+  }
+
+  .show-recipe-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+  }
+  
+  .menu-form-label {
+    font-size: 15px;
+    margin-bottom: 0.3rem;
+  }
+  .menu-form-control {
+    width: 230px;
+    height: 30px;
+    font-size: 15px;
+    margin-left: 1rem;
+  }
+
+  .recipe-select {
+    padding-bottom: 0.5rem;
+    padding-top: 1.5rem;
+    font-size: 15px;
+  }
+
+  .recipe-list {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .menu-title .no-underline {
+    font-size: 18px;
+  }
+
+  .menu-list {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .menu-list-row {
+    padding-left: 1rem;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+  }
+
+  .custom-card-pages {
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .subtitle-1 {
+    font-size: 0.7rem;
+  }
+
+  .custom-card-width {
+    min-width: 90%;
+    margin: auto;
+    margin-bottom: 3rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .inquiry-copmlete-container {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .inquiry-complete-message {
+    font-size: 15px;
+  }
+
+  .btn-primary-profile {
+    letter-spacing: 2px; /* 文字の間隔　*/
+    font-size: 10px; /* 文字サイズ　*/
+    text-indent: 2px;
+    white-space: nowrap;
+  }
+
+  .profile-container {
+    padding-top: 1rem;
+    padding-bottom: 2.5rem;
+    margin-top: 1rem;
+  }
+
+  .custom-card-profile-width {
+    min-width: 90%;
+    margin: auto;
+    margin-bottom: 1rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .pass-edit-link {
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+    padding-left: 10rem;
+  }
+
+  .profile-form-label {
+    font-size: 15px;
+  }
+
+  .btn-secondary {
+    font-size: 15px;
+    letter-spacing: 2px;
+    padding-left: 1rem;
+    padding-right: 1.5rem;
+    white-space: nowrap;
+  }
+
+  .top-btn-primary {
+    letter-spacing: 10px; /* 文字の間隔　*/
+    font-size: 15px; /* 文字サイズ　*/
+    text-indent: 0.5rem;
+    width: 10rem;
+  }
+  .top-btn-secondary {
+    letter-spacing: 10px; /* 文字の間隔　*/
+    font-size: 15px; /* 文字サイズ　*/
+    text-indent: 0.5rem;
+    width: 10rem;
+  }
+
+  .pass-forger-link {
+    margin-left: 9rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .register-link {
+    margin-left: 9rem;
+    margin-bottom: 1rem;
+  }
 }

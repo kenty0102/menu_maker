@@ -6,22 +6,22 @@
       <%= breadcrumbs separator: " &rsaquo; " %>
     </div>
     <div class="col-6 d-flex justify-content-end align-items-center">
-      <%= link_to t('.to_top_page'), root_path, class: "custom-link" %>
+      <%= link_to t('.to_top_page'), root_path, class: "custom-link", data: { turbo: false } %>
     </div>
   </div>
-  <h1 class="text-center mt-3"><%= t('.title') %></h1>
+  <h1 class="page-title text-center"><%= t('.title') %></h1>
   <%= form_with model: @recipe do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
-    <div class="card mt-5 custom-card-manual-save mx-auto">
+    <div class="card custom-card-manual-save mx-auto">
       <div class="row mt-5 d-flex justify-content-center">
         <div class="col-10 text-start">
-          <%= f.label :title, class: 'form-label', style: 'font-size: 30px;' %>
-          <%= f.text_field :title, class: 'form-label', style: 'width: 680px; height: 50px;' %>
+          <%= f.label :title, class: 'manual-save-form-label' %>
+          <%= f.text_field :title, class: 'manual-save-form-control' %>
         </div>
       </div>
       <div class="container py-2 my-5">
-        <div class="row">
-          <div class="col-6 d-flex justify-content-center">
+        <div class="row recipes-row">
+          <div class="col-md-6 col-12 d-flex justify-content-center mb-5">
             <div id="ingredients-form" data-controller="dynamic-form" data-mode="edit" data-dynamic-form-target="nestedForms">
               <%= f.label :ingredients, class: 'form-label' %>
               <%= f.fields_for :ingredients do |ingredient_fields| %>
@@ -30,7 +30,7 @@
               <%= link_to t('.add_ingredient'), '#', class: 'add-ingredient btn btn-manual_save mt-5', data: { action: 'click->dynamic-form#addIngredientForm' } %>
             </div>
           </div>
-          <div class="col-6 d-flex justify-content-center">
+          <div class="col-md-6 col-12 d-flex justify-content-center">
             <div id="instructions-form" data-controller="dynamic-form" data-mode="edit" data-dynamic-form-target="nestedForms">
               <%= f.label :instructions, class: 'form-label'%>
               <%= f.fields_for :instructions  do |instruction_fields| %>
@@ -41,19 +41,21 @@
           </div>
         </div>
       </div>
-      <div class="row mx-5">
+      <div class="row recipe-image-form">
         <%= f.label :image, class: 'form-label' %>
-        <div class="col-6 d-flex justify-content-start align-items-center mb-5">
-          <%= f.file_field :image, class: 'form-control', style: 'width: 400px;' %>
+        <div class="col-md-6 col-12 d-flex justify-content-start align-items-center mb-5">
+          <%= f.file_field :image, class: 'form-control image-form' %>
           <%= f.hidden_field :image_cache %>
         </div>
-        <div class="col-4 d-flex justify-content-start align-items-center mb-5">
-          <%= image_tag @recipe.image.url, id: 'preview', size: '130x100' %>
+        <div class="col-md-4 col-12 d-flex justify-content-start align-items-center ms-3 mb-5">
+          <%= image_tag @recipe.image.url, id: 'preview', size: '190x120' %>
         </div>
       </div>
     </div>
-    <div class="d-grid gap-2 col-4 mx-auto my-5">
-      <%= f.submit t('.save'), class: "btn btn-primary" %>
+    <div class="row my-5">
+      <div class="col d-flex justify-content-center align-items-center">
+        <%= f.submit t('.save'), class: "btn btn-primary", data: { turbo: false } %>
+      </div>
     </div>
   <% end %>
 </div>

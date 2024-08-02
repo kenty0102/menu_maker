@@ -28,6 +28,86 @@
         }
       <% end %>
     <% end %>
+
+    /* スマートフォン向けメディアクエリ */
+    @media (max-width: 576px) {
+      .menulist-container .menu-container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-top: 1.5rem;
+        padding-bottom: 0;
+        margin-bottom: 0;
+      }
+      .menulist-container .menu-title {
+        font-size: 30px;
+        margin-bottom: 2.5rem;
+      }
+      .menulist-container .menu-recipes {
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+      .menulist-container .recipe-title {
+        font-size: 20px;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+        margin-top: 1.5rem;
+      }
+      .menulist-container .illustration-curry {
+        width: 120px;
+        height: 60px;
+      }
+      .menulist-container .illustrations-container {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+        padding-top: 1rem;
+        padding-bottom: 0.5rem;
+        margin-bottom: 0;
+      }
+      .menulist-container .illustration-onigiri {
+        width: 120px;
+        height: 60px;
+      }
+    }
+
+    /* タブレット向けメディアクエリ */
+    @media (min-width: 768px) and (max-width: 960px) {
+      .menulist-container .menu-container {
+        padding-left: 2rem;
+        padding-right: 2rem;
+        padding-top: 1.5rem;
+        padding-bottom: 0;
+        margin-bottom: 0;
+      }
+      .menulist-container .menu-title {
+        font-size: 60px;
+        margin-bottom: 3.5rem;
+      }
+      .menulist-container .menu-recipes {
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+      .menulist-container .recipe-title {
+        font-size: 40px;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+        margin-top: 1.5rem;
+      }
+      .menulist-container .illustration-curry {
+        width: 200px;
+        height: 100px;
+      }
+      .menulist-container .illustrations-container {
+        padding-left: 2rem;
+        padding-right: 2rem;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        margin-bottom: 1rem;
+      }
+      .menulist-container .illustration-onigiri {
+        width: 200px;
+        height: 100px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -38,10 +118,10 @@
       <%= breadcrumbs separator: " &rsaquo; " %>
     </div>
     <div class="col-6 d-flex justify-content-end align-items-center">
-      <%= link_to t('.to_top_page'), root_path, class: "custom-link" %>
+      <%= link_to t('.to_top_page'), root_path, class: "custom-link", data: { turbo: false } %>
     </div>
   </div>
-  <h1 class="text-center my-5"><%= t('.title') %></h1>
+  <h1 class="page-title text-center"><%= t('.title') %></h1>
   <div class="menulist-container">
     <div class="menu-container">
       <div class="menu-title"><span class="title-under"><%= @menu.title %></span></div>
@@ -60,9 +140,11 @@
   </div>
   <div class="container px-5 my-4">
     <div class="row d-flex justify-content-center align-items-center">
-      <div class="col-8 d-flex justify-content-center align-items-center">
-        <%= link_to t('.edit'), edit_menu_path, class: "btn btn-recipe-edit btn-sm me-5" %>
-        <%= link_to t('.delete'), menu_path(@menu), data: { turbo_method: :delete, turbo_confirm: t('.confirm_delete') }, class: "btn btn-recipe-delete btn-sm ms-5" %>
+      <div class="col-5 d-flex justify-content-center align-items-center">
+        <%= link_to t('.edit'), edit_menu_path, class: "btn btn-recipe-edit btn-sm me-5", data: { turbo: false } %>
+      </div>
+      <div class="col-5 d-flex justify-content-center align-items-center">
+        <%= button_to t('.delete'), menu_path(@menu), method: :delete, data: { turbo: false }, form: {onSubmit: "return delete_confirm('このメニュー表を削除しますか？')" }, class: "btn btn-recipe-delete btn-sm ms-5" %>
       </div>
     </div>
   </div>

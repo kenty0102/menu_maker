@@ -5,28 +5,30 @@
     <%= link_to t('.to_top_page'), root_path, class: "custom-link" %>
   </span>
   </div>
-  <h1 class="text-center mt-5"><%= t('.title') %></h1>
-  <div class="card mt-5 custom-card-width mx-auto">
-    <div class="container py-2 my-5">
+  <h1 class="page-title text-center mt-5"><%= t('.title') %></h1>
+  <div class="card custom-card-profile-width">
+    <div class="profile-container">
       <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-9">
         <%= form_with model: @user, url: password_reset_path(@token), method: :patch do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
           <div class="mb-3">
-            <%= f.label :email, class: "form-label" %><br>
+            <%= f.label :email, class: "profile-form-label" %><br>
             <%= f.email_field :email, class: 'form-control', value: @user.email, readonly: true %>
           </div>
           <div class="mb-3">
-            <%= f.label :password, class: "form-label" %>
-            <%= f.password_field :password, class: "form-control", required: true %>
+            <%= f.label :password, class: "profile-form-label" %>
+            <%= f.password_field :password, class: "form-control" %>
           </div>
-          <div class="mb-5">
-            <%= f.label :password_confirmation, class: "form-label" %>
-            <%= f.password_field :password_confirmation, class: "form-control", required: true %>
+          <div>
+            <%= f.label :password_confirmation, class: "profile-form-label" %>
+            <%= f.password_field :password_confirmation, class: "form-control" %>
           </div>
-          <div class="d-grid gap-2 col-6 mx-auto">
-            <%= f.submit class: "btn btn-primary" %>
+          <div class="row mt-4">
+            <div class="col d-flex justify-content-center align-items-center">
+              <%= f.submit class: "btn btn-primary" %>
             </div>
+          </div>
         <% end %>
         </div>
       </div>

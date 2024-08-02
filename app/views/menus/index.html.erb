@@ -6,29 +6,28 @@
       <%= breadcrumbs separator: " &rsaquo; " %>
     </div>
     <div class="col-6 d-flex justify-content-end align-items-center">
-      <%= link_to t('.to_top_page'), root_path, class: "custom-link" %>
+      <%= link_to t('.to_top_page'), root_path, class: "custom-link", data: { turbo: false } %>
     </div>
   </div>
-  <h1 class="text-center mt-3"><%= t('.title') %></h1>
+  <h1 class="page-title text-center"><%= t('.title') %></h1>
   <% if @menus.any? %>
-    <div class="container my-5">
+    <div class="container mb-5">
       <div class="menu-list">
         <% @menus.each do |menu| %>
-          <div class="my-3 px-3" id="menu_<%= menu.id %>">
-            <div class="row menu-preview mx-5">
-              <div class="col-1"></div>
-              <div class="col-7 d-flex justify-content-start align-items-center">
+          <div class="menu-preview my-3 px-3" id="menu_<%= menu.id %>">
+            <div class="row menu-list-row">
+              <div class="col-9 d-flex justify-content-start align-items-center">
                 <h3 class="menu-title">
-                    <%= link_to menu.title, menu_path(menu), class: 'no-underline' %>
+                    <%= link_to menu.title, menu_path(menu), class: 'no-underline', data: { turbo: false } %>
                 </h3>
               </div>
-              <div class="col-4 d-flex justify-content-center align-items-center">
+              <div class="col-3 d-flex justify-content-center align-items-center">
                 <div class="row">
-                  <div class="col-6 d-flex justify-content-center align-items-center">
-                    <%= link_to t('.edit'), edit_menu_path(menu), class: "btn btn-recipe-edit btn-sm" %>
+                  <div class="col-lg-6 col-12 d-flex justify-content-center align-items-center my-1">
+                    <%= link_to t('.edit'), edit_menu_path(menu), class: "btn btn-recipe-edit btn-sm", data: { turbo: false } %>
                   </div>
-                  <div class="col-6 d-flex justify-content-start align-items-center">
-                    <%= link_to t('.delete'), menu_path(menu), data: { turbo_method: :delete, turbo_confirm: t('.confirm_delete') }, class: "btn btn-recipe-delete btn-sm" %>
+                  <div class="col-lg-6 col-12 d-flex justify-content-center align-items-center my-1">
+                    <%= button_to t('.delete'), menu_path(menu), method: :delete, data: { turbo: false }, form: {onSubmit: "return delete_confirm('このメニュー表を削除しますか？')" }, class: "btn btn-recipe-delete btn-sm" %>
                   </div>
                 </div>
               </div>

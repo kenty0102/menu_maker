@@ -6,17 +6,17 @@
       <%= breadcrumbs separator: " &rsaquo; " %>
     </div>
     <div class="col-6 d-flex justify-content-end align-items-center">
-      <%= link_to t('.to_top_page'), root_path, class: "custom-link" %>
+      <%= link_to t('.to_top_page'), root_path, class: "custom-link", data: { turbo: false } %>
     </div>
   </div>
-  <h1 class="text-center my-5"><%= t('.title') %></h1>
-  <div class="container p-5">
+  <h1 class="page-title text-center"><%= t('.title') %></h1>
+  <div class="page-container px-5">
     <div class="row">
-      <div class="col-6 d-flex justify-content-center">
-        <%= link_to auto_save_recipes_path, class: "card text-center save_options_auto text-decoration-none" do %>
+      <div class="col-md-6 col-12 d-flex justify-content-center mb-3">
+        <%= link_to auto_save_recipes_path, class: "card text-center save-options-auto text-decoration-none", data: { turbo: false } do %>
           <div class="card-body">
             <div class="row px-4">
-              <div class="col-12 py-4 mt-5 d-flex justify-content-center align-items-center rounded-3 save_options">
+              <div class="col-12 py-4 d-flex justify-content-center align-items-center rounded-3 save-options">
                 <h2 class="card-title"><%= t('.auto_save') %></h2>
               </div>
             </div>
@@ -24,15 +24,15 @@
           </div>
         <% end %>
       </div>
-      <div class="col-6 d-flex justify-content-center align-items-center">
-        <%= link_to new_recipe_path, class: "card text-center save_options_manual text-decoration-none" do %>
+      <div class="col-md-6 col-12 d-flex justify-content-center mb-3">
+        <%= link_to new_recipe_path, class: "card text-center save-options-manual text-decoration-none", data: { turbo: false } do %>
           <div class="card-body">
             <div class="row px-4">
-              <div class="col-12 py-4 mt-5 d-flex justify-content-center align-items-center rounded-3 save_options">
+              <div class="col-12 py-4 d-flex justify-content-center align-items-center rounded-3 save-options">
                 <h2 class="card-title"><%= t('.manual_save') %></h2>
               </div>
             </div>
-            <h5 class="card-text my-4"><%= t('.save_manually') %></h5>
+            <h5 class="card-text"><%= t('.save_manually') %></h5>
             <div class="col-12 text-start ">
               <ul class="small-font">
                 <li><%= t('.save_own_recipe') %></li>

@@ -2,11 +2,11 @@
 <div class="container">
   <div class="col d-flex justify-content-end align-items-center">
     <span class="d-inline-block my-3">
-      <%= link_to t('.to_top_page'), root_path, class: "custom-link" %>
+      <%= link_to t('.to_top_page'), root_path, class: "custom-link", data: { turbo: false } %>
     </span>
   </div>
-  <h1 class="text-center mt-3" style="font-weight: 600;"><%= t('.title') %></h1>
-  <div class="card mt-5 p-5 custom-card-pages mx-auto">
+  <h1 class="page-title text-center" style="font-weight: 600;"><%= t('.title') %></h1>
+  <div class="card custom-card-pages mx-auto">
     <div class="contents-wrapper">
       <h2 class="subtitle-1">お客様から取得する情報</h2>
       <div class="ps-3">当社は、お客様から以下の情報を取得します。</div>
@@ -54,7 +54,7 @@
       </div>
       <div>
         <h2 class="subtitle-1">お問い合わせ</h2>
-        <div class="ps-3">お客様の情報の開示、情報の訂正、利用停止、削除をご希望の場合は、<%= link_to 'お問い合わせフォーム', new_inquiry_path %>よりご連絡ください。</div>
+        <div class="ps-3">お客様の情報の開示、情報の訂正、利用停止、削除をご希望の場合は、<%= link_to 'お問い合わせフォーム', new_inquiry_path, data: { turbo: false } %>よりご連絡ください。</div>
       </div>
       <div class="mt-5 ps-2">
         2024年07月29日 制定

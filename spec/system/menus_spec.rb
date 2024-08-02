@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "メニュー", type: :system do
   let(:user) { create(:user) }
-  let(:design) { create(:design, name: '居酒屋風メニュー') }
+  let!(:design) { create(:design, name: '居酒屋風メニュー') }
   let(:recipe) { create(:recipe) }
   let(:menu) { create(:menu, user:, recipe_ids: [recipe.id]) }
 
@@ -12,12 +12,13 @@ RSpec.describe "メニュー", type: :system do
   end
 
   describe 'メニュー表の作成' do
+    let!(:first_recipe) { create(:recipe, user:) } # メニュー表作成時に必要なレシピを作成
+
     before do
       click_link 'メニュー表作成'
     end
 
     it '新しいメニューを作成できること' do
-      first_recipe = create(:recipe, user:) # テスト内で作成
       fill_in 'menu_title', with: 'New Menu'
       find("input[type='checkbox'][value='#{first_recipe.id}']").check
       click_button 'メニュー表を作成'
@@ -25,7 +26,6 @@ RSpec.describe "メニュー", type: :system do
     end
 
     it '新しいメニューに選択したレシピが表示されること' do
-      first_recipe = create(:recipe, user:) # テスト内で作成
       fill_in 'menu_title', with: 'New Menu'
       find("input[type='checkbox'][value='#{first_recipe.id}']").check
       click_button 'メニュー表を作成'
@@ -51,6 +51,12 @@ RSpec.describe "メニュー", type: :system do
   end
 
   describe 'メニュー表の一覧表示' do
+    let!(:first_recipe) { create(:recipe, user:) }
+
+    before do
+      menu.recipes << first_recipe # メニューに関連付け
+    end
+
     it 'メニューの一覧に作成したメニューが表示されること' do
       click_link 'メニュー表一覧'
       expect(page).to have_content(menu.title)
@@ -92,7 +98,7 @@ RSpec.describe "メニュー", type: :system do
     it 'メニューを削除できること' do
       visit menu_path(menu)
       page.accept_alert('このメニュー表を削除しますか？') do
-        click_link '削除'
+        click_button '削除'
       end
       expect(page).to have_content 'メニュー表を削除しました'
     end

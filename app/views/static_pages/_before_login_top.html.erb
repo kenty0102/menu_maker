@@ -15,14 +15,19 @@
         </p>
       </div>
 
-      <div class="container col-lg-9 mt-5 pt-3 mx-auto text-start">
-        <div class="d-grid gap-2 col-6 mx-auto">
-          <%= link_to t('before_login_top.login'), login_path, class: 'btn btn-primary mb-5', type: "button" %>
-        </div>
-        <div class="d-grid gap-2 col-6 mx-auto">
-          <%= link_to t('before_login_top.new_registration'), new_user_path, class: 'btn btn-secondary', type: "button" %>
+      <div class="col-4 d-flex justify-content-center align-items-center my-5">
+        <div class="row">
+          <div class="col-12 d-flex justify-content-center align-items-center mb-4">
+            <%= link_to t('before_login_top.login'), login_path, class: 'btn top-btn-primary', type: "button" %>
+          </div>
+          <div class="col-12 d-flex justify-content-center align-items-center my-1">
+            <%= link_to t('before_login_top.new_registration'), new_user_path, class: 'btn top-btn-secondary', type: "button" %>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+
+

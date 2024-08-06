@@ -5,7 +5,10 @@ RSpec.describe UserMailer, type: :mailer do
     let(:user) { create :user }
     let(:mail) { described_class.reset_password_email(user) }
 
-    before { user.generate_reset_password_token! }
+    before do
+      user.generate_reset_password_token!
+      allow(ENV).to receive(:fetch).with('DEFAULT_FROM_EMAIL', nil).and_return('test-from@example.com')
+    end
 
     # メールが正しく送信されるかの確認
     it 'メールが送信されること' do
@@ -22,7 +25,7 @@ RSpec.describe UserMailer, type: :mailer do
     end
 
     it '送信元が正しいこと' do
-      expect(mail.from).to eq(['from@example.com'])
+      expect(mail.from).to eq(['test-from@example.com'])
     end
 
     # 本文のチェック

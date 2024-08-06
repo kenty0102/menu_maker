@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe 'お問い合わせ', type: :system do
+  before do
+    allow(ENV).to receive(:fetch).and_call_original
+    allow(ENV).to receive(:fetch).with('MAIL_ADDRESS', nil).and_return('test-email@example.com')
+    allow(ENV).to receive(:fetch).with('DEFAULT_FROM_EMAIL', nil).and_return('test-from@example.com')
+  end
+
   it 'ユーザーが問い合わせを送信できること' do
     visit new_inquiry_path
     send_inquiry("Test User", "test@example.com", "This is a test inquiry.")

@@ -47,9 +47,33 @@
 - アプリのSNSシェア機能
 
 ### 機能の実装方針予定
-- レシピの自動保存：gem 'mechanize'を使用
 - 保存したレシピの検索：rails-autocomplete(JQuery)を使用
 - メニュー表の画像化：html2canvas.js等を使用
+
+### 使用技術
+- フロントエンド
+  - JavaScript：@hotwired/stimulus, @hotwired/turbo-rails
+  - CSSフレームワーク：Bootstrap 5
+  - ビルドツール：esbuild
+- バックエンド
+  - Ruby: 3.3.2
+  - Ruby on Rails: 7.1.3
+- データベース
+  - PostgreSQL
+- CI/CL
+  - GitHubActions
+- インフラ
+  - Fly.io
+- ストレージ
+  - AWS S3
+- 認証
+  - Sorcery
+- その他
+  - Mechanize
+  - Rack-Attack
+  - High Voltage
+  - Gretel
+
 
 ### 画面遷移図
 Figma：https://www.figma.com/design/XGrjkiWR0n4Dlsu304WmFb/Menu-Maker?node-id=0-1&t=qKKVIaxosiTwWNMq-1

@@ -1,10 +1,9 @@
 class InquiryMailer < ApplicationMailer
-  default from: 'no-reply@example.com'
-
   def contact_email
     @inquiry = params[:inquiry]
     mail(
-      to: 'your-email@example.com',
+      to: ENV.fetch('MAIL_ADDRESS', nil),
+      from: ENV.fetch('DEFAULT_FROM_EMAIL', nil),
       subject: t('.inquiry')
     )
   end
@@ -13,6 +12,7 @@ class InquiryMailer < ApplicationMailer
     @inquiry = params[:inquiry]
     mail(
       to: @inquiry.email,
+      from: ENV.fetch('DEFAULT_FROM_EMAIL', nil),
       subject: t('.confirmation_email')
     )
   end

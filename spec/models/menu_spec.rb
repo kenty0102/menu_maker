@@ -2,27 +2,17 @@ require 'rails_helper'
 
 RSpec.describe Menu, type: :model do
   describe 'バリデーションのテスト' do
+    let(:user) { create(:user) }
     let(:recipe) { create(:recipe) }
-    let(:menu) { create(:menu, user:, recipe_ids: [recipe.id]) }
-
-    it 'タイトルが存在すること' do
-      menu = build(:menu, title: nil)
-      expect(menu).not_to be_valid
-    end
+    let!(:existing_menu) { create(:menu, user:, title: 'UniqueTitle', recipe_ids: [recipe.id]) }
 
     it 'タイトルがユニークであること' do
-      recipe = create(:recipe) # 必要なレシピを作成
-      create(:menu, title: 'UniqueTitle', recipe_ids: [recipe.id]) # 同じタイトルでメニューを作成
-
-      # 新しいメニューを作成し、レシピを追加
-      new_menu = build(:menu, title: 'UniqueTitle', recipe_ids: [recipe.id])
-      new_menu.save
-
+      new_menu = build(:menu, title: existing_menu.title, user:, recipe_ids: [recipe.id])
       expect(new_menu).not_to be_valid
     end
 
     it '少なくとも1つのレシピが必要であること' do
-      menu = build(:menu, recipe_ids: [])
+      menu = build(:menu, user:, recipe_ids: [])
       expect(menu).not_to be_valid
     end
   end

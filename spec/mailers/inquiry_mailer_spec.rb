@@ -3,6 +3,11 @@ require 'rails_helper'
 RSpec.describe InquiryMailer, type: :mailer do
   let(:inquiry) { create(:inquiry) }
 
+  before do
+    allow(ENV).to receive(:fetch).with('MAIL_ADDRESS', nil).and_return('test-email@example.com')
+    allow(ENV).to receive(:fetch).with('DEFAULT_FROM_EMAIL', nil).and_return('test-from@example.com')
+  end
+
   describe '問い合わせメール' do
     let(:mail) { described_class.with(inquiry:).contact_email }
 
@@ -11,11 +16,11 @@ RSpec.describe InquiryMailer, type: :mailer do
     end
 
     it '宛先が正しいこと' do
-      expect(mail.to).to eq(['your-email@example.com'])
+      expect(mail.to).to eq(['test-email@example.com'])
     end
 
     it '送信元が正しいこと' do
-      expect(mail.from).to eq(['no-reply@example.com'])
+      expect(mail.from).to eq(['test-from@example.com'])
     end
 
     it '本文に名前が含まれること' do
@@ -46,7 +51,7 @@ RSpec.describe InquiryMailer, type: :mailer do
     end
 
     it '送信元が正しいこと' do
-      expect(mail.from).to eq(['no-reply@example.com'])
+      expect(mail.from).to eq(['test-from@example.com'])
     end
 
     it '本文に名前が含まれること' do

@@ -8,6 +8,8 @@ primary_region = 'nrt'
 console_command = '/rails/bin/rails console'
 
 [build]
+  [build.args]
+    RAILS_ENV = "production"
 
 [deploy]
   release_command = './bin/rails db:prepare'

@@ -5,7 +5,8 @@ class Menu < ApplicationRecord
   has_many :menu_designs, dependent: :destroy
   has_many :designs, through: :menu_designs
 
-  validates :title, presence: true, uniqueness: true
+  validates :title, presence: true
+  validates :title, uniqueness: { scope: :user_id }
   validate :must_have_at_least_one_recipe
 
   private

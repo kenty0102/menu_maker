@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_29_053257) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_06_021216) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -71,7 +71,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_29_053257) do
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["title"], name: "index_menus_on_title", unique: true
+    t.index ["user_id", "title"], name: "index_menus_on_user_id_and_title", unique: true
     t.index ["user_id"], name: "index_menus_on_user_id"
   end
 
@@ -84,7 +84,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_29_053257) do
     t.datetime "scraped_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["title"], name: "index_recipes_on_title", unique: true
+    t.index ["user_id", "title"], name: "index_recipes_on_user_id_and_title", unique: true
     t.index ["user_id"], name: "index_recipes_on_user_id"
   end
 

@@ -9,6 +9,7 @@ class UserMailer < ApplicationMailer
     @url  = edit_password_reset_url(@user.reset_password_token)
     mail(
       to: user.email,
+      from: ENV.fetch('DEFAULT_FROM_EMAIL', nil),
       subject: t('.password_reset')
     )
   end

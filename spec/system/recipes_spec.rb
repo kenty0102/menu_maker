@@ -9,19 +9,52 @@ RSpec.describe 'レシピ', type: :system do
   end
 
   describe 'レシピの自動保存' do
-    it 'レシピの自動保存が成功すること' do
-      visit auto_save_recipes_path
-      fill_in 'recipe_source_url', with: 'https://cookpad.com/recipe/7868632'
-      click_button 'レシピを保存'
+    context 'when クックパッドのレシピ' do
+      before do
+        visit auto_save_recipes_path
+        fill_in 'recipe_source_url', with: 'https://cookpad.com/jp/recipes/23891740-%E3%82%A2%E3%82%A4%E3%82%B9%E3%83%90%E3%83%8A%E3%83%8A%E3%82%BD%E3%82%A4%E3%83%A9%E3%83%86%E3%83%95%E3%83%AB%E3%83%BC%E3%83%84%E3%82%B3%E3%83%BC%E3%83%92%E3%83%BC?ref=search&search_term=%E3%82%A2%E3%82%A4%E3%82%B9%E3%83%90%E3%83%8A%E3%83%8A'
+        click_button 'レシピを保存'
+      end
 
-      expect(page).to have_content('レシピを保存しました')
+      it 'レシピの自動保存が成功すること' do
+        expect(page).to have_content('レシピを保存しました')
+      end
+
+      it '保存されたレシピのタイトルが表示されること' do
+        expect(page).to have_content('アイスバナナソイラテ☆フルーツコーヒー')
+      end
     end
 
-    it '保存されたレシピのタイトルが表示されること' do
-      visit auto_save_recipes_path
-      fill_in 'recipe_source_url', with: 'https://cookpad.com/recipe/7868632'
-      click_button 'レシピを保存'
-      expect(page).to have_content('アイスバナナソイラテ☆フルーツコーヒー')
+    context 'when DELISH KITCHENのレシピ' do
+      before do
+        visit auto_save_recipes_path
+        fill_in 'recipe_source_url', with: 'https://delishkitchen.tv/recipes/407088154110067894'
+        click_button 'レシピを保存'
+      end
+
+      it 'レシピの自動保存が成功すること' do
+        expect(page).to have_content('レシピを保存しました')
+      end
+
+      it '保存されたレシピのタイトルが表示されること' do
+        expect(page).to have_content('ごはんにぴったり！ 麻薬卵')
+      end
+    end
+
+    context 'when クラシルのレシピ' do
+      before do
+        visit auto_save_recipes_path
+        fill_in 'recipe_source_url', with: 'https://www.kurashiru.com/recipes/f400ed3a-ed3b-4e88-994d-e25d38fae5f3'
+        click_button 'レシピを保存'
+      end
+
+      it 'レシピの自動保存が成功すること' do
+        expect(page).to have_content('レシピを保存しました')
+      end
+
+      it '保存されたレシピのタイトルが表示されること' do
+        expect(page).to have_content('夏野菜たっぷりのねばねばサラダ')
+      end
     end
   end
 

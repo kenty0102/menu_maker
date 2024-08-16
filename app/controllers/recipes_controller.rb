@@ -124,7 +124,7 @@ class RecipesController < ApplicationController
       quantity = ingredient_data[:quantity]
       unit = ingredient_data[:unit]
       updated_at = Time.current
-  
+
       existing_ingredient = recipe.ingredients.find_by(name:)
       if existing_ingredient
         existing_ingredient.update(quantity:, unit:, updated_at:)
@@ -132,13 +132,13 @@ class RecipesController < ApplicationController
         recipe.ingredients.build(name:, quantity:, unit:, updated_at:)
       end
     end
-  
+
     # 作り方を更新
     ingredients_and_instructions[:instructions].each do |instruction_data|
       step_number = instruction_data[:step_number]
       description = instruction_data[:description]
       updated_at = Time.current
-  
+
       existing_instruction = recipe.instructions.find_by(step_number:)
       if existing_instruction
         existing_instruction.update(description:, updated_at:)
@@ -157,7 +157,7 @@ class RecipesController < ApplicationController
       unit = ingredient_data[:unit]
       recipe.ingredients.build(name:, quantity:, unit:)
     end
-  
+
     # 作り方を設定
     ingredients_and_instructions[:instructions].each do |instruction_data|
       step_number = instruction_data[:step_number]

@@ -14,19 +14,6 @@ class Recipe < ApplicationRecord
   validates :title, uniqueness: { scope: :user_id }
   validates :source_url, format: { with: URI::DEFAULT_PARSER.make_regexp }, allow_nil: true
 
-  def self.determine_source_site_name(url)
-    require 'uri'
-    uri = URI.parse(url) # URLを解析して、その結果をuriに入れる
-    host = uri.host # 解析したURLのホスト名（ドメイン）を取得
-
-    case host # 取得したホスト名についての条件分岐
-    when 'cookpad.com'
-      'Cookpad' # ホスト名が'cookpad.com'のときに'Cookpad'を返す
-    else
-      host # 条件に当てはまらない場合は、ホスト名をそのまま返す
-    end
-  end
-
   def self.parse_quantity_and_unit(quantity_text)
     match_data = quantity_text.match(/(\d+)\s*(.+)/) # 数量と単位を分離
     if match_data # 数量と単位が分離できた場合

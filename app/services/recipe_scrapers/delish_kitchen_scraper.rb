@@ -3,13 +3,13 @@ module RecipeScrapers
     private
 
     def fetch_title
-      lead_text = @page.search('.title-box .lead').text.strip
-      title_text = @page.search('.title-box .title').text.strip
+      lead_text = @page.at('.title-box .lead').text.strip
+      title_text = @page.at('.title-box .title').text.strip
       "#{lead_text} #{title_text}"
     end
 
     def fetch_image_url
-      @page.search('.video-player video').attr('poster').value
+      @page.at('.video-player video').attr('poster').value
     end
 
     def fetch_ingredients

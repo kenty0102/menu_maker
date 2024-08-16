@@ -3,7 +3,7 @@ module RecipeScrapers
     private
 
     def fetch_title
-      @page.search('h1.break-words').text.strip
+      @page.at('h1.break-words').text.strip
     end
 
     def fetch_image_url

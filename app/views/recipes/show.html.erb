@@ -15,8 +15,15 @@
       <div class="col-12 d-flex justify-content-center">
         <h2><%= @recipe.title %></h2>
       </div>
+      <div class="col-11 d-flex justify-content-end">
+        <% if @recipe.source_site_name.present? %>
+          <p>出典: <%= link_to @recipe.source_site_name, @recipe.source_url, class: "no-underline", target: "_blank" %></p>
+        <% else %>
+          <p>出典: 自作レシピ</p>
+        <% end %>
+      </div>
     </div>
-    <div class="container px-5">
+    <div class="container px-3">
       <div class="row">
         <div class="col-md-6 col-12">
           <div class="container px-3">

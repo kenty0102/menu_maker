@@ -113,12 +113,41 @@ footer {
   border: none; /* ボーダーを消す　*/
   letter-spacing: 10px; /* 文字の間隔　*/
   font-size: 30px; /* 文字サイズ　*/
-  padding-left: 10rem;
-  padding-right: 10rem;
+  width: 45rem;
+  padding-left: 5rem;
+  padding-right: 5rem;
   margin-bottom: 5rem;
 }
 .btn-cookpad:hover {
   background-color: #d07301 ; /* ホバー時の色 */
+}
+
+.btn-delish-kitchen {
+  background-color: #FFD200; /* ボタンの色　*/
+  border: none; /* ボーダーを消す　*/
+  letter-spacing: 10px; /* 文字の間隔　*/
+  font-size: 30px; /* 文字サイズ　*/
+  width: 45rem;
+  padding-left: 5rem;
+  padding-right: 5rem;
+  margin-bottom: 5rem;
+}
+.btn-delish-kitchen:hover {
+  background-color: #d6af02 ; /* ホバー時の色 */
+}
+
+.btn-kurashiru {
+  background-color: #E55329; /* ボタンの色　*/
+  border: none; /* ボーダーを消す　*/
+  letter-spacing: 10px; /* 文字の間隔　*/
+  font-size: 30px; /* 文字サイズ　*/
+  width: 45rem;
+  padding-left: 5rem;
+  padding-right: 5rem;
+  margin-bottom: 5rem;
+}
+.btn-kurashiru:hover {
+  background-color: #c24421 ; /* ホバー時の色 */
 }
 
 .save-options-auto {
@@ -156,6 +185,7 @@ footer {
   max-width: 90%; /* 必要に応じて調整 */
   margin: auto; /* カードを中央揃えにする */
   background-color: #FFD982;
+  padding: 0 1rem;
 }
 
 .form-group {
@@ -225,8 +255,8 @@ footer {
 }
 
 .recipe-photo {
-  width: 150px;
-  height: 100px;
+  width: 100%;
+  height: 100%;
 }
 
 .btn-recipe-edit {
@@ -262,8 +292,8 @@ footer {
 }
 
 .show-recipe-photo {
-  width: 25rem;
-  height: 15rem;
+  width: 100%;
+  height: auto;
 }
 
 .show-ingredient-row {
@@ -482,6 +512,16 @@ footer {
     font-size: 1.5rem;
     margin-bottom: 3rem;
   }
+  .btn-delish-kitchen {
+    letter-spacing: 7px;
+    font-size: 1.5rem;
+    margin-bottom: 3rem;
+  }
+  .btn-kurashiru {
+    letter-spacing: 7px;
+    font-size: 1.5rem;
+    margin-bottom: 3rem;
+  }
 
   .manual-save-form-label {
     font-size: 25px;
@@ -546,8 +586,8 @@ footer {
   }
 
   .recipe-photo {
-    width: 90px;
-    height: 60px;
+    width: 100%;
+    height: auto;
   }
   .btn-recipe-edit {
     letter-spacing: 10px; /* 文字の間隔　*/
@@ -567,8 +607,8 @@ footer {
   }
 
   .show-recipe-photo {
-    width: 200px;
-    height: 150px;
+    width: 100%;
+    height: auto;
   }
   .subtitle {
     font-size: 20px;
@@ -670,6 +710,20 @@ footer {
     padding-right: 2.5rem;
     margin-bottom: 2rem;
   }
+  .btn-delish-kitchen {
+    letter-spacing: 2px;
+    font-size: 15px;
+    padding-left: 3rem;
+    padding-right: 2.5rem;
+    margin-bottom: 2rem;
+  }
+  .btn-kurashiru {
+    letter-spacing: 2px;
+    font-size: 15px;
+    padding-left: 3rem;
+    padding-right: 2.5rem;
+    margin-bottom: 2rem;
+  }
 
   .save-options-auto {
     background-color: #F78700;
@@ -761,8 +815,8 @@ footer {
   }
 
   .recipe-photo {
-    width: 70px;
-    height: 50px;
+    width: 100%;
+    height: auto;
   }
 
   .recipe-title {
@@ -788,8 +842,8 @@ footer {
   }
 
   .show-recipe-photo {
-    width: 170px;
-    height: 130px;
+    width: 100%;
+    height: auto;
   }
 
   .show-ingredient-row {

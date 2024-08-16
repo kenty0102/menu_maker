@@ -9,7 +9,7 @@ module RecipeScrapers
     end
 
     def fetch_image_url
-      @page.at('.video-player video').attr('poster').value
+      @page.at('.video-player video')['poster']
     end
 
     def fetch_ingredients

@@ -17,6 +17,7 @@
         <%= f.label :source_url, class: "form-label mx-auto" %>
         <%= f.text_field :source_url, class: "form-control mx-auto", placeholder: t('.enter_the_url'), required: true %>
       </div>
+      <p style="color: #F68655;"><br>※ レシピの自動保存は「Cookpad」「DELISH KITCHEN」「クラシル」のみ対応しています。</p>
       <div class="row my-5">
         <div class="col d-flex justify-content-center align-items-center">
           <%= f.submit t('.fetch_recipe'), class: "btn btn-primary", data: { turbo: false } %>

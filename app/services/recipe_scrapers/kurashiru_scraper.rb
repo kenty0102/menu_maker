@@ -4,8 +4,7 @@ module RecipeScrapers
 
     def fetch_title
       title_text = @page.at('.title-wrapper .title').text.strip
-      cleaned_title = title_text.gsub(/　レシピ・作り方$/, '') # 「レシピ・作り方」を取り除く
-      cleaned_title
+      title_text.gsub(/　レシピ・作り方$/, '') # 「レシピ・作り方」を取り除く
     end
 
     def fetch_image_url
@@ -13,13 +12,14 @@ module RecipeScrapers
     end
 
     def fetch_ingredients
-      @page.search('.ingredient-list li.ingredient-list-item').map do |ingredient_list|
+      @page.search('.ingredient-list li.ingredient-list-item').filter_map do |ingredient_list| # filter_mapで条件を満たす要素のみをマップして返す
         next if ingredient_list['class'].include?('group-title') # group-titleが含まれている要素をスキップ
+
         name = ingredient_list.at('.ingredient-name').text.strip
         quantity_text = ingredient_list.at('.ingredient-quantity-amount').text.strip
         quantity, unit = Recipe.parse_quantity_and_unit(quantity_text)
-        { name: name, quantity: quantity, unit: unit }
-      end.compact # nextでスキップした要素（nil）を削除
+        { name:, quantity:, unit: }
+      end
     end
 
     def fetch_instructions

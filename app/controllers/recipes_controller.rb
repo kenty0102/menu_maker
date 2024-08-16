@@ -111,6 +111,8 @@ class RecipesController < ApplicationController
       RecipeScrapers::CookpadScraper.new(url)
     when /delishkitchen/
       RecipeScrapers::DelishKitchenScraper.new(url)
+    when /kurashiru/
+      RecipeScrapers::KurashiruScraper.new(url)
     else
       raise '対応していないサイトです'
     end

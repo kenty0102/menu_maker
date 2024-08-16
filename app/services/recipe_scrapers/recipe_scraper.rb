@@ -31,8 +31,10 @@ module RecipeScrapers
         'Cookpad' # ホスト名が'cookpad.com'のときに'Cookpad'を返す
       when 'delishkitchen.tv'
         'DELISH KITCHEN'
+      when 'www.kurashiru.com'
+        'クラシル'
       else
-        host # 条件に当てはまらない場合は、ホスト名をそのまま返す
+        URI.parse(url).host # 条件に当てはまらない場合は、ホスト名をそのまま返す
       end
     end
   end

@@ -1,6 +1,7 @@
 // Entry point for the build script in your package.json
 import "@hotwired/stimulus"
 import "@hotwired/turbo-rails"
+import "stimulus-autocomplete"
 import "./controllers"
 import "./preview"
 import "./confirm_inquiry"

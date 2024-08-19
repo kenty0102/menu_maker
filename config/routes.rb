@@ -20,6 +20,8 @@ Rails.application.routes.draw do
       get 'save_options'  # レシピ保存方法選択ページに対応するルート
       get 'auto_save'  # レシピ自動保存ページに対応するルート
       post 'fetch_recipe'  # レシピの自動取得アクション
+      get 'autocomplete_title' # レシピ名検索のautocomplete
+      get 'autocomplete_ingredients' # 材料名検索のautocomplete
     end
   end
   resources :menus

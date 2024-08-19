@@ -152,6 +152,9 @@ ja:
   instruction_fields:
     instruction_description: 作り方を入力
     remove: x
+  search_form:
+    title_search: タイトル
+    ingredients_search: 材料名
   menus:
     new:
       to_top_page: トップページへ

@@ -53,7 +53,18 @@ class RecipesController < ApplicationController
   end
 
   def index
-    @recipes = current_user.recipes.includes(:ingredients)
+    @q = current_user.recipes.ransack(params[:q])
+    @recipes = @q.result(distinct: true).includes(:ingredients).order(created_at: :desc)
+  end
+
+  def autocomplete_title
+    @search_results = Recipe.where("title like ?", "%#{params[:q]}%").pluck(:title)
+    render layout: false
+  end
+
+  def autocomplete_ingredients
+    @search_results = Ingredient.where("name like ?", "%#{params[:q]}%").distinct.pluck(:name)
+    render layout: false
   end
 
   def show

@@ -25,4 +25,14 @@ class Recipe < ApplicationRecord
     end
     [quantity, unit]
   end
+
+  # racsackで検索可能な属性を指定
+  def self.ransackable_attributes(_auth_object = nil)
+    ["title", "source_site_name"]
+  end
+
+  # 関連モデルも検索対象に指定
+  def self.ransackable_associations(_auth_object = nil)
+    ["ingredients"]
+  end
 end

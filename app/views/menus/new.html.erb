@@ -9,6 +9,11 @@
       <%= link_to t('.to_top_page'), root_path, class: "custom-link", data: { turbo: false } %>
     </div>
   </div>
+
+  <div class="search-form d-flex justify-content-end">
+    <%= render 'recipes_search_form' %>
+  </div>
+
   <h1 class="page-title text-center"><%= t('.title') %></h1>
   <% if @recipes.present? %>
     <%= form_with model: @menu do |f| %>

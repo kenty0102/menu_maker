@@ -2,7 +2,20 @@ class MenusController < ApplicationController
   before_action :require_login
 
   def index
-    @menus = current_user.menus
+    @q = current_user.menus.ransack(params[:q])
+    @menus = @q.result(distinct: true).includes(:recipes).order(created_at: :desc)
+  end
+
+  def autocomplete_title
+    @search_results = current_user.menus.where("title like ?", "%#{params[:q]}%").pluck(:title)
+    render layout: false
+  end
+
+  def autocomplete_recipes
+    menu_ids = current_user.menus.pluck(:id)
+    user_recipes = Recipe.joins(:menu_recipes).where(menu_recipes: { menu_id: menu_ids })
+    @search_results = user_recipes.where("title LIKE ?", "%#{params[:q]}%").pluck(:title)
+    render layout: false
   end
 
   def show
@@ -14,7 +27,8 @@ class MenusController < ApplicationController
 
   def new
     @menu = Menu.new
-    @recipes = current_user.recipes
+    @q = current_user.recipes.ransack(params[:q])
+    @recipes = @q.result(distinct: true).includes(:ingredients).order(created_at: :desc)
   end
 
   def edit

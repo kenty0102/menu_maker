@@ -153,8 +153,9 @@ ja:
     instruction_description: 作り方を入力
     remove: x
   search_form:
-    title_search: タイトル
+    title_search: レシピタイトル
     ingredients_search: 材料名
+    submit: 検索
   menus:
     new:
       to_top_page: トップページへ
@@ -188,6 +189,14 @@ ja:
       failure: メニュー表の更新に失敗しました
     destroy:
       success: メニュー表を削除しました
+  menus_search_form:
+    title_search: メニュータイトル
+    recipes_search: レシピタイトル
+    submit: 検索
+  recipes_search_form:
+    title_search: レシピタイトル
+    ingredients_search: 材料名
+    submit: 絞り込み
   pages:
     privacy:
       to_top_page: トップページへ

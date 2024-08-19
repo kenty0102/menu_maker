@@ -24,7 +24,12 @@ Rails.application.routes.draw do
       get 'autocomplete_ingredients' # 材料名検索のautocomplete
     end
   end
-  resources :menus
+  resources :menus do
+    collection do
+      get 'autocomplete_title' # メニュータイトル検索のautocomplete
+      get 'autocomplete_recipes' # レシピ名でのメニュー検索のautocomplete
+    end
+  end
   get 'login', to: 'user_sessions#new'  # ログインページに対応するルート
   post 'login', to: 'user_sessions#create'
   delete 'logout', to: 'user_sessions#destroy'

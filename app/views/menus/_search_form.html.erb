@@ -1,0 +1,17 @@
+<%= search_form_for @q, html: { class: 'd-flex' } do |f| %>
+  <div class="form-group">
+    <div data-controller="autocomplete" data-autocomplete-url-value="/menus/autocomplete_title" role="combobox">
+      <%= f.search_field :title_cont, data: { autocomplete_target: 'input' }, placeholder: t('menus_search_form.title_search'), class: "search-field" %>
+      <%= f.hidden_field :title, data: { autocomplete_target: 'hidden' } %>
+      <ul data-autocomplete-target="results" class="list-group"></ul>
+    </div>
+  </div>
+  <div class="form-group">
+    <div data-controller="autocomplete" data-autocomplete-url-value="/menus/autocomplete_recipes" role="combobox">
+      <%= f.search_field :recipes_title_cont, data: { autocomplete_target: 'input' }, placeholder: t('menus_search_form.recipes_search'), class: "search-field" %>
+      <%= f.hidden_field :recipes_title, data: { autocomplete_target: 'hidden' } %>
+      <ul data-autocomplete-target="results" class="list-group"></ul>
+    </div>
+  </div>
+  <%= f.submit t('menus_search_form.submit'), class: "btn btn-search", data: { turbo: false } %>
+<% end %>

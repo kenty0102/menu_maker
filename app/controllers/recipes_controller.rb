@@ -58,12 +58,14 @@ class RecipesController < ApplicationController
   end
 
   def autocomplete_title
-    @search_results = Recipe.where("title like ?", "%#{params[:q]}%").pluck(:title)
+    @search_results = current_user.recipes.where("title like ?", "%#{params[:q]}%").pluck(:title)
     render layout: false
   end
 
   def autocomplete_ingredients
-    @search_results = Ingredient.where("name like ?", "%#{params[:q]}%").distinct.pluck(:name)
+    user_recipe_ids = Recipe.where(user_id: current_user.id).pluck(:id)
+    user_ingredients = Ingredient.where(recipe_id: user_recipe_ids)
+    @search_results = user_ingredients.where("name LIKE ?", "%#{params[:q]}%").distinct(true).pluck(:name)
     render layout: false
   end
 

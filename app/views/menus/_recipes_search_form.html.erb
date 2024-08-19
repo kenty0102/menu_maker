@@ -1,17 +1,17 @@
-<%= search_form_for @q, html: { class: 'd-flex' } do |f| %>
+<%= search_form_for @q, url: new_menu_path, method: :get, html: { class: 'd-flex' } do |f| %>
   <div class="form-group">
     <div data-controller="autocomplete" data-autocomplete-url-value="/recipes/autocomplete_title" role="combobox">
-      <%= f.search_field :title_cont, data: { autocomplete_target: 'input' }, placeholder: t('search_form.title_search'), class: "search-field" %>
+      <%= f.search_field :title_cont, data: { autocomplete_target: 'input' }, placeholder: t('recipes_search_form.title_search'), class: "search-field" %>
       <%= f.hidden_field :title, data: { autocomplete_target: 'hidden' } %>
       <ul data-autocomplete-target="results" class="list-group"></ul>
     </div>
   </div>
   <div class="form-group">
     <div data-controller="autocomplete" data-autocomplete-url-value="/recipes/autocomplete_ingredients" role="combobox">
-      <%= f.search_field :ingredients_name_cont, data: { autocomplete_target: 'input' }, placeholder: t('search_form.ingredients_search'), class: "search-field" %>
+      <%= f.search_field :ingredients_name_cont, data: { autocomplete_target: 'input' }, placeholder: t('recipes_search_form.ingredients_search'), class: "search-field" %>
       <%= f.hidden_field :ingredients_name, data: { autocomplete_target: 'hidden' } %>
       <ul data-autocomplete-target="results" class="list-group"></ul>
     </div>
   </div>
-  <%= f.submit t('search_form.submit'), class: "btn btn-search", data: { turbo: false } %>
+  <%= f.submit t('recipes_search_form.submit'), class: "btn btn-search", data: { turbo: false } %>
 <% end %>

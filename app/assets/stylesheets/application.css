@@ -493,6 +493,7 @@ footer {
 }
 
 .search-form {
+  position: relative;
   margin-top: 3rem;
   padding-right: 1rem;
   margin-right: 3rem;
@@ -504,6 +505,22 @@ footer {
 .search-field {
   height: 2rem;
   width: 13rem;
+}
+.list-group {
+  position: absolute; /* 絶対位置を設定 */
+  top: 2rem; /* フォームの下に配置 */
+  min-width: 13rem; /* フォームの幅に合わせる */
+  max-width: 100%; /* 最大幅を設定、必要に応じて調整 */
+  z-index: 1000; /* 他の要素の上に表示 */
+  max-height: 8rem;
+  overflow-x: auto; /* 横スクロールを有効にする */
+  white-space: nowrap; /* テキストを折り返さない */
+}
+.list-group-item {
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  padding-left: 0.2rem;
 }
 .btn-search {
   background-color: #c4c4c4; /* ボタンの色　*/
@@ -667,6 +684,11 @@ footer {
 
   .search-field {
     width: 12rem;
+    font-size: 15px;
+  }
+  .list-group {
+    min-width: 12rem; /* フォームの幅に合わせる */
+    font-size: 15px;
   }
 }
 
@@ -1030,6 +1052,16 @@ footer {
   .search-field {
     height: 1.5rem;
     width: 6rem;
+  }
+  .list-group {
+    top: 1.5rem; /* フォームの下に配置 */
+    min-width: 6rem; /* フォームの幅に合わせる */
+    max-width: 11rem; /* 最大幅を設定、必要に応じて調整 */
+    max-height: 6rem;
+  }
+  .list-group-item {
+    height: 1.5rem;
+    font-size: 8px;
   }
   .btn-search {
     background-color: #c4c4c4; /* ボタンの色　*/

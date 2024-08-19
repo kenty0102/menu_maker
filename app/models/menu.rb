@@ -9,6 +9,16 @@ class Menu < ApplicationRecord
   validates :title, uniqueness: { scope: :user_id }
   validate :must_have_at_least_one_recipe
 
+  # racsackで検索可能な属性を指定
+  def self.ransackable_attributes(_auth_object = nil)
+    ["title"]
+  end
+
+  # 関連モデルも検索対象に指定
+  def self.ransackable_associations(_auth_object = nil)
+    ["recipes"]
+  end
+
   private
 
   def must_have_at_least_one_recipe

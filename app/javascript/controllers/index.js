@@ -5,8 +5,10 @@
 import { application } from "./application"
 
 import DynamicFormController from "./dynamic_form_controller"
+import MenuController from './menu_controller';
 
 // 新しいコントローラーを追加
 application.register("dynamic-form", DynamicFormController)
+application.register('menu', MenuController);
 
 export default application

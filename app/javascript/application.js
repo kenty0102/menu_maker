@@ -2,6 +2,7 @@
 import "@hotwired/stimulus"
 import "@hotwired/turbo-rails"
 import "stimulus-autocomplete"
+import "html2canvas"
 import "./controllers"
 import "./preview"
 import "./confirm_inquiry"

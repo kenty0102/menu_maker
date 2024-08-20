@@ -22,8 +22,8 @@ izakaya_layout = {
   },
   "menu-title" => {
     "text-align" => "center",
-    "font-size" => "100px",
-    "margin-bottom" => "50px"
+    "font-size" => "70px",
+    "margin-bottom" => "40px"
   },
   "title-under" => {
     "background-image" => "url('/assets/izakaya_image_title.png')",
@@ -33,7 +33,7 @@ izakaya_layout = {
     "padding-bottom" => "1.7em"
   },
   "menu-recipes" => {
-    "font-size" => "55px",
+    "font-size" => "40px",
     "padding" => "30px 0"
   },
   "recipe-title" => {

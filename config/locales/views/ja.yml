@@ -172,6 +172,7 @@ ja:
       title: メニュー表確認画面
       edit: メニュー表の編集
       delete: メニュー表を削除
+      download_menu: メニュー表を画像としてダウンロード
     index:
       to_top_page: トップページへ
       title: メニュー表一覧

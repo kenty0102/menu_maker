@@ -48,6 +48,11 @@ RSpec.describe "メニュー", type: :system do
       visit menu_path(menu)
       expect(page).to have_content(menu.recipes.first.title)
     end
+
+    it 'メニュー表が画像として表示されること' do
+      visit menu_path(menu)
+      expect(page).to have_selector('#menu-image')
+    end
   end
 
   describe 'メニュー表の一覧表示' do

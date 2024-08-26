@@ -1,5 +1,7 @@
 class MenusController < ApplicationController
+  require 'aws-sdk-s3'
   before_action :require_login
+  skip_before_action :require_login, only: :show
 
   def index
     @q = current_user.menus.ransack(params[:q])
@@ -23,6 +25,11 @@ class MenusController < ApplicationController
     design = Design.find_by(name: '居酒屋風メニュー')
     @layout = JSON.parse(design.layout)
     @recipes = @menu.recipes
+
+    respond_to do |format|
+      format.html # `show.html.erb` ビューを表示
+      format.json { render json: { upload_image: session[:upload_image], menu: @menu, recipes: @recipes } }
+    end
   end
 
   def new
@@ -47,6 +54,8 @@ class MenusController < ApplicationController
 
       default_design_id = 1
       MenuDesign.create(menu_id: @menu.id, design_id: default_design_id)
+
+      session[:upload_image] = true # フラグを設定
 
       redirect_to menu_path(@menu), success: t('.success')
     else
@@ -81,6 +90,8 @@ class MenusController < ApplicationController
       # 古いレシピを削除
       @menu.menu_recipes.where(recipe_id: recipes_to_remove).destroy_all
 
+      session[:upload_image] = true # フラグを設定
+
       redirect_to menu_path(@menu), success: t('.success')
     else
       @recipes = current_user.recipes
@@ -88,6 +99,34 @@ class MenusController < ApplicationController
       flash.now[:danger] = t('.failure')
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def upload_image
+    image_data = params[:image]
+    bucket_name = ENV.fetch('AWS_S3_BUCKET') # 環境変数からバケット名を取得
+
+    # S3にアップロード
+    s3 = Aws::S3::Resource.new
+    obj = s3.bucket(bucket_name).object("menus/#{SecureRandom.uuid}.png")
+    obj.put(
+      body: Base64.decode64(image_data.split(',')[1]),
+      content_type: 'image/png', # MIMEタイプを明示的に設定
+      content_disposition: 'inline' # プレビュー表示のためにinlineに設定
+    )
+
+    # URLを返す
+    render json: { url: obj.public_url }
+  end
+
+  def save_image_url
+    @menu = current_user.menus.find(params[:menu_id]) # メニューIDで特定のレコードを取得
+    @menu.image_url = params[:image_url] # 画像URLを設定
+    @menu.save
+  end
+
+  def reset_upload_flag
+    session[:upload_image] = false
+    head :ok
   end
 
   def destroy

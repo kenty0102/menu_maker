@@ -1,6 +1,7 @@
 class RecipesController < ApplicationController
   require 'mechanize'
   before_action :require_login
+  skip_before_action :require_login, only: :show
 
   def search; end
 

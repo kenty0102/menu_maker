@@ -52,6 +52,7 @@ gem 'rack-attack'
 
 gem 'carrierwave', '~> 3.0', '>= 3.0.7'
 gem 'fog-aws'
+gem 'aws-sdk-s3'
 
 gem 'high_voltage'
 

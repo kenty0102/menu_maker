@@ -28,6 +28,9 @@ Rails.application.routes.draw do
     collection do
       get 'autocomplete_title' # メニュータイトル検索のautocomplete
       get 'autocomplete_recipes' # レシピ名でのメニュー検索のautocomplete
+      post 'upload_image' # メニュー表の画像アップロード
+      post 'save_image_url' # アップロードした画像のURLを保存
+      post 'reset_upload_flag' #作成、編集時に設定したフラグを削除
     end
   end
   get 'login', to: 'user_sessions#new'  # ログインページに対応するルート

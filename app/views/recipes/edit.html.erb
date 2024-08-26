@@ -21,18 +21,47 @@
       </div>
       <div class="container py-2 my-5">
         <div class="row recipes-row">
-          <div class="col-md-6 col-12 d-flex justify-content-center mb-5">
+          <div class="col-md-6 col-lg-6 col-12 d-flex justify-content-center mb-5">
             <div id="ingredients-form" data-controller="dynamic-form" data-mode="edit" data-dynamic-form-target="nestedForms">
-              <%= f.label :ingredients, class: 'form-label' %>
+              <%= f.label :ingredients, class: 'form-label mb-0' %>
+              <div class="row align-items-top" style="height: 30px;">
+                <div class="col-auto pe-0">
+                  <div class='ingredient-name'></div>
+                </div>
+                <div class="col-auto px-0">
+                  <div class="ingredient-quantity"></div>
+                </div>
+                <div class="col-auto px-0">
+                  <div class='ingredient-unit'></div>
+                </div>
+                <% unless f.object.new_record? %>
+                  <div class="col-auto d-flex align-items-top delete-checkbox ps-2">
+                    <%= f.label :_destroy, t('ingredient_fields._destroy') %>
+                  </div>
+                <% end %>
+              </div>
               <%= f.fields_for :ingredients do |ingredient_fields| %>
                 <%= render 'ingredient_fields', f: ingredient_fields %>
               <% end %>
               <%= link_to t('.add_ingredient'), '#', class: 'add-ingredient btn btn-manual_save mt-5', data: { action: 'click->dynamic-form#addIngredientForm' } %>
             </div>
           </div>
-          <div class="col-md-6 col-12 d-flex justify-content-center">
+          <div class="col-md-6 col-lg-6 col-12 d-flex justify-content-center">
             <div id="instructions-form" data-controller="dynamic-form" data-mode="edit" data-dynamic-form-target="nestedForms">
-              <%= f.label :instructions, class: 'form-label'%>
+              <%= f.label :instructions, class: 'form-label mb-0'%>
+              <div class="row align-items-top" style="height: 30px;">
+                <div class="col-auto pe-0">
+                  <div class='step-number'></div> 
+                </div>
+                <div class="col-auto px-0">
+                  <div class='description'></div>
+                </div>
+                <% unless f.object.new_record? %>
+                  <div class="col-auto d-flex align-items-top delete-checkbox ps-2">
+                    <%= f.label :_destroy, t('ingredient_fields._destroy') %>
+                  </div>
+                <% end %>
+              </div>
               <%= f.fields_for :instructions  do |instruction_fields| %>
                 <%= render 'instruction_fields', f: instruction_fields %>
               <% end %>
@@ -40,15 +69,15 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="row recipe-image-form">
-        <%= f.label :image, class: 'form-label' %>
-        <div class="col-md-6 col-12 d-flex justify-content-start align-items-center mb-5">
-          <%= f.file_field :image, class: 'form-control image-form' %>
-          <%= f.hidden_field :image_cache %>
-        </div>
-        <div class="col-md-4 col-12 d-flex justify-content-start align-items-center ms-3 mb-5">
-          <%= image_tag @recipe.image.url, id: 'preview', size: '190x120' %>
+        <div class="row recipe-image-form">
+          <%= f.label :image, class: 'form-label recipe-image-label' %>
+          <div class="col-md-6 col-12 d-flex justify-content-center align-items-center mb-5">
+            <%= f.file_field :image, class: 'form-control image-form' %>
+            <%= f.hidden_field :image_cache %>
+          </div>
+          <div class="col-md-6 col-12 d-flex justify-content-center align-items-center mb-5">
+            <%= image_tag @recipe.image.url, id: 'preview', size: '190x120' %>
+          </div>
         </div>
       </div>
     </div>

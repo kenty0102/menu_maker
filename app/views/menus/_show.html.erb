@@ -9,7 +9,7 @@
     </div>
   </div>
   <h1 class="page-title text-center"><%= t('.title') %></h1>
-  <div class="col-12 d-flex justify-content-end align-items-center">
+  <div class="sns-share col-12 d-flex justify-content-end align-items-center">
     <%= link_to "https://twitter.com/share?text=【#{@menu.title}】%0a%0a&url=#{menu_url(@menu)}%0a&hashtags=MenuMaker", target: '_blank', data: { toggle: "tooltip", placement: "bottom" }, title: t('.share_X') do %>
       <i class="fab fa-twitter x-icon-menu"></i>
     <% end %>

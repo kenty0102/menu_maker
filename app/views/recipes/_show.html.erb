@@ -19,10 +19,12 @@
         <% if @recipe.source_site_name.present? %>
           <p>出典: <%= link_to @recipe.source_site_name, @recipe.source_url, class: "no-underline", target: "_blank" %></p>
         <% else %>
-          <%= link_to "https://twitter.com/share?text=【#{@recipe.title}】%0a%0a&url=#{recipe_url(@recipe)}%0a&hashtags=MenuMaker", target: '_blank', data: { toggle: "tooltip", placement: "bottom" }, title: t('.share_X') do %>
-            <i class="fab fa-twitter x-icon-recipe"></i>
-          <% end %>
-          <%= link_to image_tag("square-default.png", alt: "LINEでシェア", class: "line-icon-recipe"), "https://social-plugins.line.me/lineit/share?url=#{request.original_url}&text=【#{@recipe.title}】", class: "line-share-button", target: "_blank", data: { toggle: "tooltip", placement: "bottom" }, title: t('.share_LINE') %>
+          <div class="sns-share">
+            <%= link_to "https://twitter.com/share?text=【#{@recipe.title}】%0a%0a&url=#{recipe_url(@recipe)}%0a&hashtags=MenuMaker", target: '_blank', data: { toggle: "tooltip", placement: "bottom" }, title: t('.share_X') do %>
+              <i class="fab fa-twitter x-icon-recipe"></i>
+            <% end %>
+            <%= link_to image_tag("square-default.png", alt: "LINEでシェア", class: "line-icon-recipe"), "https://social-plugins.line.me/lineit/share?url=#{request.original_url}&text=【#{@recipe.title}】", class: "line-share-button", target: "_blank", data: { toggle: "tooltip", placement: "bottom" }, title: t('.share_LINE') %>
+          </div>
           <p>出典: 自作レシピ</p>
         <% end %>
       </div>

@@ -20,6 +20,8 @@ ja:
     inquiry: お問い合わせ
     terms_of_use: 利用規約
     privacy_policy: プライバシーポリシー
+    share_X: Xでシェア
+    share_LINE: LINEでシェア
   users:
     new:
       title: 新規登録
@@ -132,6 +134,10 @@ ja:
       instructions: 〜作り方〜
       edit: 編集
       delete: 削除
+      share_X: Xでシェア
+      share_LINE: LINEでシェア
+    before_login_show:
+      title: 自作レシピ
     edit:
       to_top_page: トップページへ
       title: レシピ編集
@@ -173,6 +179,10 @@ ja:
       edit: メニュー表の編集
       delete: メニュー表を削除
       download_menu: メニュー表を画像としてダウンロード
+      share_X: Xでシェア
+      share_LINE: LINEでシェア
+    before_login_show:
+      title: オリジナルメニュー表
     index:
       to_top_page: トップページへ
       title: メニュー表一覧
@@ -190,6 +200,10 @@ ja:
       failure: メニュー表の更新に失敗しました
     destroy:
       success: メニュー表を削除しました
+  before_login_show:
+    to_top_page: トップページへ
+    ingredients: 〜材料〜
+    instructions: 〜作り方〜
   menus_search_form:
     title_search: メニュータイトル
     recipes_search: レシピタイトル

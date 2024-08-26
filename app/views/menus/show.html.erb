@@ -111,51 +111,10 @@
     </style>
   </head>
   <body>
-    <% breadcrumb :menu, @menu %>
-    <div class="container">
-      <div class="row mt-3">
-        <div class="col-6 d-flex justify-content-start align-items-center">
-          <%= breadcrumbs separator: " &rsaquo; " %>
-        </div>
-        <div class="col-6 d-flex justify-content-end align-items-center">
-          <%= link_to t('.to_top_page'), root_path, class: "custom-link", data: { turbo: false } %>
-        </div>
-      </div>
-      <h1 class="page-title text-center"><%= t('.title') %></h1>
-      <div data-controller="menu">
-        <div class="row">
-          <div class="col-12 d-flex justify-content-end align-items-center">
-            <button data-action="click->menu#capture" class="btn btn-menu-imaging" id="capture-button"><%= t('.download_menu') %></button>
-          </div>
-        </div>
-        <div class="menulist-container" style="display: none;">
-          <div class="menu-container">
-            <div class="menu-title"><span class="title-under"><%= @menu.title %></span></div>
-            <div class="menu-recipes">
-              <% @recipes.each do |recipe| %>
-                <div class="recipe-title">
-                  <span class="under"><%= recipe.title %></span>
-                </div>
-              <% end %>
-            </div>
-          </div>
-          <div class="illustrations-container">
-            <div class="illustration-curry"></div>
-            <div class="illustration-onigiri"></div>
-          </div>
-        </div>
-        <img id="menu-image" alt="メニュー表の画像" style="max-width: 100%; display: none;">
-        <div class="container px-5 my-4">
-          <div class="row d-flex justify-content-center align-items-center">
-            <div class="col-5 d-flex justify-content-center align-items-center">
-              <%= link_to t('.edit'), edit_menu_path, class: "btn btn-recipe-edit btn-sm me-5", data: { turbo: false } %>
-            </div>
-            <div class="col-5 d-flex justify-content-center align-items-center">
-              <%= button_to t('.delete'), menu_path(@menu), method: :delete, data: { turbo: false }, form: {onSubmit: "return delete_confirm('このメニュー表を削除しますか？')" }, class: "btn btn-recipe-delete btn-sm ms-5" %>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <% if logged_in? %>
+      <%= render 'show' %>
+    <% else %>
+      <%= render 'before_login_show' %>
+    <% end %>
   </body>
 </html>

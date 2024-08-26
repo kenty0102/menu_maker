@@ -1,0 +1,24 @@
+<% content_for(:title, t('.title')) %>
+<div class="container">
+  <div class="row mt-3">
+    <div class="col-12 d-flex justify-content-end align-items-center">
+      <%= link_to t('before_login_show.to_top_page'), root_path, class: "custom-link", data: { turbo: false } %>
+    </div>
+  </div>
+  <div class="menulist-container mt-5">
+    <div class="menu-container">
+      <div class="menu-title"><span class="title-under"><%= @menu.title %></span></div>
+      <div class="menu-recipes">
+        <% @recipes.each do |recipe| %>
+          <div class="recipe-title">
+            <span class="under"><%= recipe.title %></span>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="illustrations-container">
+      <div class="illustration-curry"></div>
+      <div class="illustration-onigiri"></div>
+    </div>
+  </div>
+</div>

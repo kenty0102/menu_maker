@@ -1,0 +1,70 @@
+<% content_for(:title, t('.title')) %>
+<div class="container">
+  <div class="row mt-3">
+    <div class="col-12 d-flex justify-content-end align-items-center">
+      <%= link_to t('before_login_show.to_top_page'), root_path, class: "custom-link", data: { turbo: false } %>
+    </div>
+  </div>
+  <div class="card custom-card-manual-save mx-auto pb-3 mt-5">
+    <div class="row show-recipe-title">
+      <div class="col-12 d-flex justify-content-center">
+        <h2><%= @recipe.title %></h2>
+      </div>
+      <div class="col-11 d-flex justify-content-end">
+        <p>出典: 自作レシピ</p>
+      </div>
+    </div>
+    <div class="container px-3">
+      <div class="row">
+        <div class="col-md-6 col-12">
+          <div class="container px-3">
+            <% if @recipe.image.present? %>
+              <%= image_tag @recipe.image.url, class: 'show-recipe-photo', alt: @recipe.title %>
+            <% else %>
+              <%= image_tag 'default_image.png', class: 'show-recipe-photo', alt: 'サンプル画像' %>
+            <% end %>
+            <div class="row show-ingredient-row">
+              <div class="col-12">
+                <h3 class="subtitle"><%= t('before_login_show.ingredients') %></h3>
+                <div class="show-recipe-container">
+                  <% @recipe.ingredients.each do |ingredient| %>
+                    <div class="row border-bottom border-dark">
+                      <div class="col-7 d-flex justify-content-start align-items-center">
+                        <%= ingredient.name %>
+                      </div>
+                      <div class="col-2 d-flex justify-content-end align-items-center">
+                        <%= ingredient.quantity %>
+                      </div>
+                      <div class="col-3 d-flex justify-content-start align-items-center">
+                        <%= ingredient.unit %><br>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-12">
+          <div class="container px-3">
+            <div class="col-12">
+              <h3 class="subtitle"><%= t('before_login_show.instructions') %></h3>
+              <div class="show-recipe-container">
+                <% @recipe.instructions.each do |instruction| %>
+                  <div class="row border-bottom border-dark mb-3">
+                    <div class="col-2 d-flex justify-content-center align-items-center">
+                      <%= instruction.step_number %>
+                    </div>
+                    <div class="col-10 d-flex justify-content-start align-items-center">
+                      <%= instruction.description %>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

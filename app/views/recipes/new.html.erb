@@ -21,7 +21,7 @@
       </div>
       <div class="container py-2 my-5">
         <div class="row recipes-row">
-          <div class="col-md-6 col-12 d-flex justify-content-start mb-5">
+          <div class="col-md-6 col-lg-6 col-12 d-flex justify-content-center mb-5">
             <div id="ingredients-form" data-controller="dynamic-form" data-mode="new" data-dynamic-form-target="nestedForms">
               <%= f.label :ingredients, class: 'form-label' %>
               <%= f.fields_for :ingredients do |ingredient_fields| %>
@@ -30,7 +30,7 @@
               <%= link_to t('.add_ingredient'), '#', class: 'add-ingredient btn btn-manual_save mt-5', data: { action: 'click->dynamic-form#addIngredientForm' } %>
             </div>
           </div>
-          <div class="col-md-6 col-12 d-flex justify-content-start">
+          <div class="col-md-6 col-lg-6 col-12 d-flex justify-content-center">
             <div id="instructions-form" data-controller="dynamic-form" data-mode="new" data-dynamic-form-target="nestedForms">
               <%= f.label :instructions, class: 'form-label'%>
               <%= f.fields_for :instructions  do |instruction_fields| %>
@@ -40,15 +40,15 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="row recipe-image-form">
-        <%= f.label :image, class: 'form-label' %>
-        <div class="col-md-6 col-12 d-flex justify-content-start align-items-center mb-5">
-          <%= f.file_field :image, class: 'form-control image-form' %>
-          <%= f.hidden_field :image_cache %>
-        </div>
-        <div class="col-md-4 col-12 d-flex justify-content-start align-items-center mb-5">
-          <%= image_tag @recipe.image.url, id: 'preview', size: '130x100' %>
+        <div class="row recipe-image-form">
+          <%= f.label :image, class: 'form-label recipe-image-label' %>
+          <div class="col-md-6 col-12 d-flex justify-content-center align-items-center mb-5">
+            <%= f.file_field :image, class: 'form-control image-form' %>
+            <%= f.hidden_field :image_cache %>
+          </div>
+          <div class="col-md-4 col-12 d-flex justify-content-center align-items-center mb-5">
+            <%= image_tag @recipe.image.url, id: 'preview', size: '130x100' %>
+          </div>
         </div>
       </div>
     </div>

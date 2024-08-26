@@ -10,7 +10,16 @@
       <div class="col-4 d-flex justify-content-start align-items-center">
         <%= link_to t('footer.privacy_policy'), page_path('privacy'), class: "custom-link", data: { turbo: false } %>
       </div>
+      <div class="w-100"></div>
+      <div class="col-12 d-flex justify-content-center align-items-center">
+        <%= link_to "https://twitter.com/share?text=【Menu Maker】%0a%0a&url=#{root_url}%0a&hashtags=MenuMaker", target: '_blank', data: { toggle: "tooltip", placement: "bottom" }, title: t('footer.share_X') do %>
+          <i class="fab fa-twitter x-icon-footer"></i>
+        <% end %>
+        <%= link_to image_tag("square-default.png", alt: "LINEでシェア", class: "line-icon-footer"), "https://social-plugins.line.me/lineit/share?url=#{root_url}&text=【Menu Maker】", class: "line-share-button", target: "_blank", data: { toggle: "tooltip", placement: "bottom" }, title: t('footer.share_LINE') %>
+      </div>
     </div>
   </div>
   <p class="text-center text-body-secondary py-3">Copyright &copy; 2024 Menu Maker</p>
 </footer>
+
+

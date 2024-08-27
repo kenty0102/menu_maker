@@ -29,85 +29,19 @@
         <% end %>
       <% end %>
 
-      /* スマートフォン向けメディアクエリ */
-      @media (max-width: 768px) {
-        .menulist-container .menu-container {
-          padding-left: 1rem;
-          padding-right: 1rem;
-          padding-top: 1.5rem;
-          padding-bottom: 0;
-          margin-bottom: 0;
-        }
-        .menulist-container .menu-title {
-          font-size: 25px;
-          margin-bottom: 2.5rem;
-        }
-        .menulist-container .menu-recipes {
-          padding-top: 0;
-          padding-bottom: 0;
-        }
-        .menulist-container .recipe-title {
-          font-size: 15px;
-          padding-left: 1.5rem;
-          padding-right: 1.5rem;
-          margin-top: 1.5rem;
-        }
-        .menulist-container .illustration-curry {
-          width: 120px;
-          height: 60px;
-        }
-        .menulist-container .illustrations-container {
-          padding-left: 1.5rem;
-          padding-right: 1.5rem;
-          padding-top: 1rem;
-          padding-bottom: 0.5rem;
-          margin-bottom: 0;
-        }
-        .menulist-container .illustration-onigiri {
-          width: 120px;
-          height: 60px;
-        }
-      }
-
-      /* タブレット向けメディアクエリ */
-      @media (min-width: 768px) and (max-width: 992px) {
-        .menulist-container .menu-container {
-          padding-left: 2rem;
-          padding-right: 2rem;
-          padding-top: 1.5rem;
-          padding-bottom: 0;
-          margin-bottom: 0;
-        }
-        .menulist-container .menu-title {
-          font-size: 50px;
-          margin-bottom: 3.5rem;
-        }
-        .menulist-container .menu-recipes {
-          padding-top: 0;
-          padding-bottom: 0;
-        }
-        .menulist-container .recipe-title {
-          font-size: 35px;
-          padding-left: 1.5rem;
-          padding-right: 1.5rem;
-          margin-top: 1.5rem;
-        }
-        .menulist-container .illustration-curry {
-          width: 200px;
-          height: 100px;
-        }
-        .menulist-container .illustrations-container {
-          padding-left: 2rem;
-          padding-right: 2rem;
-          padding-top: 1rem;
-          padding-bottom: 1rem;
-          margin-bottom: 1rem;
-        }
-        .menulist-container .illustration-onigiri {
-          width: 200px;
-          height: 100px;
-        }
-      }
+      <% if @layout['media-queries'] %>
+        <% @layout['media-queries'].each do |device, settings| %>
+          @media (<%= settings['media'] %>) {
+            <% settings['styles'].each do |selector, properties| %>
+              .menulist-container <%= selector %> {
+                <% properties.each do |prop, value| %>
+                  <%= prop.gsub('_', '-') %>: <%= raw(value.is_a?(Array) ? value.map { |v| "'#{v}'" }.join(', ') : value) %>;
+                <% end %>
+              }
+            <% end %>
+          }
+        <% end %>
+      <% end %>
     </style>
   </head>
   <body>

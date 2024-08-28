@@ -22,8 +22,15 @@ class MenusController < ApplicationController
 
   def show
     @menu = Menu.find(params[:id])
-    design = Design.find_by(name: '居酒屋風メニュー')
-    @layout = JSON.parse(design.layout)
+    @menu_design = MenuDesign.find_by(menu_id: @menu.id)
+
+    if @menu_design.present?
+      @layout = JSON.parse(@menu_design.design.layout)
+    else
+      default_design = Design.find_by(id: 1)
+      @layout = JSON.parse(default_design.layout)
+    end
+
     @recipes = @menu.recipes
 
     respond_to do |format|
@@ -36,30 +43,33 @@ class MenusController < ApplicationController
     @menu = Menu.new
     @q = current_user.recipes.ransack(params[:q])
     @recipes = @q.result(distinct: true).includes(:ingredients).order(created_at: :desc)
+    @designs = Design.all
   end
 
   def edit
     @menu = current_user.menus.find(params[:id])
     @recipes = current_user.recipes
     @selected_recipes = @menu.recipes.pluck(:id)
+    @designs = Design.all
+    @selected_design = @menu.menu_designs.first.design_id if @menu.designs.exists?
   end
 
   def create
-    @menu = current_user.menus.new(menu_params)
+    @menu = current_user.menus.new(menu_params.except(:design_id))
 
     if @menu.save
       menu_params[:recipe_ids].uniq.each do |recipe_id|
         MenuRecipe.find_or_create_by(menu_id: @menu.id, recipe_id:)
       end
 
-      default_design_id = 1
-      MenuDesign.create(menu_id: @menu.id, design_id: default_design_id)
+      MenuDesign.create(menu_id: @menu.id, design_id: menu_params[:design_id]) if menu_params[:design_id].present?
 
       session[:upload_image] = true # フラグを設定
 
       redirect_to menu_path(@menu), success: t('.success')
     else
       @recipes = current_user.recipes
+      @designs = Design.all
       flash.now[:danger] = t('.failure')
       render :new, status: :unprocessable_entity
     end
@@ -71,7 +81,7 @@ class MenusController < ApplicationController
     # recipe_ids が nil の場合に空の配列として扱う
     recipe_ids = menu_params[:recipe_ids] || []
 
-    if @menu.update(menu_params.merge(recipe_ids:))
+    if @menu.update(menu_params.except(:design_id).merge(recipe_ids:))
       # 新しいレシピのIDを取得
       new_recipe_ids = menu_params[:recipe_ids].compact_blank.map(&:to_i)
 
@@ -90,12 +100,16 @@ class MenusController < ApplicationController
       # 古いレシピを削除
       @menu.menu_recipes.where(recipe_id: recipes_to_remove).destroy_all
 
+      menu_design = @menu.menu_designs.find_or_initialize_by(menu_id: @menu.id)
+      menu_design.update(design_id: params[:menu][:design_id])
+
       session[:upload_image] = true # フラグを設定
 
       redirect_to menu_path(@menu), success: t('.success')
     else
       @recipes = current_user.recipes
       @selected_recipes = @menu.recipes.pluck(:id)
+      @designs = Design.all
       flash.now[:danger] = t('.failure')
       render :edit, status: :unprocessable_entity
     end
@@ -138,6 +152,6 @@ class MenusController < ApplicationController
   private
 
   def menu_params
-    params.require(:menu).permit(:title, recipe_ids: [])
+    params.require(:menu).permit(:title, :design_id, recipe_ids: [])
   end
 end

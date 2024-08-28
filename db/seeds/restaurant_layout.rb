@@ -47,7 +47,7 @@ restaurant_layout = {
   },
   "menu-title" => {
     "text-align" => "center",
-    "font-size" => "80px",
+    "font-size" => "70px",
     "margin-bottom" => "10rem"
   },
   "title-under" => {
@@ -113,7 +113,7 @@ restaurant_layout = {
           "height" => "100px"
         },
         ".menu-title" => {
-          "font-size" => "25px",
+          "font-size" => "20px",
           "margin-bottom" => "3rem"
         },
         ".title-under" => {

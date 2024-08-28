@@ -1,0 +1,18 @@
+<div data-controller="menu" data-menu-id="<%= @menu.id %>">
+  <div class="menulist-container" style="display: none;">
+    <div class="menu-container">
+      <div class="menu-title"><span class="title-under"><%= @menu.title %></span></div>
+      <div class="menu-recipes">
+        <% @recipes.each do |recipe| %>
+          <div class="recipe-title">
+            <span class="under"><%= recipe.title %></span>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="illustrations-container">
+      <div class="illustration-curry"></div>
+      <div class="illustration-onigiri"></div>
+    </div>
+  </div>
+</div>

@@ -47,8 +47,11 @@
           <% end %>
         </div>
       </div>
-      <div class="row my-5">
-        <div class="col d-flex justify-content-center align-items-center">
+      <div class="row my-5 d-flex justify-content-center">
+        <div class="col-3 d-flex justify-content-end align-items-center">
+          <%= f.select :design_id, options_from_collection_for_select(@designs, :id, :name), { include_blank: 'デザインを選択してください' }, class: "form-select" %>
+        </div>
+        <div class="col-4 d-flex justify-content-end align-items-center">
           <%= f.submit t('.create'), class: "btn btn-primary", data: { turbo: false } %>
         </div>
       </div>

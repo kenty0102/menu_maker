@@ -1,0 +1,27 @@
+<div data-controller="menu" data-menu-id="<%= @menu.id %>">
+  <div class="menulist-container" style="display: none;">
+    <div class="menu-container">
+      <div class="top-decoration-container">
+        <div class="top-decoration-left"></div>
+        <div class="top-decoration-center"></div>
+        <div class="top-decoration-right"></div>
+      </div>
+      <div class="menu-title"><span class="title-under"><%= @menu.title %></span></div>
+      <div class="main-container">
+        <div class="illustration-pot"></div>
+        <div class="menu-recipes">
+          <% @recipes.each do |recipe| %>
+            <div class="recipe-title">
+              <%= recipe.title %>
+            </div>
+          <% end %>
+        </div>
+        <div class="illustration-spoon"></div>
+      </div>
+      <div class="illustrations-container">
+        <div class="illustration-fork"></div>
+        <div class="illustration-coffee"></div>
+      </div>
+    </div>
+  </div>
+</div>

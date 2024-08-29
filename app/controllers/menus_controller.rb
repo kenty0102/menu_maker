@@ -22,10 +22,9 @@ class MenusController < ApplicationController
 
   def show
     @menu = Menu.find(params[:id])
-    @menu_design = MenuDesign.find_by(menu_id: @menu.id)
 
-    if @menu_design.present?
-      @layout = JSON.parse(@menu_design.design.layout)
+    if @menu.design_id.present?
+      @layout = JSON.parse(@menu.design.layout)
     else
       default_design = Design.find_by(id: 1)
       @layout = JSON.parse(default_design.layout)
@@ -51,18 +50,17 @@ class MenusController < ApplicationController
     @recipes = current_user.recipes
     @selected_recipes = @menu.recipes.pluck(:id)
     @designs = Design.all
-    @selected_design = @menu.menu_designs.first.design_id if @menu.designs.exists?
+    @selected_design = @menu.design_id
   end
 
   def create
-    @menu = current_user.menus.new(menu_params.except(:design_id))
+    @menu = current_user.menus.new(menu_params)
+    @q = current_user.recipes.ransack(params[:q])
 
     if @menu.save
       menu_params[:recipe_ids].uniq.each do |recipe_id|
         MenuRecipe.find_or_create_by(menu_id: @menu.id, recipe_id:)
       end
-
-      MenuDesign.create(menu_id: @menu.id, design_id: menu_params[:design_id]) if menu_params[:design_id].present?
 
       session[:upload_image] = true # フラグを設定
 
@@ -81,7 +79,7 @@ class MenusController < ApplicationController
     # recipe_ids が nil の場合に空の配列として扱う
     recipe_ids = menu_params[:recipe_ids] || []
 
-    if @menu.update(menu_params.except(:design_id).merge(recipe_ids:))
+    if @menu.update(menu_params.merge(recipe_ids:))
       # 新しいレシピのIDを取得
       new_recipe_ids = menu_params[:recipe_ids].compact_blank.map(&:to_i)
 
@@ -100,9 +98,6 @@ class MenusController < ApplicationController
       # 古いレシピを削除
       @menu.menu_recipes.where(recipe_id: recipes_to_remove).destroy_all
 
-      menu_design = @menu.menu_designs.find_or_initialize_by(menu_id: @menu.id)
-      menu_design.update(design_id: params[:menu][:design_id])
-
       session[:upload_image] = true # フラグを設定
 
       redirect_to menu_path(@menu), success: t('.success')
@@ -110,6 +105,7 @@ class MenusController < ApplicationController
       @recipes = current_user.recipes
       @selected_recipes = @menu.recipes.pluck(:id)
       @designs = Design.all
+      @selected_design = @menu.design_id
       flash.now[:danger] = t('.failure')
       render :edit, status: :unprocessable_entity
     end

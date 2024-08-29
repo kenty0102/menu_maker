@@ -72,9 +72,11 @@ RSpec.describe '検索機能', type: :system do
   end
 
   describe 'メニュー表一覧ページ' do
+    let(:design) { create(:design) }
+
     before do
-      create(:menu, user:, title: 'サンプルメニュー', recipes: [create(:recipe, title: 'サンプルレシピ')])
-      create(:menu, user:, title: 'テストメニュー', recipes: [create(:recipe, title: 'テストレシピ')])
+      create(:menu, user:, title: 'サンプルメニュー', design:, recipes: [create(:recipe, title: 'サンプルレシピ')])
+      create(:menu, user:, title: 'テストメニュー', design:, recipes: [create(:recipe, title: 'テストレシピ')])
       visit menus_path
     end
 

@@ -30,6 +30,7 @@ ja:
         description: 作り方
       menu:
         title: メニュータイトル
+        design_id: デザイン
       inquiry:
         name: お名前
         email: メールアドレス
@@ -45,3 +46,5 @@ ja:
           attributes:
             base:
               blank_recipe: "メニューには少なくとも1つのレシピを選択する必要があります"
+            design_id:
+              blank: "を選択してください"

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_21_081002) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_29_042331) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,9 +23,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_21_081002) do
 
   create_table "ingredients", force: :cascade do |t|
     t.bigint "recipe_id", null: false
-    t.string "name"
+    t.string "name", null: false
     t.string "quantity"
-    t.string "unit"
+    t.string "unit", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["recipe_id"], name: "index_ingredients_on_recipe_id"
@@ -41,20 +41,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_21_081002) do
 
   create_table "instructions", force: :cascade do |t|
     t.bigint "recipe_id", null: false
-    t.integer "step_number"
-    t.text "description"
+    t.integer "step_number", null: false
+    t.text "description", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["recipe_id"], name: "index_instructions_on_recipe_id"
-  end
-
-  create_table "menu_designs", force: :cascade do |t|
-    t.bigint "menu_id", null: false
-    t.bigint "design_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["design_id"], name: "index_menu_designs_on_design_id"
-    t.index ["menu_id"], name: "index_menu_designs_on_menu_id"
   end
 
   create_table "menu_recipes", force: :cascade do |t|
@@ -68,17 +59,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_21_081002) do
 
   create_table "menus", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.string "title"
+    t.string "title", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image_url"
+    t.bigint "design_id", null: false
+    t.index ["design_id"], name: "index_menus_on_design_id"
     t.index ["user_id", "title"], name: "index_menus_on_user_id_and_title", unique: true
     t.index ["user_id"], name: "index_menus_on_user_id"
   end
 
   create_table "recipes", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.string "title"
+    t.string "title", null: false
     t.string "image"
     t.string "source_url"
     t.string "source_site_name"
@@ -106,10 +99,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_21_081002) do
 
   add_foreign_key "ingredients", "recipes"
   add_foreign_key "instructions", "recipes"
-  add_foreign_key "menu_designs", "designs"
-  add_foreign_key "menu_designs", "menus"
   add_foreign_key "menu_recipes", "menus"
   add_foreign_key "menu_recipes", "recipes"
+  add_foreign_key "menus", "designs"
   add_foreign_key "menus", "users"
   add_foreign_key "recipes", "users"
 end

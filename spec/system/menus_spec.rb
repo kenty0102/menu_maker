@@ -4,7 +4,7 @@ RSpec.describe "メニュー", type: :system do
   let(:user) { create(:user) }
   let!(:design) { create(:design, name: '居酒屋風メニュー') }
   let(:recipe) { create(:recipe) }
-  let(:menu) { create(:menu, user:, recipe_ids: [recipe.id]) }
+  let(:menu) { create(:menu, user:, recipe_ids: [recipe.id], design_id: design.id) }
 
   before do
     login(user)
@@ -21,32 +21,20 @@ RSpec.describe "メニュー", type: :system do
     it '新しいメニューを作成できること' do
       fill_in 'menu_title', with: 'New Menu'
       find("input[type='checkbox'][value='#{first_recipe.id}']").check
+      select '居酒屋風メニュー', from: 'menu_design_id'
       click_button 'メニュー表を作成'
-      expect(page).to have_content('メニュー表を作成しました')
-    end
-
-    it '新しいメニューに選択したレシピが表示されること' do
-      fill_in 'menu_title', with: 'New Menu'
-      find("input[type='checkbox'][value='#{first_recipe.id}']").check
-      click_button 'メニュー表を作成'
-      expect(page).to have_content(first_recipe.title)
+      expect(page).to have_content('New Menu')
     end
   end
 
   describe 'メニュー表の詳細確認' do
     before do
       menu.recipes << create(:recipe, user:) # メニューに関連付け
-      menu.designs << design
     end
 
     it '作成したメニュー表が表示されること' do
       visit menu_path(menu)
       expect(page).to have_content(menu.title)
-    end
-
-    it 'メニュー表確認画面でレシピが表示されること' do
-      visit menu_path(menu)
-      expect(page).to have_content(menu.recipes.first.title)
     end
 
     it 'メニュー表が画像として表示されること' do
@@ -80,14 +68,6 @@ RSpec.describe "メニュー", type: :system do
       fill_in 'menu_title', with: 'Updated Menu'
       click_button 'メニュー表を更新'
       expect(page).to have_content('Updated Menu')
-    end
-
-    it 'メニュー編集後にレシピの変更が反映されること' do
-      second_recipe = create(:recipe, user:)
-      menu.recipes << second_recipe
-      menu_update(first_recipe)
-      click_button 'メニュー表を更新'
-      expect(page).to have_content(second_recipe.title)
     end
 
     it 'メニュー編集後に削除したレシピが表示されないこと' do

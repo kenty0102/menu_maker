@@ -18,7 +18,7 @@
   <div class="col-12 d-flex justify-content-end align-items-center">
     <button data-action="click->menu#capture" class="btn btn-menu-imaging" id="capture-button"><%= t('show.download_menu') %></button>
   </div>
-  <% case @menu_design.design_id %>
+  <% case @menu.design_id %>
   <% when 1 %>
     <%= render 'menus/designs/izakaya' %>
   <% when 2 %>

@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe 'SNSシェア機能', type: :system do
   let(:user) { create(:user) }
   let!(:recipe) { create(:recipe, source_site_name: "") }
-  let!(:menu) { create(:menu, recipes: [recipe]) }
+  let!(:design) { create(:design) }
+  let!(:menu) { create(:menu, recipes: [recipe], design:) }
 
   before do
     login(user)
@@ -20,20 +21,21 @@ RSpec.describe 'SNSシェア機能', type: :system do
       end
 
       it 'Xのシェアボタンのリンクが正しいURLを持つ' do
-        twitter_share_link = find('.sns-share a[title="Xでシェア"]')
+        twitter_share_link = find('.sns-share a[title*="Share X"]')
         expect(twitter_share_link[:href]).to include("https://twitter.com/share")
       end
 
       it 'Xのシェアボタンのリンクがメニュータイトルを含む' do
-        twitter_share_link = find('.sns-share a[title="Xでシェア"]')
+        twitter_share_link = find('.sns-share a[title*="Share X"]')
         actual_url = twitter_share_link[:href]
         decoded_url = URI.decode_www_form_component(actual_url)
         expect(decoded_url).to include("text=【#{menu.title}】")
       end
 
       it 'XのシェアボタンのリンクがメニューのURLを含む' do
-        twitter_share_link = find('.sns-share a[title="Xでシェア"]')
-        expect(twitter_share_link[:href]).to include("url=http://172.21.0.4:3001/menus/#{menu.id}")
+        twitter_share_link = find('.sns-share a[title*="Share X"]')
+        expected_menu_url = "#{Capybara.app_host}/menus/#{menu.id}"
+        expect(twitter_share_link[:href]).to include("url=#{expected_menu_url}")
       end
     end
 
@@ -43,20 +45,21 @@ RSpec.describe 'SNSシェア機能', type: :system do
       end
 
       it 'LINEのシェアボタンのリンクが正しいURLを持つ' do
-        line_share_link = find('.sns-share a[title="LINEでシェア"]')
+        line_share_link = find('.sns-share a[title*="Share Line"]')
         expect(line_share_link[:href]).to include("https://social-plugins.line.me/lineit/share")
       end
 
       it 'LINEのシェアボタンのリンクがメニュータイトルを含む' do
-        line_share_link = find('.sns-share a[title="LINEでシェア"]')
+        line_share_link = find('.sns-share a[title*="Share Line"]')
         actual_url = line_share_link[:href]
         decoded_url = URI.decode_www_form_component(actual_url)
         expect(decoded_url).to include("text=【#{menu.title}】")
       end
 
       it 'LINEのシェアボタンのリンクがメニューのURLを含む' do
-        line_share_link = find('.sns-share a[title="LINEでシェア"]')
-        expect(line_share_link[:href]).to include("url=http://172.21.0.4:3001/menus/#{menu.id}")
+        line_share_link = find('.sns-share a[title*="Share Line"]')
+        expected_menu_url = "#{Capybara.app_host}/menus/#{menu.id}"
+        expect(line_share_link[:href]).to include("url=#{expected_menu_url}")
       end
     end
   end
@@ -85,7 +88,8 @@ RSpec.describe 'SNSシェア機能', type: :system do
 
       it 'XのシェアボタンのリンクがレシピのURLを含む（自作レシピ）' do
         twitter_share_link = find('.sns-share a[title="Xでシェア"]')
-        expect(twitter_share_link[:href]).to include("url=http://172.21.0.4:3001/recipes/#{recipe.id}")
+        expected_recipe_url = "#{Capybara.app_host}/recipes/#{recipe.id}"
+        expect(twitter_share_link[:href]).to include("url=#{expected_recipe_url}")
       end
     end
 
@@ -108,7 +112,8 @@ RSpec.describe 'SNSシェア機能', type: :system do
 
       it 'LINEのシェアボタンのリンクがレシピのURLを含む（自作レシピ）' do
         line_share_link = find('.sns-share a[title="LINEでシェア"]')
-        expect(line_share_link[:href]).to include("url=http://172.21.0.4:3001/recipes/#{recipe.id}")
+        expected_recipe_url = "#{Capybara.app_host}/recipes/#{recipe.id}"
+        expect(line_share_link[:href]).to include("url=#{expected_recipe_url}")
       end
     end
   end
@@ -137,7 +142,8 @@ RSpec.describe 'SNSシェア機能', type: :system do
 
       it 'フッターのXシェアボタンのリンクがサイトのURLを含む' do
         twitter_share_link = find('footer a[title="Xでシェア"]')
-        expect(twitter_share_link[:href]).to include("url=http://172.21.0.4:3001/")
+        expected_root_url = "#{Capybara.app_host}/"
+        expect(twitter_share_link[:href]).to include("url=#{expected_root_url}")
       end
     end
 
@@ -160,7 +166,8 @@ RSpec.describe 'SNSシェア機能', type: :system do
 
       it 'フッターのLINEシェアボタンのリンクがサイトのURLを含む' do
         line_share_link = find('a[title="LINEでシェア"]')
-        expect(line_share_link[:href]).to include("url=http://172.21.0.4:3001/")
+        expected_root_url = "#{Capybara.app_host}/"
+        expect(line_share_link[:href]).to include("url=#{expected_root_url}")
       end
     end
   end

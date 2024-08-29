@@ -5,6 +5,7 @@ FactoryBot.define do
 
     transient do
       recipes_count { 1 } # デフォルトで1つのレシピを関連付け
+      design_count { 1 } # デフォルトで1つのデザインを関連づけ
     end
 
     after(:create) do |menu, evaluator|
@@ -12,8 +13,9 @@ FactoryBot.define do
         create(:menu_recipe, menu:, recipe:)
       end
 
-      design = create(:design)
-      create(:menu_design, menu:, design:)
+      create_list(:design, evaluator.design_count).each do |design|
+        menu.update(design:)
+      end
     end
   end
 end

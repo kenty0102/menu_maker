@@ -79,6 +79,9 @@ cafe_layout = {
   "recipe-title" => {
     "margin-top" => "50px"
   },
+  "recipe-note" => {
+    "font-size" => "30px"
+  },
   "illustration-spoon" => {
     "background-image" => "url('/assets/cafe_image_spoon.png')",
     "background-size" => "100%",
@@ -111,6 +114,70 @@ cafe_layout = {
     "margin-right" => "3rem"
   },
   "media-queries" => {
+    "tablet" => {
+      "media" => "min-width: 768px and max-width: 992px",
+      "styles" => {
+        ".menu-container" => {
+          "padding" => "0.5rem",
+          "margin-bottom" => "0"
+        },
+        ".top-decoration-left" => {
+          "width" => "200px",
+          "height" => "200px"
+        },
+        ".top-decoration-center" => {
+          "width" => "150px",
+          "height" => "150px",
+          "padding-bottom" => "2rem"
+        },
+        ".top-decoration-right" => {
+          "width" => "220px",
+          "height" => "220px"
+        },
+        ".menu-title" => {
+          "font-size" => "60px",
+          "margin-bottom" => "1rem"
+        },
+        ".title-under" => {
+          "padding-bottom" => "6rem"
+        },
+        ".menu-recipes" => {
+          "padding-top" => "0",
+          "padding-bottom" => "0"
+        },
+        ".recipe-title" => {
+          "font-size" => "30px",
+          "padding" => "0 0.5rem",
+          "margin-top" => "1.5rem"
+        },
+        ".recipe-note" => {
+          "font-size" => "200px"
+        },
+        ".illustration-pot" => {
+          "width" => "180px",
+          "height" => "180px",
+          "margin-left" => "0.5rem"
+        },
+        ".under" => {
+          "padding-bottom" => "3rem"
+        },
+        ".illustration-spoon" => {
+          "width" => "150px",
+          "height" => "150px",
+          "margin-top" => "4rem"
+        },
+        ".illustration-fork" => {
+          "width" => "150px",
+          "height" => "150px",
+          "margin-left" => "1.5rem"
+        },
+        ".illustration-coffee" => {
+          "width" => "250px",
+          "height" => "250px",
+          "margin-right" => "1.5rem"
+        }
+      }
+    },
     "smartphone" => {
       "media" => "max-width: 767px",
       "styles" => {
@@ -148,6 +215,9 @@ cafe_layout = {
           "padding-right" => "1.5rem",
           "margin-top" => "1.5rem"
         },
+        ".recipe-note" => {
+          "font-size" => "10px"
+        },
         ".illustration-pot" => {
           "width" => "120px",
           "height" => "120px",
@@ -172,67 +242,6 @@ cafe_layout = {
           "height" => "80px",
           "padding-top" => "1rem",
           "margin-right" => "1rem"
-        }
-      }
-    },
-    "tablet" => {
-      "media" => "min-width: 768px and max-width: 992px",
-      "styles" => {
-        ".menu-container" => {
-          "padding" => "0.5rem",
-          "margin-bottom" => "0"
-        },
-        ".top-decoration-left" => {
-          "width" => "200px",
-          "height" => "200px"
-        },
-        ".top-decoration-center" => {
-          "width" => "150px",
-          "height" => "150px",
-          "padding-bottom" => "2rem"
-        },
-        ".top-decoration-right" => {
-          "width" => "220px",
-          "height" => "220px"
-        },
-        ".menu-title" => {
-          "font-size" => "60px",
-          "margin-bottom" => "1rem"
-        },
-        ".title-under" => {
-          "padding-bottom" => "6rem"
-        },
-        ".menu-recipes" => {
-          "padding-top" => "0",
-          "padding-bottom" => "0"
-        },
-        ".recipe-title" => {
-          "font-size" => "30px",
-          "padding" => "0 0.5rem",
-          "margin-top" => "1.5rem"
-        },
-        ".illustration-pot" => {
-          "width" => "180px",
-          "height" => "180px",
-          "margin-left" => "0.5rem"
-        },
-        ".under" => {
-          "padding-bottom" => "3rem"
-        },
-        ".illustration-spoon" => {
-          "width" => "150px",
-          "height" => "150px",
-          "margin-top" => "4rem"
-        },
-        ".illustration-fork" => {
-          "width" => "150px",
-          "height" => "150px",
-          "margin-left" => "1.5rem"
-        },
-        ".illustration-coffee" => {
-          "width" => "250px",
-          "height" => "250px",
-          "margin-right" => "1.5rem"
         }
       }
     }

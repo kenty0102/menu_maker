@@ -68,6 +68,9 @@ restaurant_layout = {
   "recipe-title" => {
     "margin-top" => "50px"
   },
+  "recipe-note" => {
+    "font-size" => "30px"
+  },
   "bottom-decoration-container" => {
     "display" => "flex",
     "justify-content" => "space-between",
@@ -89,6 +92,61 @@ restaurant_layout = {
     "height" => "300px"
   },
   "media-queries" => {
+    "tablet" => {
+      "media" => "min-width: 768px and max-width: 992px",
+      "styles" => {
+        ".menu-container" => {
+          "padding" => "0.5rem"
+        },
+        ".top-decoration-container" => {
+          "height" => "300px"
+        },
+        ".top-decoration-left" => {
+          "width" => "200px",
+          "height" => "200px"
+        },
+        ".top-decoration-center" => {
+          "width" => "350px",
+          "height" => "350px",
+          "padding-bottom" => "2rem"
+        },
+        ".top-decoration-right" => {
+          "width" => "200px",
+          "height" => "200px"
+        },
+        ".menu-title" => {
+          "font-size" => "50px",
+          "margin-bottom" => "5rem"
+        },
+        ".title-under" => {
+          "padding-bottom" => "6rem"
+        },
+        ".main-container" => {
+          "padding" => "0 7rem"
+        },
+        ".menu-recipes" => {
+          "padding-top" => "0",
+          "padding-bottom" => "0"
+        },
+        ".recipe-title" => {
+          "font-size" => "30px",
+          "padding-left" => "1.5rem",
+          "padding-right" => "1.5rem",
+          "margin-top" => "1.5rem"
+        },
+        ".recipe-note" => {
+          "font-size" => "20px"
+        },
+        ".bottom-decoration-left" => {
+          "width" => "200px",
+          "height" => "200px"
+        },
+        ".bottom-decoration-right" => {
+          "width" => "200px",
+          "height" => "200px"
+        }
+      }
+    },
     "smartphone" => {
       "media" => "max-width: 767px",
       "styles" => {
@@ -132,6 +190,12 @@ restaurant_layout = {
           "padding-right" => "1.5rem",
           "margin-top" => "1.5rem"
         },
+        "recipe-note" => {
+          "font-size" => "10px"
+        },
+        ".recipe-note" => {
+          "font-size" => "9px"
+        },
         ".bottom-decoration-left" => {
           "width" => "100px",
           "height" => "100px"
@@ -139,58 +203,6 @@ restaurant_layout = {
         ".bottom-decoration-right" => {
           "width" => "100px",
           "height" => "100px"
-        }
-      }
-    },
-    "tablet" => {
-      "media" => "min-width: 768px and max-width: 992px",
-      "styles" => {
-        ".menu-container" => {
-          "padding" => "0.5rem"
-        },
-        ".top-decoration-container" => {
-          "height" => "300px"
-        },
-        ".top-decoration-left" => {
-          "width" => "200px",
-          "height" => "200px"
-        },
-        ".top-decoration-center" => {
-          "width" => "350px",
-          "height" => "350px",
-          "padding-bottom" => "2rem"
-        },
-        ".top-decoration-right" => {
-          "width" => "200px",
-          "height" => "200px"
-        },
-        ".menu-title" => {
-          "font-size" => "50px",
-          "margin-bottom" => "5rem"
-        },
-        ".title-under" => {
-          "padding-bottom" => "6rem"
-        },
-        ".main-container" => {
-          "padding" => "0 7rem"
-        },
-        ".menu-recipes" => {
-          "padding-top" => "0",
-          "padding-bottom" => "0"
-        },
-        ".recipe-title" => {
-          "font-size" => "30px",
-          "padding-left" => "1.5rem",
-          "padding-right" => "1.5rem",
-          "margin-top" => "1.5rem"
-        },
-        ".bottom-decoration-left" => {
-          "width" => "200px",
-          "height" => "200px"
-        },
-        ".bottom-decoration-right" => {
-          "width" => "200px",
-          "height" => "200px"
         }
       }
     }

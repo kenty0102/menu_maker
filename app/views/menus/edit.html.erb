@@ -38,6 +38,14 @@
                   </div>
                 </div>
               </div>
+              <div class="row d-flex justify-content-end add-note">
+                  <div class="col-2 d-flex justify-content-end align-items-center note-label">
+                    <h5><%= t('.menu_recipe_note') %></h5>
+                  </div>
+                  <div class="col-9 d-flex justify-content-start align-items-center note-input">
+                    <%= text_area_tag "menu[recipe_notes][#{recipe.id}]", @menu_recipe_notes[recipe.id], placeholder: '補足情報を入力してください', class: 'form-control', rows: 1 %>
+                  </div>
+                </div>
             </div>
           <% end %>
         </div>

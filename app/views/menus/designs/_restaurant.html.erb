@@ -13,6 +13,10 @@
             <div class="recipe-title">
               <%= recipe.title %>
             </div>
+            <% menu_recipe = @menu_recipes.find { |mr| mr.recipe_id == recipe.id } %>
+            <% if menu_recipe && menu_recipe.note.present? %>
+              <p class="recipe-note"><%= menu_recipe.note %></p>
+            <% end %>
           <% end %>
         </div>
       </div>

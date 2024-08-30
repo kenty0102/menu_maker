@@ -31,6 +31,7 @@ class MenusController < ApplicationController
     end
 
     @recipes = @menu.recipes
+    @menu_recipes = @menu.menu_recipes.includes(:recipe)
 
     respond_to do |format|
       format.html # `show.html.erb` ビューを表示
@@ -51,15 +52,23 @@ class MenusController < ApplicationController
     @selected_recipes = @menu.recipes.pluck(:id)
     @designs = Design.all
     @selected_design = @menu.design_id
+    @menu_recipe_notes = @menu.menu_recipes.each_with_object({}) do |menu_recipe, notes|
+      notes[menu_recipe.recipe_id] = menu_recipe.note
+    end
   end
 
   def create
-    @menu = current_user.menus.new(menu_params)
+    @menu = current_user.menus.new(menu_params.except(:recipe_notes))
     @q = current_user.recipes.ransack(params[:q])
 
     if @menu.save
       menu_params[:recipe_ids].uniq.each do |recipe_id|
-        MenuRecipe.find_or_create_by(menu_id: @menu.id, recipe_id:)
+        note = menu_params[:recipe_notes][recipe_id.to_s]
+
+        menu_recipe = MenuRecipe.find_or_create_by(menu_id: @menu.id, recipe_id:)
+
+        menu_recipe.note = note if note.present?
+        menu_recipe.save
       end
 
       session[:upload_image] = true # フラグを設定
@@ -79,7 +88,7 @@ class MenusController < ApplicationController
     # recipe_ids が nil の場合に空の配列として扱う
     recipe_ids = menu_params[:recipe_ids] || []
 
-    if @menu.update(menu_params.merge(recipe_ids:))
+    if @menu.update(menu_params.except(:recipe_notes).merge(recipe_ids:))
       # 新しいレシピのIDを取得
       new_recipe_ids = menu_params[:recipe_ids].compact_blank.map(&:to_i)
 
@@ -97,6 +106,14 @@ class MenusController < ApplicationController
 
       # 古いレシピを削除
       @menu.menu_recipes.where(recipe_id: recipes_to_remove).destroy_all
+
+      # コメントを更新
+      menu_params[:recipe_ids].each do |recipe_id|
+        note = menu_params[:recipe_notes][recipe_id.to_s]
+        menu_recipe = @menu.menu_recipes.find_by(recipe_id:)
+
+        menu_recipe.update(note:) if menu_recipe && note.present?
+      end
 
       session[:upload_image] = true # フラグを設定
 
@@ -148,6 +165,6 @@ class MenusController < ApplicationController
   private
 
   def menu_params
-    params.require(:menu).permit(:title, :design_id, recipe_ids: [])
+    params.require(:menu).permit(:title, :design_id, recipe_ids: [], recipe_notes: {})
   end
 end

@@ -610,6 +610,21 @@ footer {
   margin-left: 1rem;
 }
 
+.note-label {
+  padding: 0;
+}
+.note-input {
+  padding: 0;
+}
+.add-note {
+  padding: 0;
+  margin-bottom: 1rem;
+  margin-right: 8rem;
+}
+.note-label h5 {
+  margin-bottom: 0;
+}
+
 /* タブレット向けのスタイル */
 @media (min-width: 768px) and (max-width: 992px) {
   body {

@@ -29,17 +29,27 @@
         <div class="recipe-list">
           <% @recipes.each do |recipe| %>
             <div class="my-3 px-3 me-1 border-bottom border-dark" id="recipe_<%= recipe.id %>">
-              <div class="row">
-                <div class="col-1 d-flex justify-content-center align-items-center add-menu-checkbox">
-                  <%= check_box_tag 'menu[recipe_ids][]', recipe.id %>
-                </div>
-                <div class="col-10 d-flex justify-content-start align-items-center">
-                  <div class="recipe-text">
-                    <div class="recipe-header">
-                      <h3 class="recipe-title">
-                        <%= link_to recipe.title, recipe_path(recipe), class: 'no-underline', data: { turbo: false } %>
-                      </h3>
+              <div class="container">
+                <div class="row">
+                  <div class="col-1 d-flex justify-content-center align-items-center add-menu-checkbox">
+                    <%= check_box_tag 'menu[recipe_ids][]', recipe.id %>
+                  </div>
+                  <div class="col-10 d-flex justify-content-start align-items-center">
+                    <div class="recipe-text">
+                      <div class="recipe-header">
+                        <h3 class="recipe-title">
+                          <%= link_to recipe.title, recipe_path(recipe), class: 'no-underline', data: { turbo: false } %>
+                        </h3>
+                      </div>
                     </div>
+                  </div>
+                </div>
+                <div class="row d-flex justify-content-end add-note">
+                  <div class="col-2 d-flex justify-content-end align-items-center note-label">
+                    <h5><%= t('.menu_recipe_note') %></h5>
+                  </div>
+                  <div class="col-9 d-flex justify-content-start align-items-center note-input">
+                    <%= text_area_tag "menu[recipe_notes][#{recipe.id}]", nil, placeholder: t('.recip_note_assist'), class: 'form-control', rows: 1 %>
                   </div>
                 </div>
               </div>

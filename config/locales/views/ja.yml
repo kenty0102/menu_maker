@@ -171,6 +171,8 @@ ja:
       create: メニュー表を作成
       no_recipes_saved: メニュー表に追加できるレシピがありません
       select_design: デザイン選択
+      menu_recipe_note: コメント：
+      recip_note_assist: コメントを追加できます。例：（大盛り）
     create:
       success: メニュー表を作成しました
       failure: メニュー表の作成に失敗しました
@@ -188,6 +190,8 @@ ja:
       recipe_select: レシピを選択してください
       update: メニュー表を更新
       no_recipes_saved: メニュー表にレシピがありません
+      menu_recipe_note: コメント：
+      recip_note_assist: コメントを追加できます。例：（大盛り)
     update:
       success: メニュー表を更新しました
       failure: メニュー表の更新に失敗しました

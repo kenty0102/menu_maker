@@ -1,8 +1,8 @@
 class SetDefaultDesignIdInMenus < ActiveRecord::Migration[7.1]
   def change
+    default_design_id = 1
     Menu.find_each do |menu|
-      design_id = menu.menu_designs.first&.design_id
-      menu.update_column(:design_id, design_id) if design_id.present?
+      menu.update_column(:design_id, default_design_id)
     end
   end
 end

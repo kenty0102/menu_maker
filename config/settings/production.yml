@@ -1,4 +1,5 @@
 default_url_options:
   protocol: 'https'
-  host: 'menu-maker.fly.dev'
-  
+  host: 'menu-maker-app.com'
+sorcery:
+    google_callback_url: 'https://menu-maker-app.com/oauth/callback?provider=google'

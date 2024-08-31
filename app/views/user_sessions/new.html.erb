@@ -20,8 +20,28 @@
               <%= f.password_field :password, class: "form-control" %>
             </div>
             <div class="row">
-              <div class="col d-flex justify-content-center align-items-center">
+              <div class="col-12 d-flex justify-content-center align-items-center">
                 <%= f.submit t('.login'), class: "btn top-btn-primary", data: { turbo: false } %>
+              </div>
+              <div class="col-12 d-flex justify-content-center align-items-center">
+                <div class="separator">
+                  <span>または</span>
+                </div>
+              </div>
+              <div class="col-12 d-flex justify-content-center align-items-center">
+                <div id="g_id_onload"
+                  data-client_id=<%= ENV['GOOGLE_CLIENT_ID'] %>
+                  data-login_uri=<%= Settings.sorcery[:google_callback_url] %>
+                  data-auto_prompt="false">
+                </div>
+                <div class="g_id_signin"
+                  data-type="standard"
+                  data-size="large"
+                  data-theme="outline"
+                  data-text="sign_in_with"
+                  data-shape="rectangular"
+                  data-logo_alignment="left">
+                </div>
               </div>
             </div>
           <% end %>

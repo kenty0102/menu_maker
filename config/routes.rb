@@ -33,11 +33,15 @@ Rails.application.routes.draw do
       post 'reset_upload_flag' #作成、編集時に設定したフラグを削除
     end
   end
+  # ログイン/ログアウト
   get 'login', to: 'user_sessions#new'  # ログインページに対応するルート
   post 'login', to: 'user_sessions#create'
   delete 'logout', to: 'user_sessions#destroy'
+  post 'oauth/callback', to: 'oauths#callback'
+  # 静的ページ
   get '/terms', to: 'high_voltage/pages#show', id: 'terms' # 利用規約ページに対応するルート
   get '/privacy', to: 'high_voltage/pages#show', id: 'privacy' # プライバシーポリシーページい対応するルート
+  # 問い合わせ
   resources :inquiries, only: [:new, :create] do
     get 'complete', on: :collection
   end

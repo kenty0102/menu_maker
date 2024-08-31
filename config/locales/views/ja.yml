@@ -44,6 +44,11 @@ ja:
       failure: ログインに失敗しました
     destroy:
       success: ログアウトしました
+  oauths:
+    callback:
+      success: ログインしました
+      failure: ログインに失敗しました
+    verify_g_csrf_token: 不正なアクセスです
   user_mailer:
       password_reset: パスワードの再設定
   password_resets:

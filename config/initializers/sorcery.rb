@@ -4,7 +4,7 @@
 # Available submodules are: :user_activation, :http_basic_auth, :remember_me,
 # :reset_password, :session_timeout, :brute_force_protection, :activity_logging,
 # :magic_login, :external
-Rails.application.config.sorcery.submodules = [:reset_password]
+Rails.application.config.sorcery.submodules = [:reset_password, :external]
 
 # Here you can configure each submodule's features.
 Rails.application.config.sorcery.configure do |config|
@@ -80,7 +80,7 @@ Rails.application.config.sorcery.configure do |config|
   # i.e. [:twitter, :facebook, :github, :linkedin, :xing, :google, :liveid, :salesforce, :slack, :line].
   # Default: `[]`
   #
-  # config.external_providers =
+  config.external_providers = [:google]
 
   # You can change it by your local ca_file. i.e. '/etc/pki/tls/certs/ca-bundle.crt'
   # Path to ca_file. By default use a internal ca-bundle.crt.
@@ -92,14 +92,10 @@ Rails.application.config.sorcery.configure do |config|
   # You can skip including the email field if you use an intermediary signup form. (using build_from method).
   # The r_emailaddress scope is only necessary if you are using the create_from method directly.
   #
-  # config.linkedin.key = ""
-  # config.linkedin.secret = ""
-  # config.linkedin.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=linkedin"
-  # config.linkedin.user_info_mapping = {
-  #   first_name: 'localizedFirstName',
-  #   last_name:  'localizedLastName',
-  #   email:      'emailAddress'
-  # }
+  config.google.key = ENV['GOOGLE_CLIENT_ID']
+  config.google.secret = ENV['GOOGLE_CLIENT_SECRET']
+  config.google.callback_url = Settings.sorcery[:google_callback_url] 
+  config.google.user_info_mapping = { email: "email", name: "name" }
   # config.linkedin.scope = "r_liteprofile r_emailaddress"
   #
   #
@@ -543,7 +539,7 @@ Rails.application.config.sorcery.configure do |config|
     # Class which holds the various external provider data for this user.
     # Default: `nil`
     #
-    # user.authentications_class =
+    user.authentications_class = Authentication
 
     # User's identifier in the `authentications` class.
     # Default: `:user_id`

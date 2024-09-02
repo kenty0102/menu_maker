@@ -1,11 +1,10 @@
 class PasswordResetsController < ApplicationController
   skip_before_action :require_login
+  before_action :set_token_and_user, only: %i[edit update]
 
   def new; end
 
   def edit
-    @token = params[:id]
-    @user = User.load_from_reset_password_token(@token)
     not_authenticated if @user.blank?
   end
 
@@ -18,9 +17,6 @@ class PasswordResetsController < ApplicationController
   end
 
   def update
-    @token = params[:id]
-    @user = User.load_from_reset_password_token(@token)
-
     return not_authenticated if @user.blank?
 
     @user.password_confirmation = params[:user][:password_confirmation]
@@ -30,5 +26,12 @@ class PasswordResetsController < ApplicationController
       flash.now[:danger] = t('.failure')
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  private
+
+  def set_token_and_user
+    @token = params[:id]
+    @user = User.load_from_reset_password_token(@token)
   end
 end

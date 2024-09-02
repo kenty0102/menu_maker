@@ -14,7 +14,7 @@ module RecipeScrapers
       @page.search('.ingredient-list ol li').map do |ingredient_list|
         name = ingredient_list.at('span').text.strip
         quantity_text = ingredient_list.at('bdi').text.strip
-        quantity, unit = Recipe.parse_quantity_and_unit(quantity_text)
+        quantity, unit = Recipe.parse_quantity_and_unit(quantity_text) # モデルのメソッドを呼び出す
         { name:, quantity:, unit: }
       end
     end

@@ -9,6 +9,36 @@ class Menu < ApplicationRecord
   validate :must_have_at_least_one_recipe
   validates :design_id, presence: true
 
+  def save_recipe_notes(recipe_ids, recipe_notes)
+    recipe_ids.uniq.each do |recipe_id|
+      note = recipe_notes[recipe_id.to_s]
+      menu_recipe = MenuRecipe.find_or_create_by(menu_id: id, recipe_id:)
+      menu_recipe.update(note:) if note.present?
+    end
+  end
+
+  def update_recipes(new_recipe_ids, current_recipe_ids)
+    # 新しく追加するレシピIDと削除するレシピIDを計算
+    recipes_to_add = new_recipe_ids - current_recipe_ids
+    recipes_to_remove = current_recipe_ids - new_recipe_ids
+
+    # 新しいレシピを追加
+    recipes_to_add.each do |recipe_id|
+      menu_recipes.create!(recipe_id:)
+    end
+
+    # 古いレシピを削除
+    menu_recipes.where(recipe_id: recipes_to_remove).destroy_all
+  end
+
+  def update_recipe_notes(recipe_notes)
+    recipe_ids.each do |recipe_id|
+      note = recipe_notes[recipe_id.to_s]
+      menu_recipe = menu_recipes.find_by(recipe_id:)
+      menu_recipe.update(note:) if menu_recipe && note.present?
+    end
+  end
+
   # racsackで検索可能な属性を指定
   def self.ransackable_attributes(_auth_object = nil)
     ["title"]

@@ -14,22 +14,22 @@ class RecipesController < ApplicationController
     service = scraper_for(fetch_recipe_params[:source_url]) # 入力されたsource_urlをscraper_forメソッドに渡す
     basic_info = service.fetch_basic_info # serviceオブジェクトのfetch_basic_infoメソッドを呼び出し
     ingredients_and_instructions = service.fetch_ingredients_and_instructions # serviceオブジェクトのfetch_ingredients_and_instructionメソッドを呼び出し
-  
-    if Recipe.exists?(source_url: basic_info[:source_url]) # 入力したURLの有無で場合分け
-      if Recipe.update_existing_recipe(current_user, basic_info, ingredients_and_instructions) # モデルのメソッドを呼び出す
+
+    @recipe = Recipe.find_or_initialize_by(source_url: basic_info[:source_url], user_id: current_user.id) # URLに基づいてレシピを見つけるまたは新規作成
+
+    if @recipe.persisted? # レシピが既に存在するか確認
+      if @recipe.update_existing_recipe(current_user, basic_info, ingredients_and_instructions) # モデルのメソッドを呼び出す
         redirect_to recipes_path, success: t('.update_success')
       else
         flash.now[:danger] = t('.update_failure')
         render :auto_save, status: :unprocessable_entity
       end
+    elsif @recipe.create_new_recipe(current_user, basic_info, ingredients_and_instructions) # モデルのメソッドを呼び出す
+      redirect_to recipes_path, success: t('.success')
     else
-      if Recipe.create_new_recipe(current_user, basic_info, ingredients_and_instructions) # モデルのメソッドを呼び出す
-        redirect_to recipes_path, success: t('.success')
-      else
-        @recipe = current_user.recipes.build(title: basic_info[:title], source_url: basic_info[:source_url])
-        flash.now[:danger] = t('.failure')
-        render :auto_save, status: :unprocessable_entity
-      end
+      @recipe = current_user.recipes.build(title: basic_info[:title], source_url: basic_info[:source_url])
+      flash.now[:danger] = t('.failure')
+      render :auto_save, status: :unprocessable_entity
     end
   end
 

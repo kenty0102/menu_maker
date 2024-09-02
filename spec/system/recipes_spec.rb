@@ -37,7 +37,7 @@ RSpec.describe 'レシピ', type: :system do
       end
 
       it '保存されたレシピのタイトルが表示されること' do
-        expect(page).to have_content('ごはんにぴったり！ 麻薬卵')
+        expect(page).to have_content('SNSで話題沸騰！ 麻薬卵')
       end
     end
 

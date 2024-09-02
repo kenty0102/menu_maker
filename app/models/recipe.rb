@@ -28,14 +28,14 @@ class Recipe < ApplicationRecord
   end
 
   # 既存のレシピをアップデート
-  def self.update_existing_recipe(user, basic_info, ingredients_and_instructions)
+  def update_existing_recipe(user, basic_info, ingredients_and_instructions)
     existing_recipe = user.recipes.find_by(source_url: basic_info[:source_url])
     if existing_recipe.update(title: basic_info[:title], scraped_at: basic_info[:scraped_at])
       existing_recipe.update_ingredients_and_instructions(ingredients_and_instructions)
       existing_recipe.handle_image_upload(basic_info[:image_url])
-      return true
+      true
     else
-      return false
+      false
     end
   end
 
@@ -53,7 +53,7 @@ class Recipe < ApplicationRecord
 
       updated_at = Time.current
 
-      existing_ingredient = self.ingredients.find_by(name:)
+      existing_ingredient = ingredients.find_by(name:)
       if existing_ingredient
         existing_ingredient.update(quantity:, unit:, updated_at:)
       else
@@ -70,7 +70,7 @@ class Recipe < ApplicationRecord
 
       updated_at = Time.current
 
-      existing_instruction = self.instructions.find_by(step_number:)
+      existing_instruction = instructions.find_by(step_number:)
       if existing_instruction
         existing_instruction.update(description:, updated_at:)
       else
@@ -82,26 +82,25 @@ class Recipe < ApplicationRecord
   end
 
   # レシピを新たに保存
-  def self.create_new_recipe(user, basic_info, ingredients_and_instructions)
+  def create_new_recipe(user, basic_info, ingredients_and_instructions)
     recipe = user.recipes.new(
       title: basic_info[:title],
       source_url: basic_info[:source_url],
       source_site_name: basic_info[:source_site_name],
       scraped_at: basic_info[:scraped_at]
     )
-    recipe.set_ingredients_and_instructions(ingredients_and_instructions)
+    recipe.create_ingredients_and_instructions(ingredients_and_instructions)
     recipe.handle_image_upload(basic_info[:image_url])
 
     if recipe.save
-      return true
+      true
     else
-      Rails.logger.error recipe.errors.full_messages.join(", ")
-      return false
+      false
     end
   end
 
   # 材料、作り方をセット（create_new_recipe）
-  def set_ingredients_and_instructions(ingredients_and_instructions)
+  def create_ingredients_and_instructions(ingredients_and_instructions)
     ingredients_and_instructions[:ingredients].each do |ingredient_data|
       name = ingredient_data[:name]
       quantity = ingredient_data[:quantity]
@@ -112,7 +111,7 @@ class Recipe < ApplicationRecord
       # 単位が空の場合はデフォルトの値を設定
       unit = '--' if unit.blank?
 
-      self.ingredients.build(name:, quantity:, unit:)
+      ingredients.build(name:, quantity:, unit:)
     end
 
     ingredients_and_instructions[:instructions].each do |instruction_data|
@@ -122,16 +121,16 @@ class Recipe < ApplicationRecord
       # 作り方が空の場合はデフォルトの値を設定
       description = '-----' if description.blank?
 
-      self.instructions.build(step_number:, description:)
+      instructions.build(step_number:, description:)
     end
   end
 
   # 画像の保存とアップロード
   def handle_image_upload(image_url)
     return if image_url.blank?
-  
+
     self.remote_image_url = image_url # 画像のアップロード
-    self.save
+    save
   end
 
   # racsackで検索可能な属性を指定

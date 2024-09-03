@@ -6,6 +6,9 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <!-- faviconの設定 -->
+    <%= favicon_link_tag 'favicon.ico' %>
+
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="<%= @menu&.title || 'デフォルトタイトル' %>" />
     <meta property="og:description" content="メニュー表の説明文" />

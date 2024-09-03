@@ -22,6 +22,8 @@ ja:
     privacy_policy: プライバシーポリシー
     share_X: Xでシェア
     share_LINE: LINEでシェア
+  top:
+    how_to_use: 〜 使い方 〜
   users:
     new:
       title: 新規登録
@@ -229,6 +231,9 @@ ja:
     terms:
       to_top_page: トップページへ
       title: 利用規約
+    how_to_use:
+      to_top_page: トップページへ
+      title: アプリの使い方
   inquiry_mailer:
     inquiry: 新しい問い合わせ（Menu Maker）
     confirmation_email: お問い合わせ受付完了（Menu Maker）

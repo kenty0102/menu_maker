@@ -11,15 +11,16 @@
         <%= link_to t('footer.privacy_policy'), page_path('privacy'), class: "custom-link", data: { turbo: false } %>
       </div>
       <div class="w-100"></div>
-      <div class="col-12 d-flex justify-content-center align-items-center">
-        <%= link_to "https://twitter.com/share?text=【Menu Maker】%0a%0a&url=#{root_url}%0a&hashtags=MenuMaker", target: '_blank', data: { toggle: "tooltip", placement: "bottom" }, title: t('footer.share_X') do %>
-          <i class="fab fa-twitter x-icon-footer"></i>
-        <% end %>
-        <%= link_to image_tag("square-default.png", alt: "LINEでシェア", class: "line-icon-footer"), "https://social-plugins.line.me/lineit/share?url=#{root_url}&text=【Menu Maker】", class: "line-share-button", target: "_blank", data: { toggle: "tooltip", placement: "bottom" }, title: t('footer.share_LINE') %>
+      <div class="col-6 d-flex justify-content-end align-items-center">
+        <p class="app-share-footer">アプリをシェア　／</p>
+      </div>
+      <div class="col-1 d-flex justify-content-center align-items-center">
+        <%= link_to "Tweet", "https://twitter.com/share?text=【Menu Maker】%0a%0a&url=#{root_url}%0a&hashtags=MenuMaker", class: "twitter-share-button x-icon-footer", data: { size: "large", show_count: "false", toggle: "tooltip", placement: "bottom" }, title: t('footer.share_X'), target: "_blank" %>
+      </div>
+      <div class="col-5 d-flex justify-content-start align-items-center">
+        <%= link_to image_tag("wide-default.png", alt: "LINEでシェア", class: "line-icon-footer"), "https://social-plugins.line.me/lineit/share?url=#{root_url}&text=【Menu Maker】", class: "line-share-button", target: "_blank", data: { toggle: "tooltip", placement: "bottom" }, title: t('footer.share_LINE') %>
       </div>
     </div>
   </div>
-  <p class="text-center text-body-secondary py-3">Copyright &copy; 2024 Menu Maker</p>
+  <p class="text-center text-body-secondary py-2">Copyright &copy; 2024 Menu Maker</p>
 </footer>
-
-

@@ -9,11 +9,16 @@
     </div>
   </div>
   <h1 class="page-title text-center"><%= t('show.title') %></h1>
-  <div class="sns-share col-12 d-flex justify-content-end align-items-center">
-    <%= link_to "https://twitter.com/share?text=【#{@menu.title}】%0a%0a&url=#{menu_url(@menu)}%0a&hashtags=MenuMaker", target: '_blank', data: { toggle: "tooltip", placement: "bottom" }, title: t('.share_X') do %>
-      <i class="fab fa-twitter x-icon-menu"></i>
-    <% end %>
-    <%= link_to image_tag("square-default.png", alt: "LINEでシェア", class: "line-icon-menu"), "https://social-plugins.line.me/lineit/share?url=#{menu_url(@menu)}&text=【#{@menu.title}】", class: "line-share-button", target: "_blank", data: { toggle: "tooltip", placement: "bottom" }, title: t('.share_LINE') %>
+  <div class="row d-flex justify-content-end sns-share-button mb-3">
+    <div class="col-8 d-flex justify-content-end align-items-center">
+      <p class="app-share-menu"><span class="marker">メニュー表をシェア</span>　／</p>
+    </div>
+    <div class="col-1 d-flex justify-content-start align-items-center x-icon-menu">
+      <%= link_to "Tweet", "https://twitter.com/share?text=【#{@menu.title}】%0a%0a&url=#{menu_url(@menu)}%0a&hashtags=MenuMaker", class: "twitter-share-button x-icon-menu", data: { size: "large", show_count: "false", toggle: "tooltip", placement: "bottom" }, title: t('.share_X'), target: "_blank" %>
+    </div>
+    <div class="col-1 d-flex justify-content-end align-items-center">
+      <%= link_to image_tag("wide-default.png", alt: "LINEでシェア", class: "line-icon-menu"), "https://social-plugins.line.me/lineit/share?url=#{request.original_url}&text=【#{@menu.title}】", class: "line-share-button", target: "_blank", data: { toggle: "tooltip", placement: "bottom" }, title: t('.share_LINE') %>
+    </div>
   </div>
   <div class="col-12 d-flex justify-content-end align-items-center">
     <button data-action="click->menu#capture" class="btn btn-menu-imaging" id="capture-button"><%= t('show.download_menu') %></button>

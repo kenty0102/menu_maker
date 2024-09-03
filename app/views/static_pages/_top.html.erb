@@ -9,24 +9,35 @@
       <div class="container-fluid mt-4">
         <h2 class="text-center"><em>Menu Maker </em>とは？</h2>
         <p class="h5">
-          このアプリでは、クックパッドでレシピを検索し、お気に入りのレシピを簡単に保存することができます。
+          <br>このアプリでは、クックパッドでレシピを検索し、お気に入りのレシピを簡単に保存することができます。
           <br>保存したレシピから、あなたの好みに合わせたメニュー表を自由に作成可能です。
           <br>レシピのURLを入力するだけで自動保存ができる他、手動でレシピ情報を入力することもできます。
         </p>
       </div>
 
-      <div class="container border border-dark rounded col-lg-9 mt-3 mx-auto text-start">
-        <h3 class="how-to-use mt-3">〜 使い方 〜</h3>
+      <div class="container how-to-use border border-dark rounded col-lg-9 mt-3 mx-auto text-start">
+        <h3 class="mt-3">
+          <%= t('top.how_to_use') %>
+        </h3>
         <ol class="lead mt-3">
-          <li>&nbsp;&nbsp;アカウントを作成してログインします。</li>
-          <li>「レシピ検索」ページのリンクから、レシピを検索し、レシピページのURLをコピーします。</li>
-          <li>「レシピ保存」リンクから保存方法（URL or 手動）を選択し、レシピを保存します。</li>
-          <ul>
-            <li>URLの場合 : 1.でコピーしたURLを入力してレシピを取得</li>
-            <li>手動の場合 : レシピ情報を手動で入力してレシピを保存</li>
-          </ul>
-          <li>「メニュー表作成」ページで、3.で保存したレシピの中からメニューに載せるレシピを選んで、オリジナルのメニュー表を作成します。</li>
+          <li>アカウントを作成してログインします。</li>
+          <li>レシピを保存または作成します。
+            <ol>
+              <li>自動保存の場合
+                <ol>
+                  <li>【レシピ検索】からレシピを検索し、保存したいレシピのレシピページのURLをコピーします。</li>
+                  <li>【レシピ保存】から「自動で保存」を選択し、コピーしたURLを入力してレシピを保存します。</li>
+                </ol>
+              </li>
+              <li>手動保存の場合
+                <ol>
+                  <li>【レシピ保存】から「手動で保存」を選択して、レシピ情報を入力して保存（作成）します。</li>
+                </ol>
+              </li>
+            </ol>
+          <li>【メニュー表作成】から、メニュータイトルやコメントの入力、レシピ、デザインを選択してオリジナルのメニュー表を作成できます！</li>
         </ol>
+        <%= link_to "詳しい使い方はこちら", page_path('how_to_use'), class: "usage-details", data: { turbo: false } %>
       </div>
     </div>
   </div>

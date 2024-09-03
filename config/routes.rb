@@ -40,7 +40,8 @@ Rails.application.routes.draw do
   post 'oauth/callback', to: 'oauths#callback'
   # 静的ページ
   get '/terms', to: 'high_voltage/pages#show', id: 'terms' # 利用規約ページに対応するルート
-  get '/privacy', to: 'high_voltage/pages#show', id: 'privacy' # プライバシーポリシーページい対応するルート
+  get '/privacy', to: 'high_voltage/pages#show', id: 'privacy' # プライバシーポリシーページに対応するルート
+  get '/how_to_use', to: 'high_voltage/pages#show', id: 'how_to_use' # 使い方の説明ページに対応するルート
   # 問い合わせ
   resources :inquiries, only: [:new, :create] do
     get 'complete', on: :collection

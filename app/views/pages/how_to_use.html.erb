@@ -1,0 +1,80 @@
+<div class="container">
+  <div class="col d-flex justify-content-end align-items-center">
+    <span class="d-inline-block my-3">
+      <%= link_to t('.to_top_page'), root_path, class: "custom-link", data: { turbo: false } %>
+    </span>
+  </div>
+  <h1 class="page-title text-center" style="font-weight: 600;"><%= t('.title') %></h1>
+  <div class="card custom-card-usage mx-auto">
+    <ol>
+      <h2>
+        <li class="custom-margin-head">アカウントを作成してログイン
+          <ol>
+            <h3>
+            <li class="custom-margin">アカウント作成
+              <%= image_tag 'create_account_image_1.png', alt: 'アカウント作成の手順', class: 'img-fluid' %>
+              <%= image_tag 'create_account_image_2.png', alt: 'アカウント作成の手順', class: 'img-fluid custom-border' %>
+            </li>
+            <li class="custom-margin">ログイン
+              <%= image_tag 'login_image_1.png', alt: 'アカウント作成の手順', class: 'img-fluid' %>
+              <%= image_tag 'login_image_2.png', alt: 'アカウント作成の手順', class: 'img-fluid' %>
+            </li>
+            </h3>
+          </ol>
+        </li>
+        <li class="custom-margin-head">レシピを保存
+          <ol>
+            <h3>
+              <li class="custom-margin">自動保存の場合
+                <ol>
+                  <h4>
+                    <li class="custom-margin-para">【レシピ検索】タブを選択し、各サイトのリンクからレシピを検索し、保存したいレシピのページURLをコピー
+                      <%= image_tag 'search_image_1.png', alt: 'レシピ検索の手順', class: 'img-fluid' %>
+                      <%= image_tag 'search_image_2.png', alt: 'レシピ検索の手順', class: 'img-fluid custom-border' %>
+                    </li>
+                    <li class="custom-margin-para">【レシピ保存】タブを選択し、「自動で保存」を選択
+                      <%= image_tag 'auto_save_image_1.png', alt: '自動保存の手順', class: 'img-fluid custom-border' %>
+                    </li>
+                    <li class="custom-margin-para">コピーしておいたレシピページのURLを貼り付けて、レシピを保存
+                      <%= image_tag 'auto_save_image_2.png', alt: 'レシピ保存の手順', class: 'img-fluid custom-border' %>
+                    </li>
+                  </h4>
+                </ol>
+              </li>
+              <li class="custom-margin">手動保存の場合
+                <ol>
+                  <h4>
+                    <li class="custom-margin-para">【レシピ保存】タブを選択し、「手動で保存」を選択
+                      <%= image_tag 'manual_save_image_1.png', alt: '手動保存の手順', class: 'img-fluid custom-border' %>
+                    </li>
+                    <li class="custom-margin-para">レシピタイトル、材料、作り方の入力、レシピ画像のアップロード（任意）を行い、レシピを保存
+                      <%= image_tag 'manual_save_image_2.png', alt: '手動入力の手順', class: 'img-fluid custom-border' %>
+                    </li>
+                    <li class="custom-margin-para">自作レシピはSNSでシェア（X,LINE）できます
+                      <%= image_tag 'recipe_sns_share_image.png', alt: 'レシピシェアの手順', class: 'img-fluid' %>
+                    </li>
+                  </h4>
+                </ol>
+              </li>
+            </h3>
+          </ol>
+        </li>
+        <li class="custom-margin">メニュー表作成
+          <ol>
+            <h3>
+              <li class="custom-margin">【メニュー表作成】タブを選択
+                <%= image_tag 'create_menu_image_1.png', alt: 'メニュー表作成の手順', class: 'img-fluid custom-border' %>
+              </li>
+              <li class="custom-margin">メニュータイトルの入力、レシピの選択（複数可）、コメント入力（任意）、デザイン選択をして、メニュー表を作成
+                <%= image_tag 'create_menu_image_2.png', alt: 'メニュー表の完成手順', class: 'img-fluid custom-border' %>
+              </li>
+              <li class="custom-margin">作成したメニュー表は画像としてダウンロードしたり、SNSでシェア（X,LINE）できます
+                <%= image_tag 'menu_sns_share_image.png', alt: 'メニューシェアの手順', class: 'img-fluid' %>
+              </li>
+            </h3>
+          </ol>
+        </li>
+      </h2>
+    </ol>
+  </div>
+</div>

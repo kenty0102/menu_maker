@@ -11,22 +11,26 @@
   </div>
   <h1 class="page-title text-center"><%= t('.title') %></h1>
   <div class="card custom-card-manual-save mx-auto pb-3">
-    <div class="row show-recipe-title">
+    <div class="row d-flex justify-content-end show-recipe-title">
       <div class="col-12 d-flex justify-content-center">
         <h2><%= @recipe.title %></h2>
       </div>
-      <div class="col-11 d-flex justify-content-end">
+      <div class="col-3 d-flex justify-content-start">
         <% if @recipe.source_site_name.present? %>
           <p>出典: <%= link_to @recipe.source_site_name, @recipe.source_url, class: "no-underline", target: "_blank" %></p>
         <% else %>
-          <div class="sns-share">
-            <%= link_to "https://twitter.com/share?text=【#{@recipe.title}】%0a%0a&url=#{recipe_url(@recipe)}%0a&hashtags=MenuMaker", target: '_blank', data: { toggle: "tooltip", placement: "bottom" }, title: t('.share_X') do %>
-              <i class="fab fa-twitter x-icon-recipe"></i>
-            <% end %>
-            <%= link_to image_tag("square-default.png", alt: "LINEでシェア", class: "line-icon-recipe"), "https://social-plugins.line.me/lineit/share?url=#{request.original_url}&text=【#{@recipe.title}】", class: "line-share-button", target: "_blank", data: { toggle: "tooltip", placement: "bottom" }, title: t('.share_LINE') %>
-          </div>
           <p>出典: 自作レシピ</p>
         <% end %>
+      </div>
+      <div class="w-100"></div>
+      <div class="col-8 d-flex justify-content-end align-items-center">
+        <p class="app-share-recipe"><span class="marker">レシピをシェア</span>　／</p>
+      </div>
+      <div class="col-2 d-flex justify-content-start align-items-center x-icon-recipe">
+        <%= link_to "Tweet", "https://twitter.com/share?text=【#{@recipe.title}】%0a%0a&url=#{recipe_url(@recipe)}%0a&hashtags=MenuMaker", class: "twitter-share-button", data: { size: "large", show_count: "false", toggle: "tooltip", placement: "bottom" }, title: t('.share_X'), target: "_blank" %>
+      </div>
+      <div class="col-1 d-flex justify-content-end align-items-center">
+        <%= link_to image_tag("wide-default.png", alt: "LINEでシェア", class: "line-icon-recipe"), "https://social-plugins.line.me/lineit/share?url=#{request.original_url}&text=【#{@recipe.title}】", class: "line-share-button", target: "_blank", data: { toggle: "tooltip", placement: "bottom" }, title: t('.share_LINE') %>
       </div>
     </div>
     <div class="container px-3">

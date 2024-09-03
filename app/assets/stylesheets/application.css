@@ -67,7 +67,7 @@ footer {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 150px;
+  height: 160px;
 }
 
 .page-title {
@@ -550,64 +550,40 @@ footer {
   background-color: #939393;
 }
 
-.fa-twitter:before {
-  content: '𝕏';
-  font-family: unset;
-  font-weight: bold;
-  color:#EFEFEF;
-  background-color: #000000;
-  border-radius: 2.5px;
-}
-.x-icon-menu.fa-twitter:before {
-  font-size: 30px;
-  padding-top: 0.2rem;
-  padding-bottom: 0.3rem;
-  padding-left: 0.6rem;
-  padding-right: 0.6rem;
-}
-.x-icon-menu {
-  margin-bottom: 1.5rem;
-}
-.x-icon-recipe.fa-twitter:before {
-  font-size: 21px;
-  padding-top: 0.2rem;
-  padding-bottom: 0.3rem;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-}
-.x-icon-recipe {
-  margin-bottom: 1.5rem;
-}
-.x-icon-footer.fa-twitter:before {
-  font-size: 21px;
-  padding-top: 0.2rem;
-  padding-bottom: 0.3rem;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-}
-.x-icon-footer {
+.app-share-footer {
+  font-size: 18px;
   margin-top: 1.1rem;
+}
+.app-share-recipe {
+  font-size: 20px;
+  margin-top: 1rem;
+}
+.app-share-menu {
+  font-size: 20px;
+  margin-top: 1rem;
+}
+.marker {
+  background: linear-gradient(transparent 30%, #fab70f 80%);
+  padding-bottom: 0.1rem;
+}
+
+.x-icon-menu {
   margin-right: 1rem;
 }
 
 .line-icon-menu {
-  width: 2.5rem;
+  width: 7.5rem;
   height: auto;
-  margin-bottom: 1.5rem;
-  margin-left: 1rem;
+
 }
 .line-icon-recipe {
-  width: 1.8rem;
+  width: 7.5rem;
   height: auto;
-  margin-bottom: 1.3rem;
-  margin-left: 0.5rem;
-  margin-right: 1rem;
+  margin-right: 3.5rem;
 }
 .line-icon-footer {
-  width: 1.8rem;
+  width: 7.5rem;
   height: auto;
-  margin-top: 1rem;
-  margin-left: 1rem;
 }
 
 .note-label {
@@ -649,6 +625,43 @@ footer {
   color: #646464;
 }
 
+.how-to-use {
+  background-color: #FFD982;
+}
+.custom-card-usage {
+  max-width: 100%; /* 必要に応じて調整 */
+  margin: auto; /* カードを中央揃えにする */
+  padding: 3rem;
+  background-color: #ffda82d8;
+}
+.custom-margin-head {
+  margin: 2.5rem auto;
+  border-bottom: 2px solid #a8a8a8;
+  padding-bottom: 1rem;
+}
+.custom-margin {
+  margin: 2rem auto;
+}
+.custom-margin-para {
+  margin: 1.5rem auto;
+}
+.img-fluid {
+  margin-bottom: 1.5rem;
+  margin-top: 0.8rem;
+}
+.custom-border {
+  border-bottom: 1px solid #a8a8a8;
+  padding-bottom: 3rem;
+}
+.usage-details {
+  font-size: 20px;
+  font-style: italic;
+  color: #57ae4f;
+}
+.usage-details:hover {
+  color: #499342;
+}
+rgb(74, 150, 67)
 /* タブレット向けのスタイル */
 @media (min-width: 768px) and (max-width: 992px) {
   body {

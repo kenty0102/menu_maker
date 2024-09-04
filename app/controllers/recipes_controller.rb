@@ -52,6 +52,23 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
+    image_url_with_params = @recipe.image.url # S3の画像URLを取得
+    image_url = URI.parse(image_url_with_params).tap { |uri| uri.query = nil }.to_s # クエリパラメータを取り除く
+
+    set_meta_tags(
+      title: @recipe.title,
+      description: "このレシピでは、#{@recipe.title}を作るための詳細な手順を紹介します。必要な材料や調理方法をチェックして、美味しい料理を楽しんでください！",
+      og: {
+        title: @recipe.title,
+        description: "このレシピでは、#{@recipe.title}を作るための詳細な手順を紹介します。必要な材料や調理方法をチェックして、美味しい料理を楽しんでください！",
+        type: 'article',
+        url: request.original_url,
+        image: image_url # レシピに関連する画像
+      },
+      twitter: {
+        card: 'summary'
+      }
+    )
   end
 
   def new

@@ -57,6 +57,21 @@ class MenusController < ApplicationController
       format.html # `show.html.erb` ビューを表示
       format.json { render json: { upload_image: session[:upload_image], menu: @menu, recipes: @recipes } }
     end
+
+    set_meta_tags(
+      title: @menu.title,
+      description: "選りすぐりの料理を集めた特別なメニューです。友人や家族と一緒に楽しむための、素晴らしい食事のアイデアを提供します。",
+      og: {
+        title: @menu.title,
+        description: "選りすぐりの料理を集めた特別なメニューです。友人や家族と一緒に楽しむための、素晴らしい食事のアイデアを提供します。",
+        type: 'article',
+        url: request.original_url,
+        image: @menu.image_url # メニュー表に関連する画像
+      },
+      twitter: {
+        card: 'summary'
+      }
+    )
   end
 
   def new

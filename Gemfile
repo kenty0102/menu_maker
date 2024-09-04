@@ -62,6 +62,8 @@ gem 'ransack', '~> 4.2', '>= 4.2.1'
 
 gem 'googleauth'
 
+gem 'meta-tags'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]

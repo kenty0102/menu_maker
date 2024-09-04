@@ -86,6 +86,8 @@ test:
 #
 production:
   <<: *default
-  database: menu_maker_production
+  database: menu-maker-db
   username: menu_maker
   password: <%= ENV["MENU_MAKER_DATABASE_PASSWORD"] %>
+  host: menu-maker-db.flycast
+  port: 5432

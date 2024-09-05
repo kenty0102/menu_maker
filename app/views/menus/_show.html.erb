@@ -13,8 +13,8 @@
     <div class="col-8 d-flex justify-content-end align-items-center">
       <p class="app-share-menu"><span class="marker">メニュー表をシェア</span>　／</p>
     </div>
-    <div class="col-1 d-flex justify-content-start align-items-center x-icon-menu">
-      <%= link_to "Tweet", "https://twitter.com/share?text=【#{@menu.title}】%0a%0a&url=#{menu_url(@menu)}%0a&hashtags=MenuMaker", class: "twitter-share-button x-icon-menu", data: { size: "large", show_count: "false", toggle: "tooltip", placement: "bottom" }, title: t('.share_X'), target: "_blank" %>
+    <div class="col-1 d-flex justify-content-end align-items-center x-icon-menu">
+      <%= link_to "Tweet", "https://twitter.com/share?text=【#{@menu.title}】%0a%0a&url=#{menu_url(@menu)}%0a&hashtags=MenuMaker", class: "twitter-share-button x-icon-menu", data: { size: "small", show_count: "false", toggle: "tooltip", placement: "bottom" }, title: t('.share_X'), target: "_blank" %>
     </div>
     <div class="col-1 d-flex justify-content-end align-items-center">
       <%= link_to image_tag("wide-default.png", alt: "LINEでシェア", class: "line-icon-menu"), "https://social-plugins.line.me/lineit/share?url=#{request.original_url}&text=【#{@menu.title}】", class: "line-share-button", target: "_blank", data: { toggle: "tooltip", placement: "bottom" }, title: t('.share_LINE') %>

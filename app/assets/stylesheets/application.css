@@ -51,6 +51,16 @@ header {
   color: #61C359; /* ホバー時に色を変える場合 */
 }
 
+.custom-link-footer {
+  color: #4C4C4C;
+  text-decoration: none; /* アンダーラインを消す場合 */
+  font-size: 20px;
+  text-indent: 1px;
+}
+.custom-link-footer:hover {
+  color: #61C359; /* ホバー時に色を変える場合 */
+}
+
 .navbar-nav {
   display: flex;
   justify-content: space-between;
@@ -260,6 +270,17 @@ footer {
   width: 100%;
   height: 100%;
 }
+.source-site {
+  font-size: 18px;
+}
+
+.ingredients {
+  width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 
 .btn-recipe-edit {
   background-color: #61C359;
@@ -551,16 +572,16 @@ footer {
 }
 
 .app-share-footer {
-  font-size: 18px;
+  font-size: 15px;
   margin-top: 1.1rem;
 }
 .app-share-recipe {
-  font-size: 20px;
-  margin-top: 1rem;
+  font-size: 18px;
+  margin-top: 1.25rem;
 }
 .app-share-menu {
-  font-size: 20px;
-  margin-top: 1rem;
+  font-size: 18px;
+  margin-top: 1.1rem;
 }
 .marker {
   background: linear-gradient(transparent 30%, #fab70f 80%);
@@ -568,22 +589,29 @@ footer {
 }
 
 .x-icon-menu {
-  margin-right: 1rem;
+  margin-right: 1.5rem;
 }
 
 .line-icon-menu {
-  width: 7.5rem;
+  width: 5.7rem;
   height: auto;
+  margin-bottom: 0.1rem;
 
 }
+
+.x-icon-recipe {
+  margin-right: 2.5rem;
+  margin-top: 0.25rem;
+}
 .line-icon-recipe {
-  width: 7.5rem;
+  width: 5.7rem;
   height: auto;
   margin-right: 3.5rem;
 }
 .line-icon-footer {
-  width: 7.5rem;
+  width: 5.6rem;
   height: auto;
+  margin-bottom: 0.2rem;
 }
 
 .note-label {
@@ -599,6 +627,10 @@ footer {
 }
 .note-label h5 {
   margin-bottom: 0;
+}
+.new-menu .form-select{
+  width: 57%;
+  margin-right: 4rem;
 }
 
 .separator {
@@ -646,12 +678,12 @@ footer {
   margin: 1.5rem auto;
 }
 .img-fluid {
+  border: solid 2px #ffa600;
   margin-bottom: 1.5rem;
   margin-top: 0.8rem;
 }
 .custom-border {
-  border-bottom: 1px solid #a8a8a8;
-  padding-bottom: 3rem;
+  margin-bottom: 3rem;
 }
 .usage-details {
   font-size: 20px;
@@ -661,11 +693,11 @@ footer {
 .usage-details:hover {
   color: #499342;
 }
-rgb(74, 150, 67)
+
 /* タブレット向けのスタイル */
-@media (min-width: 768px) and (max-width: 992px) {
+@media (min-width: 768px) and (max-width: 1024px) {
   body {
-    font-size: 20px; /* 基本のフォントサイズを10pxに */
+    font-size: 18px; /* 基本のフォントサイズを10pxに */
     padding-bottom: 160px;
   }
   footer {
@@ -673,7 +705,11 @@ rgb(74, 150, 67)
   }
 
   .custom-link {
-    font-size: 20px; /* custom-linkのフォントサイズを10pxに */
+    font-size: 18px; /* custom-linkのフォントサイズを10pxに */
+    margin-right: 1rem;
+  }
+  .custom-link-footer {
+    font-size: 18px;
     margin-right: 1rem;
   }
 
@@ -706,6 +742,14 @@ rgb(74, 150, 67)
 
   .recipes-row {
     margin-left: 1rem;
+  }
+
+  .ingredients {
+    font-size: 14px;
+    width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .ingredient-name {
@@ -783,6 +827,14 @@ rgb(74, 150, 67)
     margin-bottom: 1.5rem;
   }
 
+  .menu-form-label {
+    font-size: 26px;
+  }
+  .menu-form-control {
+    width: 92%;
+    font-size: 20px;
+  }
+
   .show-recipe-photo {
     width: 100%;
     height: auto;
@@ -797,6 +849,14 @@ rgb(74, 150, 67)
     font-size: 15px;
     padding-left: 1rem;
     padding-right: 1rem;
+  }
+
+  .custom-card-profile-width {
+    margin-bottom: 3rem;
+  }
+
+  .profile-container {
+    padding-bottom: 3rem;
   }
 
   .btn-primary-profile {
@@ -825,23 +885,73 @@ rgb(74, 150, 67)
     font-size: 15px;
   }
 
-  .x-icon-recipe.fa-twitter:before {
-    font-size: 18px;
-    padding-top: 0.2rem;
-    padding-bottom: 0.3rem;
-    padding-left: 0.4rem;
-    padding-right: 0.4rem;
+  .app-share-recipe{
+    font-size: 17px;
   }
-  .x-icon-recipe {
-    margin-top: 0.2rem;
+  .line-icon-footer {
+    margin-bottom: 0.2rem;
+    margin-left: 0.5rem;
+  }
+  .line-icon-recipe {
+    margin-right: 1rem;
   }
 
-  .line-icon-recipe {
-    width: 1.6rem;
-    height: auto;
-    margin-left: 0.5rem;
+  .app-share-menu {
     margin-right: 1rem;
-    margin-top: 0.2rem;
+    font-size: 17px;
+  }
+  .line-icon-menu {
+    margin-bottom: 0.2rem;
+  }
+  .x-icon-menu {
+    margin-right: 2.5rem;
+  }
+
+  .how-to-use {
+    margin-bottom: 3rem;
+  }
+  .lead {
+    font-size: 18px;
+  }
+  .usage-details {
+    font-size: 16px;
+  }
+
+  .note-label h5 {
+    font-size: 16px;
+  }
+  .note-input .form-control {
+    font-size: 14px;
+  }
+  .add-note {
+    margin-right: 3rem;
+  }
+  .new-menu .form-select {
+    width: 76%;
+    font-size: 16px;
+    margin-right: 1rem;
+    margin-bottom: 3rem;
+  }
+  .new-menu .btn-primary {
+    width: 75%;
+    font-size: 18px;
+    margin-left: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .edit-menu .form-select{
+    width: 62%;
+    font-size: 16px;
+    margin-right: 3rem;
+    margin-bottom: 3rem;
+  }
+  .edit-menu .btn-primary {
+    width: 75%;
+    font-size: 18px;
+    margin-bottom: 3rem;
+  }
+  .source-site {
+    font-size: 16px;
   }
 }
 
@@ -849,14 +959,20 @@ rgb(74, 150, 67)
 @media (max-width: 767px) {
   body {
     font-size: 10px; /* 基本のフォントサイズを10pxに */
-    padding-bottom: 100px;
+    padding-bottom: 130px;
   }
   footer {
-    height: 100px;
+    height: 130px;
   }
   
   .custom-link {
     font-size: 10px; /* custom-linkのフォントサイズを10pxに */
+  }
+  .custom-link-footer {
+    font-size: 12px;
+    color: #4C4C4C;
+    text-decoration: none; /* アンダーラインを消す場合 */
+    margin-right: 1rem;
   }
   
   .logo {
@@ -891,10 +1007,21 @@ rgb(74, 150, 67)
   }
 
   .how-to-use {
+    padding-bottom: 0.25rem;
+    margin-bottom: 2rem;
+  }
+  .how-to-use h3 {
     font-size: 18px;
+  }
+  
+  ol, ul {
+    padding-left: 0.8rem;
   }
 
   .lead {
+    font-size: 12px;
+  }
+  .usage-details {
     font-size: 11px;
   }
 
@@ -982,6 +1109,13 @@ rgb(74, 150, 67)
   .recipes-row {
     margin-left: 0;
   }
+  .ingredients {
+    font-size: 9px;
+    width: 120px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
   .ingredient-name {
     width: 90px;
@@ -1040,6 +1174,10 @@ rgb(74, 150, 67)
 
   .recipe-title {
     font-size: 15px;
+  }
+  
+  .source-site {
+    font-size: 12px;
   }
 
   .btn-recipe-edit {
@@ -1167,7 +1305,7 @@ rgb(74, 150, 67)
   .custom-card-profile-width {
     min-width: 90%;
     margin: auto;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     padding-left: 0.5rem;
     padding-right: 0.5rem;
   }
@@ -1245,51 +1383,98 @@ rgb(74, 150, 67)
     font-size: 12px;
   }
 
-  .x-icon-menu.fa-twitter:before {
-    font-size: 21px;
-    padding-top: 0.2rem;
-    padding-bottom: 0.3rem;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
+  .app-share-footer {
+    font-size: 12px;
+    padding-right: 1rem;
   }
-  .x-icon-recipe.fa-twitter:before {
-    font-size: 9px;
-    padding-top: 0.2rem;
-    padding-bottom: 0.3rem;
-    padding-left: 0.35rem;
-    padding-right: 0.35rem;
+  .app-share-recipe {
+    font-size: 12px;
+    padding-right: 2rem;
+    margin-right: 1rem;
+    width: 100%;
   }
+  .app-share-menu {
+    font-size: 12px;
+    padding-left: 2rem;
+    margin-right: 2rem;
+    width: 100%;
+  }
+
   .x-icon-recipe {
-    margin-bottom: 1rem;
+    padding-right: rem;
+    margin-bottom: 2.25rem;
+    margin-right: 6rem;
   }
-  .x-icon-footer.fa-twitter:before {
-    font-size: 11px;
-    padding-top: 0.2rem;
-    padding-bottom: 0.3rem;
-    padding-left: 0.4rem;
-    padding-right: 0.4rem;
+  .x-icon-menu {
+    padding-right: rem;
+    margin-bottom: 1rem;
+    margin-right: 6.9rem;
   }
   .x-icon-footer {
     margin-top: 1.1rem;
-    margin-right: 0.5rem;
+    padding-left: 5rem;
   }
   
   .line-icon-menu {
-    width: 1.8rem;
+    width: 5.6rem;
     height: auto;
-    margin-left: 0.5rem;
+    margin-right: 2rem;
+    margin-left: 0;
+    margin-bottom: 1rem;
   }
   .line-icon-recipe {
-    width: 1rem;
+    width: 5.6rem;
     height: auto;
-    margin-bottom: 1.3rem;
-    margin-left: 0.5rem;
-    margin-right: 0.8rem;
+    margin-right: 1rem;
+    margin-bottom: 2rem;
   }
   .line-icon-footer {
-    width: 1.2rem;
+    width: 5.6rem;
     height: auto;
-    margin-top: 1rem;
+    margin-top: 0.25rem;
+    margin-left: 1rem;
+  }
+
+
+  .note-label h5 {
+    font-size: 9px;
+  }
+  .note-input .form-control {
+    font-size: 7.5px;
+    padding: 0.5rem 0.1rem;
+  }
+  .add-note {
+    margin-right: 0;
+  }
+  .new-menu .form-select {
+    width: 90%;
+    font-size: 8px;
+    padding: 0.5rem 0.25rem;
+    margin-right: 0;
+    margin-bottom: 2rem;
+  }
+  .new-menu .btn-primary {
+    width: 75%;
+    font-size: 10px;
+    text-indent: 0;
     margin-left: 0.5rem;
+    letter-spacing: 0.05rem;
+    margin-bottom: 2rem;
+  }
+
+  .edit-menu .form-select{
+    width: 80%;
+    font-size: 8px;
+    padding: 0.5rem 0.25rem;
+    margin-right: 0;
+    margin-bottom: 2rem;
+  }
+  .edit-menu .btn-primary {
+    width: 75%;
+    font-size: 10px;
+    text-indent: 0;
+    margin-left: 0.5rem;
+    letter-spacing: 0.05rem;
+    margin-bottom: 2rem;
   }
 }

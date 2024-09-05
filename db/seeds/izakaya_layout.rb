@@ -11,15 +11,14 @@ izakaya_layout = {
     "color" => "#000000"
   },
   "menu-container" => {
-    "width" => "100%",
     "max-width" => "1200px",
     "margin" => "0 auto",
-    "padding" => "50px 10rem"
+    "padding" => "2rem 8rem"
   },
   "menu-title" => {
     "text-align" => "center",
     "font-size" => "70px",
-    "margin-bottom" => "40px"
+    "margin-bottom" => "2rem"
   },
   "title-under" => {
     "background-image" => "url('/assets/izakaya_image_title.png')",
@@ -29,11 +28,11 @@ izakaya_layout = {
     "padding-bottom" => "1.7em"
   },
   "menu-recipes" => {
-    "font-size" => "40px",
-    "padding" => "30px 0"
+    "font-size" => "45px",
+    "padding" => "1rem 0"
   },
   "recipe-title" => {
-    "margin-top" => "50px"
+    "margin-top" => "2rem"
   },
   "recipe-note" => {
     "font-size" => "30px"
@@ -73,17 +72,18 @@ izakaya_layout = {
   },
   "media-queries" => {
     "tablet" => {
-      "media" => "min-width: 768px and max-width: 992px",
+      "media" => "min-width: 696px and max-width: 936px",
       "styles" => {
         ".menu-container" => {
           "padding-left" => "5rem",
           "padding-right" => "5rem",
           "padding-top" => "1.5rem",
-          "padding-bottom" => "0",
+          "padding-bottom" => "1.5rem",
           "margin-bottom" => "0"
         },
         ".menu-title" => {
           "font-size" => "50px",
+          "margin-top" => "3rem",
           "margin-bottom" => "3.5rem"
         },
         ".menu-recipes" => {
@@ -91,13 +91,16 @@ izakaya_layout = {
           "padding-bottom" => "0"
         },
         ".recipe-title" => {
-          "font-size" => "35px",
+          "font-size" => "38px",
           "padding-left" => "1.5rem",
           "padding-right" => "1.5rem",
-          "margin-top" => "1.5rem"
+          "margin-top" => "2.5rem"
         },
         ".recipe-note" => {
-          "font-size" => "20px"
+          "font-size" => "25px",
+          "padding-left" => "1.5rem",
+          "padding-right" => "1.5rem",
+          "margin-top" => "0"
         },
         ".illustration-curry" => {
           "width" => "200px",
@@ -117,7 +120,7 @@ izakaya_layout = {
       }
     },
     "smartphone" => {
-      "media" => "max-width: 768px",
+      "media" => "max-width: 695px",
       "styles" => {
         ".menu-container" => {
           "padding-left" => "2rem",
@@ -127,7 +130,8 @@ izakaya_layout = {
           "margin-bottom" => "0"
         },
         ".menu-title" => {
-          "font-size" => "20px",
+          "font-size" => "26px",
+          "margin-top" => "2rem",
           "margin-bottom" => "2.5rem"
         },
         ".menu-recipes" => {
@@ -135,13 +139,16 @@ izakaya_layout = {
           "padding-bottom" => "0"
         },
         ".recipe-title" => {
-          "font-size" => "15px",
+          "font-size" => "17px",
           "padding-left" => "1.5rem",
           "padding-right" => "1.5rem",
           "margin-top" => "1.5rem"
         },
         ".recipe-note" => {
-          "font-size" => "10px"
+          "font-size" => "10px",
+          "padding-left" => "1.5rem",
+          "padding-right" => "1.5rem",
+          "margin-top" => "0"
         },
         ".illustration-curry" => {
           "width" => "120px",

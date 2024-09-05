@@ -104,9 +104,9 @@ ja:
       to_top_page: トップページへ
       title: レシピの保存方法
       auto_save: 自動で保存
-      save_via_url: 対象レシピのURL入力で保存
+      save_via_url: レシピページのURL入力で保存
       manual_save: 手動で保存
-      save_manually: レシピを手動で保存
+      save_manually: レシピを手動で作成
       save_own_recipe: 自作のレシピを保存する場合はこちら
       cannot_save_automatically: 自動保存ができない場合はこちら
     auto_save:

@@ -959,10 +959,10 @@ footer {
 @media (max-width: 767px) {
   body {
     font-size: 10px; /* 基本のフォントサイズを10pxに */
-    padding-bottom: 130px;
+    padding-bottom: 135px;
   }
   footer {
-    height: 130px;
+    height: 135px;
   }
   
   .custom-link {
@@ -1431,7 +1431,7 @@ footer {
   .line-icon-footer {
     width: 5.6rem;
     height: auto;
-    margin-top: 0.25rem;
+    margin-top: 0.1rem;
     margin-left: 1rem;
   }
 

@@ -20,8 +20,6 @@ ja:
     inquiry: お問い合わせ
     terms_of_use: 利用規約
     privacy_policy: プライバシーポリシー
-    share_X: Xでシェア
-    share_LINE: LINEでシェア
   top:
     how_to_use: 〜 使い方 〜
   users:
@@ -141,8 +139,6 @@ ja:
       instructions: 〜作り方〜
       edit: 編集
       delete: 削除
-      share_X: Xでシェア
-      share_LINE: LINEでシェア
     before_login_show:
       title: 自作レシピ
     edit:
@@ -210,8 +206,6 @@ ja:
     edit: メニュー表の編集
     delete: メニュー表を削除
     download_menu: メニュー表を画像としてダウンロード
-    share_X: Xでシェア
-    share_LINE: LINEでシェア
   before_login_show:
     to_top_page: トップページへ
     ingredients: 〜材料〜

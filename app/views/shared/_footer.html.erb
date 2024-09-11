@@ -15,10 +15,10 @@
         <p class="app-share-footer">アプリをシェア　／</p>
       </div>
       <div class="col-1 d-flex justify-content-center align-items-center">
-        <%= link_to "Tweet", "https://twitter.com/share?text=【Menu Maker】%0a%0a&url=#{root_url}%0a&hashtags=MenuMaker", class: "twitter-share-button x-icon-footer", data: { size: "small", show_count: "false", toggle: "tooltip", placement: "bottom" }, title: t('footer.share_X'), target: "_blank" %>
+        <%= link_to "Tweet", "https://twitter.com/share?text=【Menu Maker】%0a%0a&url=#{root_url}%0a&hashtags=MenuMaker", class: "twitter-share-button x-icon-footer", data: { size: "small", show_count: "false" }, target: "_blank" %>
       </div>
       <div class="col-5 d-flex justify-content-start align-items-center">
-        <%= link_to image_tag("wide-default.png", alt: "LINEでシェア", class: "line-icon-footer"), "https://social-plugins.line.me/lineit/share?url=#{root_url}&text=【Menu Maker】", class: "line-share-button", target: "_blank", data: { toggle: "tooltip", placement: "bottom" }, title: t('footer.share_LINE') %>
+        <%= link_to image_tag("wide-default.png", alt: "LINEでシェア", class: "line-icon-footer"), "https://social-plugins.line.me/lineit/share?url=#{root_url}&text=【Menu Maker】", class: "line-share-button icon-footer", target: "_blank" %>
       </div>
     </div>
   </div>

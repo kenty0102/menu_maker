@@ -30,10 +30,10 @@
           <p class="app-share-recipe"><span class="marker">レシピをシェア</span>　／</p>
         </div>
         <div class="col-1 d-flex justify-content-center align-items-center x-icon-recipe">
-          <%= link_to "Tweet", "https://twitter.com/share?text=【#{@recipe.title}】%0a%0a&url=#{recipe_url(@recipe)}%0a&hashtags=MenuMaker", class: "twitter-share-button", data: { size: "small", show_count: "false", toggle: "tooltip", placement: "bottom" }, title: t('.share_X'), target: "_blank" %>
+          <%= link_to "Tweet", "https://twitter.com/share?text=【#{@recipe.title}】%0a%0a&url=#{recipe_url(@recipe)}%0a&hashtags=MenuMaker", class: "twitter-share-button x-icon-recipe", data: { size: "small", show_count: "false" }, target: "_blank" %>
         </div>
         <div class="col-2 d-flex justify-content-end align-items-center">
-          <%= link_to image_tag("wide-default.png", alt: "LINEでシェア", class: "line-icon-recipe"), "https://social-plugins.line.me/lineit/share?url=#{request.original_url}&text=【#{@recipe.title}】", class: "line-share-button", target: "_blank", data: { toggle: "tooltip", placement: "bottom" }, title: t('.share_LINE') %>
+          <%= link_to image_tag("wide-default.png", alt: "LINEでシェア", class: "line-icon-recipe"), "https://social-plugins.line.me/lineit/share?url=#{request.original_url}&text=【#{@recipe.title}】", class: "line-share-button icon-recipe", target: "_blank" %>
         </div>
       <% end %>
     </div>

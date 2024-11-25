@@ -28,3 +28,30 @@
     </div>
   </div>
 </div>
+<h1>レシピ検索</h1>
+
+<!-- 検索フォーム -->
+<%= form_with url: search_recipes_path, method: :get, local: true do %>
+  <div>
+    <%= label_tag :query, "レシピを検索" %>
+    <%= text_field_tag :query, params[:query], placeholder: "例: カレー" %>
+    <%= submit_tag "検索" %>
+  </div>
+<% end %>
+
+<!-- 検索結果表示 -->
+<% if @recipes.present? %>
+  <h2>検索結果:</h2>
+  <ul>
+    <% @recipes.each do |recipe| %>
+      <li>
+        <h3><%= link_to recipe[:title], recipe[:source_url], target: "_blank" %></h3>
+        <p><%= recipe[:site_name] %></p>
+        <%= image_tag recipe[:image_url], alt: recipe[:title], width: 150 if recipe[:image_url].present? %>
+      </li>
+    <% end %>
+  </ul>
+<% elsif params[:query].present? %>
+  <p>該当するレシピは見つかりませんでした。</p>
+<% end %>
+

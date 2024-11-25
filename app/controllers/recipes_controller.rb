@@ -1,8 +1,21 @@
 class RecipesController < ApplicationController
   require 'mechanize'
+  require 'cgi'
   skip_before_action :require_login, only: :show
 
-  def search; end
+  def search
+    @query = params[:query]
+    @recipes = []
+
+    if @query.present?
+      # Cookpadからレシピを取得
+      @recipes += scrape_cookpad(@query)
+      # DELISH KITCHENからレシピを取得
+      @recipes += scrape_delish_kitchen(@query)
+    end
+    
+    render :search
+  end
 
   def save_options; end
 
@@ -149,4 +162,24 @@ class RecipesController < ApplicationController
     end
     params
   end
+
+  # クックパッドのスクレイピング処理
+  def scrape_cookpad(query)
+    agent = Mechanize.new
+    recipes = []
+    search_url = "https://cookpad.com/jp/search/#{CGI.escape(query)}?event=search.history&order=recent"
+    page = agent.get(search_url)
+
+    page.search('#search-recipes-list li[data-search-tracking-target="result"]').each do |recipe_element|
+      title_element = recipe_element.at('h2 a')
+      next unless title_element
+
+      title = title_element.text.strip
+      source_url = "https://cookpad.com" + title_element['href']
+      image_url = recipe_element.at('.flex-none picture img')['src'] if recipe_element.at('picture img')
+      recipes << { title: title, source_url: source_url, image_url: image_url, site_name: 'Cookpad' }
+    end
+    recipes
+  end
+
 end

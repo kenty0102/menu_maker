@@ -176,10 +176,26 @@ class RecipesController < ApplicationController
 
       title = title_element.text.strip
       source_url = "https://cookpad.com" + title_element['href']
-      image_url = recipe_element.at('.flex-none picture img')['src'] if recipe_element.at('picture img')
-      recipes << { title: title, source_url: source_url, image_url: image_url, site_name: 'Cookpad' }
+      recipes << { title: title, source_url: source_url, site_name: 'Cookpad' }
     end
     recipes
   end
 
+  # DELISH KITCHENのスクレイピング処理
+  def scrape_delish_kitchen(query)
+    agent = Mechanize.new
+    recipes = []
+    search_url = "https://delishkitchen.tv/search?q=#{CGI.escape(query)}"
+    page = agent.get(search_url)
+
+    page.search('.delish-recipes .delish-recipe-item-card').each do |recipe_element|
+      title_element = recipe_element.at('.item-card__title')
+      next unless title_element
+
+      title = title_element.text.strip
+      source_url = "https://delishkitchen.tv" + recipe_element.at('a')['href']
+      recipes << { title: title, source_url: source_url, site_name: 'DELISH KITCHEN' }
+    end
+    recipes
+  end
 end

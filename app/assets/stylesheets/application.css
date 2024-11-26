@@ -694,6 +694,24 @@ footer {
   color: #499342;
 }
 
+.recipe-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.recipe-item h3 {
+  margin: 0;
+  display: inline;
+}
+
+.recipe-item p {
+  margin-left: 10px;
+  padding-top: 1rem;
+  font-size: 0.9em;
+  color: #666;
+}
+
 /* タブレット向けのスタイル */
 @media (min-width: 768px) and (max-width: 1024px) {
   body {

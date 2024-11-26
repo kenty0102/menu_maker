@@ -12,6 +12,8 @@ class RecipesController < ApplicationController
       @recipes += scrape_cookpad(@query)
       # DELISH KITCHENからレシピを取得
       @recipes += scrape_delish_kitchen(@query)
+      # クラシルからレシピを取得
+      @recipes += scrape_kurashiru(@query)
     end
     
     render :search
@@ -195,6 +197,24 @@ class RecipesController < ApplicationController
       title = title_element.text.strip
       source_url = "https://delishkitchen.tv" + recipe_element.at('a')['href']
       recipes << { title: title, source_url: source_url, site_name: 'DELISH KITCHEN' }
+    end
+    recipes
+  end
+
+  # クラシルのスクレイピング処理
+  def scrape_kurashiru(query)
+    agent = Mechanize.new
+    recipes = []
+    search_url = "https://kurashiru.com/search?query=#{CGI.escape(query)}"
+    page = agent.get(search_url)
+
+    page.search('.DlyMasonry-container .DlyMasonry-content').each do |recipe_element|
+      title_element = recipe_element.at('.video-list-title a.title')
+      next unless title_element
+
+      title = title_element.text.strip
+      source_url = "https://kurashiru.com" + recipe_element.at('a.thumbnail-wrapper')['href']
+      recipes << { title: title, source_url: source_url, site_name: 'クラシル' }
     end
     recipes
   end

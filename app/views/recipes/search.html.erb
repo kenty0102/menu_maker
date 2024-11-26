@@ -10,48 +10,30 @@
     </div>
   </div>
   <h1 class="page-title text-center"><%= t('.title') %></h1>
-  <div class="page-container text-center px-3">
-    <div class="row">
-      <div class="col d-flex justify-content-center align-items-center">
-        <%= link_to t('.cookpad'), "https://cookpad.com/", class: 'btn btn-cookpad', target: "_blank" %>
+  <div class="page-container text-start px-3">
+    <!-- 検索フォーム -->
+    <%= form_with url: search_recipes_path, method: :get, local: true do %>
+      <div class="text-center">
+        <%= label_tag :query, "レシピを検索" %>
+        <%= text_field_tag :query, params[:query], placeholder: "例: カレー" %>
+        <%= submit_tag "検索" %>
       </div>
-    </div>
-    <div class="row">
-      <div class="col d-flex justify-content-center align-items-center">
-        <%= link_to t('.delish_kitchen'), "https://delishkitchen.tv/", class: 'btn btn-delish-kitchen', target: "_blank" %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col d-flex justify-content-center align-items-center">
-        <%= link_to t('.kurashiru'), "https://www.kurashiru.com/", class: 'btn btn-kurashiru', target: "_blank" %>
-      </div>
-    </div>
+    <% end %>
+    
+    <!-- 検索結果表示 -->
+    <% if @recipes.present? %>
+      <h2 class="px-5 pt-5 pb-3">検索結果：</h2>
+      <ul>
+        <% @recipes.each do |recipe| %>
+          <li class="recipe-item">
+            <h3><%= link_to recipe[:title], recipe[:source_url], target: "_blank" %></h3>
+            <p><%= "（#{recipe[:site_name]}）" %></p>
+            <%= image_tag recipe[:image_url], alt: recipe[:title], width: 150 if recipe[:image_url].present? %>
+          </li>
+        <% end %>
+      </ul>
+    <% elsif params[:query].present? %>
+      <p>該当するレシピは見つかりませんでした。</p>
+    <% end %>
   </div>
 </div>
-<h1>レシピ検索</h1>
-
-<!-- 検索フォーム -->
-<%= form_with url: search_recipes_path, method: :get, local: true do %>
-  <div>
-    <%= label_tag :query, "レシピを検索" %>
-    <%= text_field_tag :query, params[:query], placeholder: "例: カレー" %>
-    <%= submit_tag "検索" %>
-  </div>
-<% end %>
-
-<!-- 検索結果表示 -->
-<% if @recipes.present? %>
-  <h2>検索結果:</h2>
-  <ul>
-    <% @recipes.each do |recipe| %>
-      <li>
-        <h3><%= link_to recipe[:title], recipe[:source_url], target: "_blank" %></h3>
-        <p><%= recipe[:site_name] %></p>
-        <%= image_tag recipe[:image_url], alt: recipe[:title], width: 150 if recipe[:image_url].present? %>
-      </li>
-    <% end %>
-  </ul>
-<% elsif params[:query].present? %>
-  <p>該当するレシピは見つかりませんでした。</p>
-<% end %>
-

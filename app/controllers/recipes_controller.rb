@@ -19,6 +19,27 @@ class RecipesController < ApplicationController
     render :search
   end
 
+  def search_show
+    url = params[:url]
+    agent = Mechanize.new
+    page = agent.get(url)
+  
+    @title = page.at('h1.break-words').text.strip  # レシピタイトル
+    @image_url = page.at('picture img')['src']  # レシピ画像URL
+    @ingredients = page.search('#ingredients .ingredient-list ol li').map do |ingredient|
+      {
+        name: ingredient.at('span')&.text.strip,
+        quantity: ingredient.at('bdi')&.text.strip
+      }
+    end
+    @steps = page.search('#steps ol li.step').map do |step|
+      {
+        number: step.at('.flex-shrink-0')&.text.strip,
+        instruction: step.at('p')&.text.strip
+      }
+    end
+  end
+
   def save_options; end
 
   def auto_save

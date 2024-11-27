@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   resources :recipes do
     collection do
       get 'search'  # レシピ検索ページに対応するルート
+      get 'search_show'  # 検索したレシピの詳細ページに対応するルート
       get 'save_options'  # レシピ保存方法選択ページに対応するルート
       get 'auto_save'  # レシピ自動保存ページに対応するルート
       post 'fetch_recipe'  # レシピの自動取得アクション

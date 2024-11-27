@@ -26,7 +26,7 @@
       <ul>
         <% @recipes.each do |recipe| %>
           <li class="recipe-item">
-            <h3><%= link_to recipe[:title], recipe[:source_url], target: "_blank" %></h3>
+            <h3><%= link_to recipe[:title], search_show_recipes_path(url: recipe[:source_url]) %></h3>
             <p><%= "（#{recipe[:site_name]}）" %></p>
             <%= image_tag recipe[:image_url], alt: recipe[:title], width: 150 if recipe[:image_url].present? %>
           </li>

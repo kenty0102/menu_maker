@@ -1,0 +1,22 @@
+<h1>レシピ詳細</h1>
+
+<h1><%= @title %></h1>
+
+<% if @image_url.present? %>
+  <img src="<%= @image_url %>" alt="<%= @title %>">
+<% end %>
+
+<h2>材料</h2>
+<ul>
+  <% @ingredients.each do |ingredient| %>
+    <li><%= ingredient[:name] %>: <%= ingredient[:quantity] %></li>
+  <% end %>
+</ul>
+
+<h2>作り方</h2>
+<% @steps.each do |step| %>
+  <p><strong><%= step[:number] %>:</strong> <%= step[:instruction] %><p>
+<% end %>
+
+<!-- 戻るボタン -->
+<%= link_to 'もどる', request.referer || root_path, class: 'btn btn-primary' %>

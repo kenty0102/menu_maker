@@ -20,23 +20,65 @@ class RecipesController < ApplicationController
   end
 
   def search_show
-    url = params[:url]
+    @source_site_url = params[:source_url]
     agent = Mechanize.new
-    page = agent.get(url)
-  
-    @title = page.at('h1.break-words').text.strip  # レシピタイトル
-    @image_url = page.at('picture img')['src']  # レシピ画像URL
-    @ingredients = page.search('#ingredients .ingredient-list ol li').map do |ingredient|
-      {
-        name: ingredient.at('span')&.text.strip,
-        quantity: ingredient.at('bdi')&.text.strip
-      }
-    end
-    @steps = page.search('#steps ol li.step').map do |step|
-      {
-        number: step.at('.flex-shrink-0')&.text.strip,
-        instruction: step.at('p')&.text.strip
-      }
+    page = agent.get(@source_site_url)
+    source_site = RecipeScrapers::RecipeScraper.new(@source_site_url)
+    @source_site_name = source_site.determine_source_site_name(@source_site_url)
+
+    case URI.parse(@source_site_url).host
+    when /cookpad/
+      @title = page.at('h1.break-words').text.strip  # レシピタイトル
+      @image_url = page.at('picture img')['src']  # レシピ画像URL
+      @ingredients = page.search('#ingredients .ingredient-list ol li').map do |ingredient|
+        {
+          name: ingredient.at('span')&.text.strip,
+          quantity: ingredient.at('bdi')&.text.strip
+        }
+      end
+      @steps = page.search('#steps ol li.step').map do |step|
+        {
+          number: step.at('.flex-shrink-0')&.text.strip,
+          instruction: step.at('p')&.text.strip
+        }
+      end
+    when /delishkitchen/
+      lead_text = page.at('.title-box .lead').text.strip
+      title_text = page.at('.title-box .title').text.strip
+      @title = "#{lead_text} #{title_text}"  # レシピタイトル
+      @image_url = page.at('.video-player video')['poster']  # レシピ画像URL
+      @ingredients = page.search('.ingredient-list li.ingredient').map do |ingredient|
+        {
+          name: ingredient.at('.ingredient-name')&.text.strip,
+          quantity: ingredient.at('.ingredient-serving')&.text.strip
+        }
+      end
+      @steps = page.search('ol.steps li.step').map do |step|
+        {
+          number: step.at('.step-num')&.text.strip,
+          instruction: step.at('.step-desc')&.text.strip
+        }
+      end
+    when /kurashiru/
+      title_text = page.at('.title-wrapper .title').text.strip
+      @title = title_text.gsub(/　レシピ・作り方$/, '')  # レシピタイトル
+      @image_url = page.at('.video-wrapper .video video')['poster']  # レシピ画像URL
+      @ingredients = page.search('.ingredient-list li.ingredient-list-item').filter_map do |ingredient|
+        next if ingredient['class'].include?('group-title')
+
+        {
+          name: ingredient.at('.ingredient-name')&.text.strip,
+          quantity: ingredient.at('.ingredient-quantity-amount')&.text.strip
+        }
+      end
+      @steps = page.search('ol.instruction-list li.instruction-list-item').map do |step|
+        {
+          number: step.at('.sort-order')&.text.strip.gsub('.', ''),
+          instruction: step.at('.content')&.text.strip
+        }
+      end
+    else
+      raise '詳細情報を取得できませんでした'
     end
   end
 

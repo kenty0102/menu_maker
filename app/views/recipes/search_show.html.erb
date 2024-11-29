@@ -1,22 +1,46 @@
-<h1>レシピ詳細</h1>
+<div class="container">
+  <div class="card custom-card-manual-save mx-auto my-5 pb-3">
+    <div class="row d-flex justify-content-end show-recipe-title">
+      <div class="col-12 d-flex justify-content-center">
+        <h1><%= @title %></h1>
+      </div>
+      <div class="col-4 d-flex justify-content-center source-site">
+        <p>出典: <%= link_to @source_site_name, @source_site_url, class: "no-underline", target: "_blank" %></p>
+      </div>
 
-<h1><%= @title %></h1>
+      <div class="container px-3">
+        <div class="row">
+          <div class="col-12">
+            <div class="container px-3">
+              <% if @image_url.present? %>
+                <img src="<%= @image_url %>" alt="<%= @title %>" class="img-fluid">
+              <% end %>
+              <div class="row show-ingredient-row">
+              <div class="col-12">
+                <h2>材料</h2>
+                <ul>
+                  <% @ingredients.each do |ingredient| %>
+                    <li><%= ingredient[:name] %>: <%= ingredient[:quantity] %></li>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="container px-3">
+              <div class="col-12">
+                <h2>作り方</h2>
+                <% @steps.each do |step| %>
+                  <p><strong><%= step[:number] %>:</strong> <%= step[:instruction] %><p>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-<% if @image_url.present? %>
-  <img src="<%= @image_url %>" alt="<%= @title %>">
-<% end %>
-
-<h2>材料</h2>
-<ul>
-  <% @ingredients.each do |ingredient| %>
-    <li><%= ingredient[:name] %>: <%= ingredient[:quantity] %></li>
-  <% end %>
-</ul>
-
-<h2>作り方</h2>
-<% @steps.each do |step| %>
-  <p><strong><%= step[:number] %>:</strong> <%= step[:instruction] %><p>
-<% end %>
-
-<!-- 戻るボタン -->
-<%= link_to 'もどる', request.referer || root_path, class: 'btn btn-primary' %>
+      <!-- 戻るボタン -->
+      <%= link_to 'もどる', request.referer || root_path, class: "btn btn-primary mt-5" %>
+    </div>
+  </div>
+</div>

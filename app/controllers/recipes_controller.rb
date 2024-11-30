@@ -88,6 +88,17 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new
   end
 
+  def save_recipe
+    url = params[:recipe][:source_url]
+    if url.present?
+      fetch_recipe_params = {source_url: url}
+      fetch_recipe
+    else
+      flash[:danger] = t('.missing_url')
+      redirect_to request.referer || root_path
+    end
+  end
+
   def fetch_recipe
     service = scraper_for(fetch_recipe_params[:source_url]) # 入力されたsource_urlをscraper_forメソッドに渡す
     basic_info = service.fetch_basic_info # serviceオブジェクトのfetch_basic_infoメソッドを呼び出し

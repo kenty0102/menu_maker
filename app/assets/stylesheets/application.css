@@ -712,6 +712,22 @@ footer {
   color: #666;
 }
 
+.nav-item .nav-link {
+  color: #4C4C4C;
+}
+.nav-item .nav-link.active {
+  background-color: #fbd063;
+  border-color: #F78700;
+  border-width: 2px;
+}
+.nav-tabs {
+  border-bottom-width: 3px;
+  border-color: #F78700;
+}
+.nav-tabs .nav-link:hover {
+  border-width: 2px;
+  border-color: #F78700;
+}
 /* タブレット向けのスタイル */
 @media (min-width: 768px) and (max-width: 1024px) {
   body {

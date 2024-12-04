@@ -15,6 +15,8 @@ class RecipesController < ApplicationController
       # クラシルからレシピを取得
       @recipes += scrape_kurashiru(@query)
     end
+
+    @recipes.sort_by! { |recipe| recipe[:title].to_s }
     
     render :search
   end

@@ -16,7 +16,7 @@
       <div class="text-center">
         <%= label_tag :query, "レシピを検索" %>
         <%= text_field_tag :query, params[:query], placeholder: "例: カレー" %>
-        <%= submit_tag "検索" %>
+        <%= submit_tag "検索", data: { turbo: false } %>
       </div>
     <% end %>
     
@@ -44,7 +44,7 @@
             <ul>
               <% @recipes.each do |recipe| %>
                 <li class="recipe-item">
-                  <h3><%= link_to recipe[:title], search_show_recipes_path(source_url: recipe[:source_url]) %></h3>
+                  <h3><%= link_to recipe[:title], search_show_recipes_path(source_url: recipe[:source_url]), data: { turbo: false } %></h3>
                   <p><%= "（#{recipe[:site_name]}）" %></p>
                 </li>
               <% end %>
@@ -56,7 +56,7 @@
             <ul>
               <% @recipes.select { |recipe| recipe[:site_name] == "Cookpad" }.each do |recipe| %>
                 <li class="recipe-item mb-5">
-                  <h3><%= link_to recipe[:title], search_show_recipes_path(source_url: recipe[:source_url]) %></h3>
+                  <h3><%= link_to recipe[:title], search_show_recipes_path(source_url: recipe[:source_url]), data: { turbo: false } %></h3>
                 </li>
               <% end %>
             </ul>
@@ -67,7 +67,7 @@
             <ul>
               <% @recipes.select { |recipe| recipe[:site_name] == "DELISH KITCHEN" }.each do |recipe| %>
                 <li class="recipe-item mb-5">
-                  <h3><%= link_to recipe[:title], search_show_recipes_path(source_url: recipe[:source_url]) %></h3>
+                  <h3><%= link_to recipe[:title], search_show_recipes_path(source_url: recipe[:source_url]), data: { turbo: false } %></h3>
                 </li>
               <% end %>
             </ul>
@@ -78,7 +78,7 @@
             <ul>
               <% @recipes.select { |recipe| recipe[:site_name] == "クラシル" }.each do |recipe| %>
                 <li class="recipe-item mb-5">
-                  <h3><%= link_to recipe[:title], search_show_recipes_path(source_url: recipe[:source_url]) %></h3>
+                  <h3><%= link_to recipe[:title], search_show_recipes_path(source_url: recipe[:source_url]), data: { turbo: false } %></h3>
                 </li>
               <% end %>
             </ul>

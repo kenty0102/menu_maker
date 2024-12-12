@@ -987,6 +987,10 @@ footer {
   .source-site {
     font-size: 16px;
   }
+
+  .nav {
+    --bs-nav-link-padding-x: 1.5rem;
+  }
 }
 
 /* スマートフォンサイズ用のスタイル */
@@ -1510,5 +1514,21 @@ footer {
     margin-left: 0.5rem;
     letter-spacing: 0.05rem;
     margin-bottom: 2rem;
+  }
+
+  .nav {
+    --bs-nav-link-padding-x: 0.6rem;
+  }
+  .nav-item .nav-link {
+    font-size: 10px;
+  }
+
+  .recipe-item h3 {
+    font-size: 1.1rem;
+  }
+  .recipe-item p {
+    margin-left: 0.2rem;
+    font-size: 0.5rem;
+    width: 4rem;
   }
 }

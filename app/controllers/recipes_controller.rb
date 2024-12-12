@@ -1,13 +1,103 @@
 class RecipesController < ApplicationController
   require 'mechanize'
+  require 'cgi'
   skip_before_action :require_login, only: :show
 
-  def search; end
+  def search
+    @query = params[:query]
+    @recipes = []
+
+    if @query.present?
+      # Cookpadからレシピを取得
+      @recipes += scrape_cookpad(@query)
+      # DELISH KITCHENからレシピを取得
+      @recipes += scrape_delish_kitchen(@query)
+      # クラシルからレシピを取得
+      @recipes += scrape_kurashiru(@query)
+    end
+
+    @recipes.sort_by! { |recipe| recipe[:title].to_s }
+
+    render :search
+  end
+
+  def search_show
+    @source_site_url = params[:source_url]
+    agent = Mechanize.new
+    page = agent.get(@source_site_url)
+    source_site = RecipeScrapers::RecipeScraper.new(@source_site_url)
+    @source_site_name = source_site.determine_source_site_name(@source_site_url)
+
+    case URI.parse(@source_site_url).host
+    when /cookpad/
+      @title = page.at('h1.break-words').text.strip # レシピタイトル
+      @image_url = page.at('picture img')['src'] # レシピ画像URL
+      @ingredients = page.search('#ingredients .ingredient-list ol li').map do |ingredient|
+        {
+          name: ingredient.at('span')&.text&.strip,
+          quantity: ingredient.at('bdi')&.text&.strip
+        }
+      end
+      @steps = page.search('#steps ol li.step').map do |step|
+        {
+          number: step.at('.flex-shrink-0')&.text&.strip,
+          instruction: step.at('p')&.text&.strip
+        }
+      end
+    when /delishkitchen/
+      lead_text = page.at('.title-box .lead').text.strip
+      title_text = page.at('.title-box .title').text.strip
+      @title = "#{lead_text} #{title_text}" # レシピタイトル
+      @image_url = page.at('.video-player video')['poster'] # レシピ画像URL
+      @ingredients = page.search('.ingredient-list li.ingredient').map do |ingredient|
+        {
+          name: ingredient.at('.ingredient-name')&.text&.strip,
+          quantity: ingredient.at('.ingredient-serving')&.text&.strip
+        }
+      end
+      @steps = page.search('ol.steps li.step').map do |step|
+        {
+          number: step.at('.step-num')&.text&.strip,
+          instruction: step.at('.step-desc')&.text&.strip
+        }
+      end
+    when /kurashiru/
+      title_text = page.at('.title-wrapper .title').text.strip
+      @title = title_text.gsub(/　レシピ・作り方$/, '') # レシピタイトル
+      @image_url = page.at('.video-wrapper .video video')['poster'] # レシピ画像URL
+      @ingredients = page.search('.ingredient-list li.ingredient-list-item').filter_map do |ingredient|
+        next if ingredient['class'].include?('group-title')
+
+        {
+          name: ingredient.at('.ingredient-name')&.text&.strip,
+          quantity: ingredient.at('.ingredient-quantity-amount')&.text&.strip
+        }
+      end
+      @steps = page.search('ol.instruction-list li.instruction-list-item').map do |step|
+        {
+          number: step.at('.sort-order')&.text&.strip&.delete('.'),
+          instruction: step.at('.content')&.text&.strip
+        }
+      end
+    else
+      raise '詳細情報を取得できませんでした'
+    end
+  end
 
   def save_options; end
 
   def auto_save
     @recipe = Recipe.new
+  end
+
+  def save_recipe
+    url = params[:recipe][:source_url]
+    if url.present?
+      fetch_recipe
+    else
+      flash[:danger] = t('.missing_url')
+      redirect_to request.referer || root_path
+    end
   end
 
   def fetch_recipe
@@ -148,5 +238,59 @@ class RecipesController < ApplicationController
       end
     end
     params
+  end
+
+  # クックパッドのスクレイピング処理
+  def scrape_cookpad(query)
+    agent = Mechanize.new
+    recipes = []
+    search_url = "https://cookpad.com/jp/search/#{CGI.escape(query)}?event=search.history&order=recent"
+    page = agent.get(search_url)
+
+    page.search('#search-recipes-list li[data-search-tracking-target="result"]').each do |recipe_element|
+      title_element = recipe_element.at('h2 a')
+      next unless title_element
+
+      title = title_element.text.strip
+      source_url = "https://cookpad.com#{title_element['href']}"
+      recipes << { title:, source_url:, site_name: 'Cookpad' }
+    end
+    recipes
+  end
+
+  # DELISH KITCHENのスクレイピング処理
+  def scrape_delish_kitchen(query)
+    agent = Mechanize.new
+    recipes = []
+    search_url = "https://delishkitchen.tv/search?q=#{CGI.escape(query)}"
+    page = agent.get(search_url)
+
+    page.search('.delish-recipes .delish-recipe-item-card').each do |recipe_element|
+      title_element = recipe_element.at('.item-card__title')
+      next unless title_element
+
+      title = title_element.text.strip
+      source_url = "https://delishkitchen.tv#{recipe_element.at('a')['href']}"
+      recipes << { title:, source_url:, site_name: 'DELISH KITCHEN' }
+    end
+    recipes
+  end
+
+  # クラシルのスクレイピング処理
+  def scrape_kurashiru(query)
+    agent = Mechanize.new
+    recipes = []
+    search_url = "https://kurashiru.com/search?query=#{CGI.escape(query)}"
+    page = agent.get(search_url)
+
+    page.search('.DlyMasonry-container .DlyMasonry-content').each do |recipe_element|
+      title_element = recipe_element.at('.video-list-title a.title')
+      next unless title_element
+
+      title = title_element.text.strip
+      source_url = "https://kurashiru.com#{recipe_element.at('a.thumbnail-wrapper')['href']}"
+      recipes << { title:, source_url:, site_name: 'クラシル' }
+    end
+    recipes
   end
 end

@@ -23,15 +23,13 @@ module RecipeScrapers
       }
     end
 
-    private
-
     def determine_source_site_name(url)
       case URI.parse(url).host # URLを解析＆解析したURLのホスト名（ドメイン）を取得し、取得したホスト名についての条件分岐
       when 'cookpad.com'
         'Cookpad' # ホスト名が'cookpad.com'のときに'Cookpad'を返す
       when 'delishkitchen.tv'
         'DELISH KITCHEN'
-      when 'www.kurashiru.com'
+      when 'kurashiru.com'
         'クラシル'
       else
         URI.parse(url).host # 条件に当てはまらない場合は、ホスト名をそのまま返す

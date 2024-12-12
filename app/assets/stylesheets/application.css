@@ -694,6 +694,40 @@ footer {
   color: #499342;
 }
 
+.recipe-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.recipe-item h3 {
+  margin: 0;
+  display: inline;
+}
+
+.recipe-item p {
+  margin-left: 10px;
+  padding-top: 1rem;
+  font-size: 0.9em;
+  color: #666;
+}
+
+.nav-item .nav-link {
+  color: #4C4C4C;
+}
+.nav-item .nav-link.active {
+  background-color: #fbd063;
+  border-color: #F78700;
+  border-width: 2px;
+}
+.nav-tabs {
+  border-bottom-width: 3px;
+  border-color: #F78700;
+}
+.nav-tabs .nav-link:hover {
+  border-width: 2px;
+  border-color: #F78700;
+}
 /* タブレット向けのスタイル */
 @media (min-width: 768px) and (max-width: 1024px) {
   body {
@@ -952,6 +986,10 @@ footer {
   }
   .source-site {
     font-size: 16px;
+  }
+
+  .nav {
+    --bs-nav-link-padding-x: 1.5rem;
   }
 }
 
@@ -1476,5 +1514,21 @@ footer {
     margin-left: 0.5rem;
     letter-spacing: 0.05rem;
     margin-bottom: 2rem;
+  }
+
+  .nav {
+    --bs-nav-link-padding-x: 0.6rem;
+  }
+  .nav-item .nav-link {
+    font-size: 10px;
+  }
+
+  .recipe-item h3 {
+    font-size: 1.1rem;
+  }
+  .recipe-item p {
+    margin-left: 0.2rem;
+    font-size: 0.5rem;
+    width: 4rem;
   }
 }

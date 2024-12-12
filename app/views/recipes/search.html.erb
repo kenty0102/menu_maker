@@ -10,21 +10,83 @@
     </div>
   </div>
   <h1 class="page-title text-center"><%= t('.title') %></h1>
-  <div class="page-container text-center px-3">
-    <div class="row">
-      <div class="col d-flex justify-content-center align-items-center">
-        <%= link_to t('.cookpad'), "https://cookpad.com/", class: 'btn btn-cookpad', target: "_blank" %>
+  <div class="page-container text-start px-3 mb-5">
+    <!-- 検索フォーム -->
+    <%= form_with url: search_recipes_path, method: :get, local: true do %>
+      <div class="text-center">
+        <%= label_tag :query, "レシピを検索" %>
+        <%= text_field_tag :query, params[:query], placeholder: "例: カレー" %>
+        <%= submit_tag "検索", data: { turbo: false } %>
       </div>
-    </div>
-    <div class="row">
-      <div class="col d-flex justify-content-center align-items-center">
-        <%= link_to t('.delish_kitchen'), "https://delishkitchen.tv/", class: 'btn btn-delish-kitchen', target: "_blank" %>
+    <% end %>
+    
+    <!-- 検索結果表示 -->
+    <% if @recipes.present? %>
+      <div class="tabs pb-5">
+        <ul class="nav nav-tabs my-5">
+          <li class="nav-item">
+            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#all">すべて</button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#cookpad" >クックパッド</button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#delishkitchen">DELISH KITCHEN</button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#kurashiru">クラシル</button>
+          </li>
+        </ul>
+
+        <div class="tab-content">
+          <!-- すべて -->
+          <div class="tab-pane fade show active" id="all">
+            <ul>
+              <% @recipes.each do |recipe| %>
+                <li class="recipe-item">
+                  <h3><%= link_to recipe[:title], search_show_recipes_path(source_url: recipe[:source_url]), data: { turbo: false } %></h3>
+                  <p><%= "（#{recipe[:site_name]}）" %></p>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+
+          <!-- クックパッド -->
+          <div class="tab-pane fade" id="cookpad">
+            <ul>
+              <% @recipes.select { |recipe| recipe[:site_name] == "Cookpad" }.each do |recipe| %>
+                <li class="recipe-item mb-5">
+                  <h3><%= link_to recipe[:title], search_show_recipes_path(source_url: recipe[:source_url]), data: { turbo: false } %></h3>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+
+          <!-- DELISH KITCHEN -->
+          <div class="tab-pane fade" id="delishkitchen">
+            <ul>
+              <% @recipes.select { |recipe| recipe[:site_name] == "DELISH KITCHEN" }.each do |recipe| %>
+                <li class="recipe-item mb-5">
+                  <h3><%= link_to recipe[:title], search_show_recipes_path(source_url: recipe[:source_url]), data: { turbo: false } %></h3>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+
+          <!-- クラシル -->
+          <div class="tab-pane fade" id="kurashiru">
+            <ul>
+              <% @recipes.select { |recipe| recipe[:site_name] == "クラシル" }.each do |recipe| %>
+                <li class="recipe-item mb-5">
+                  <h3><%= link_to recipe[:title], search_show_recipes_path(source_url: recipe[:source_url]), data: { turbo: false } %></h3>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col d-flex justify-content-center align-items-center">
-        <%= link_to t('.kurashiru'), "https://www.kurashiru.com/", class: 'btn btn-kurashiru', target: "_blank" %>
-      </div>
-    </div>
+    <% elsif params[:query].present? %>
+      <p>該当するレシピは見つかりませんでした。</p>
+    <% end %>
   </div>
 </div>

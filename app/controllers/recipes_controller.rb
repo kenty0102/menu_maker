@@ -17,7 +17,7 @@ class RecipesController < ApplicationController
     end
 
     @recipes.sort_by! { |recipe| recipe[:title].to_s }
-    
+
     render :search
   end
 
@@ -30,53 +30,53 @@ class RecipesController < ApplicationController
 
     case URI.parse(@source_site_url).host
     when /cookpad/
-      @title = page.at('h1.break-words').text.strip  # レシピタイトル
-      @image_url = page.at('picture img')['src']  # レシピ画像URL
+      @title = page.at('h1.break-words').text.strip # レシピタイトル
+      @image_url = page.at('picture img')['src'] # レシピ画像URL
       @ingredients = page.search('#ingredients .ingredient-list ol li').map do |ingredient|
         {
-          name: ingredient.at('span')&.text.strip,
-          quantity: ingredient.at('bdi')&.text.strip
+          name: ingredient.at('span')&.text&.strip,
+          quantity: ingredient.at('bdi')&.text&.strip
         }
       end
       @steps = page.search('#steps ol li.step').map do |step|
         {
-          number: step.at('.flex-shrink-0')&.text.strip,
-          instruction: step.at('p')&.text.strip
+          number: step.at('.flex-shrink-0')&.text&.strip,
+          instruction: step.at('p')&.text&.strip
         }
       end
     when /delishkitchen/
       lead_text = page.at('.title-box .lead').text.strip
       title_text = page.at('.title-box .title').text.strip
-      @title = "#{lead_text} #{title_text}"  # レシピタイトル
-      @image_url = page.at('.video-player video')['poster']  # レシピ画像URL
+      @title = "#{lead_text} #{title_text}" # レシピタイトル
+      @image_url = page.at('.video-player video')['poster'] # レシピ画像URL
       @ingredients = page.search('.ingredient-list li.ingredient').map do |ingredient|
         {
-          name: ingredient.at('.ingredient-name')&.text.strip,
-          quantity: ingredient.at('.ingredient-serving')&.text.strip
+          name: ingredient.at('.ingredient-name')&.text&.strip,
+          quantity: ingredient.at('.ingredient-serving')&.text&.strip
         }
       end
       @steps = page.search('ol.steps li.step').map do |step|
         {
-          number: step.at('.step-num')&.text.strip,
-          instruction: step.at('.step-desc')&.text.strip
+          number: step.at('.step-num')&.text&.strip,
+          instruction: step.at('.step-desc')&.text&.strip
         }
       end
     when /kurashiru/
       title_text = page.at('.title-wrapper .title').text.strip
-      @title = title_text.gsub(/　レシピ・作り方$/, '')  # レシピタイトル
-      @image_url = page.at('.video-wrapper .video video')['poster']  # レシピ画像URL
+      @title = title_text.gsub(/　レシピ・作り方$/, '') # レシピタイトル
+      @image_url = page.at('.video-wrapper .video video')['poster'] # レシピ画像URL
       @ingredients = page.search('.ingredient-list li.ingredient-list-item').filter_map do |ingredient|
         next if ingredient['class'].include?('group-title')
 
         {
-          name: ingredient.at('.ingredient-name')&.text.strip,
-          quantity: ingredient.at('.ingredient-quantity-amount')&.text.strip
+          name: ingredient.at('.ingredient-name')&.text&.strip,
+          quantity: ingredient.at('.ingredient-quantity-amount')&.text&.strip
         }
       end
       @steps = page.search('ol.instruction-list li.instruction-list-item').map do |step|
         {
-          number: step.at('.sort-order')&.text.strip.gsub('.', ''),
-          instruction: step.at('.content')&.text.strip
+          number: step.at('.sort-order')&.text&.strip&.delete('.'),
+          instruction: step.at('.content')&.text&.strip
         }
       end
     else
@@ -93,7 +93,6 @@ class RecipesController < ApplicationController
   def save_recipe
     url = params[:recipe][:source_url]
     if url.present?
-      fetch_recipe_params = {source_url: url}
       fetch_recipe
     else
       flash[:danger] = t('.missing_url')
@@ -253,8 +252,8 @@ class RecipesController < ApplicationController
       next unless title_element
 
       title = title_element.text.strip
-      source_url = "https://cookpad.com" + title_element['href']
-      recipes << { title: title, source_url: source_url, site_name: 'Cookpad' }
+      source_url = "https://cookpad.com#{title_element['href']}"
+      recipes << { title:, source_url:, site_name: 'Cookpad' }
     end
     recipes
   end
@@ -271,8 +270,8 @@ class RecipesController < ApplicationController
       next unless title_element
 
       title = title_element.text.strip
-      source_url = "https://delishkitchen.tv" + recipe_element.at('a')['href']
-      recipes << { title: title, source_url: source_url, site_name: 'DELISH KITCHEN' }
+      source_url = "https://delishkitchen.tv#{recipe_element.at('a')['href']}"
+      recipes << { title:, source_url:, site_name: 'DELISH KITCHEN' }
     end
     recipes
   end
@@ -289,8 +288,8 @@ class RecipesController < ApplicationController
       next unless title_element
 
       title = title_element.text.strip
-      source_url = "https://kurashiru.com" + recipe_element.at('a.thumbnail-wrapper')['href']
-      recipes << { title: title, source_url: source_url, site_name: 'クラシル' }
+      source_url = "https://kurashiru.com#{recipe_element.at('a.thumbnail-wrapper')['href']}"
+      recipes << { title:, source_url:, site_name: 'クラシル' }
     end
     recipes
   end
